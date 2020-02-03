@@ -1,0 +1,54 @@
+---
+title: 'Stat. Inf. II: Assignment 1'
+author: 'Naimul Chowdhury'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading:
+  a. Read the remaining Sections in Chapter 9: 9.3, 9.5 and 9.6. And, read the final section about errors and power on the R handout for inference about a proportion.
+  
+
+## Problem 2:
+
+ 1. Write a _prop.sample.size()_ function that will output the sample size needed for a one-sample proportion test to achieve
+
+- a desired margin of error (argument #1)
+
+- for a given confidence level (argument #2)
+
+in the "worst-case scenario" (as was explained in class). What was meant by the "worst-case scenario"?
+
+### Solution 1.
+
+We recall that 
+
+$$m = z_{1 - \alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.$$
+
+
+We wish to compute the desired sample size given margin of error $m$ and confidence level $1- \frac{\alpha}{2}$.
+
+In particular, we wish to account for the "worst-case scenario", where the standard error is maximized by our choice of $\hat{p}$.
+
+
+```{r}
+prop.sample.size <- function(m, conf) {
+  n <- (qnorm(conf)^2 * 0.5^2)/(m^2)
+  response <- c("The sample size for a one-sample proportion test with a desired margin of error", m, " and given confidence level", conf, " is ", n)
+  return(response)
+}
+```
+
+
+For example, suppose $m = 0.4$, and the given confidence level is 0.995. Then, 
+```{r}
+prop.sample.size(0.4, .995)
+```
+
+
+
+
+
