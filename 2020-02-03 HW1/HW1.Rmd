@@ -1,0 +1,36 @@
+---
+title: 'Stat. Inf. II: Homework 1'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Reading:
+  a. Read Sections 9.1, 9.2 and 9.4 in our textbook.
+  
+  b. Read the R handout on Inference for a proportion. The material about confidence intervals should be review. You do not yet have to read the final section about errors and power.
+  
+
+## Exercises:
+
+1. Assume the time it takes a student to complete a HW (measured in hours) follows an exponential distribution with parameter $\lambda=0.2$. (Look up the exponential distribution from Wikipedia.)
+    
+    a. Find the probability that a randomly selected student needs more than 5 hours to complete the HW. (Hint: there is an R command that can compute this easily.)
+    
+```{r}
+1 - pexp()
+```
+    
+    
+    b. Find the expected value and variance for the **difference in the completion time** for two independent students.
+    
+    c. What is the probability that the average completion time for all 100 students in the class is larger than 5 hours? (Assume students work independently) 
+    
+
+2. Chapter 6: 6.80 and 6.81
+
+3. Chapter 7: 7.22 (by data distribution, we mean the distribution of the sample taken from the population.)
+
+4. Chapter 9: 9.20 (instead of relying on the Minitab output, conduct all analysis in R)
