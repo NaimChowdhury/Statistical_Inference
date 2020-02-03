@@ -73,6 +73,41 @@ prop.sample.size(0.05, 0.99)
 
 d. Compare sample sizes for parts a and b, and b and c, and summarize the effects of decreasing the margin of error and increasing the confidence level.
 
+3. Write a _mean.sample.size()_ function that will output the sample size needed for a one-sample mean test to achieve
+
+- a desired margin of error (argument #1)
+
+- for a given confidence level (argument #2)
+
+- for a given standard deviation (argument #3)
+
+Proceed to use that function in order to do exercise 8.53 from the Agresti book.
+
+### Solution 3
+
+Recall that
+
+$$t_{(n-1), \ 1-\alpha/2} \cdot \frac{s}{\sqrt{n}} = m,$$
+
+implying,
+
+$$n = \frac{ \sigma^2 z^2 } {m^2}.$$
+
+This is working under the assumption that we have a population size of at least $n = 30$, since this would make our distrubution approach the normal distribution.
+
+
+Thus we can construct our function.
+
+```{r}
+mean.sample.size <- function(m, conf, s) {
+  n <- ((s * qnorm(conf))/m)^2
+  response <- c("The sample size for a one-sample mean test with a desired margin of error,", m, " given confidence level", conf, "and standard deviation", s,  " is ", n)
+  return(response)
+}
+```
+
+
+
 
 
 
