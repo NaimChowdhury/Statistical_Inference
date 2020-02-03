@@ -49,6 +49,33 @@ prop.sample.size(0.4, .995)
 ```
 
 
+2. use your _prop.sample.size()_ from part 1 to do exercise 8.50 from the Agresti book.
+
+How many businesses fail? A study is planned to estimate the proportion of businesses started in the year 2006 that failed within five years of their start-up. How large a sample size is needed to guarantee estimating this proportion correct to within
+
+a. 0.10 with probability 0.95?
+
+```{r}
+prop.sample.size(0.10, 0.95)
+```
+
+b. 0.05 with probability 0.95?
+
+```{r}
+prop.sample.size(0.05, 0.95)
+```
+
+c. 0.05 with probability 0.99?
+
+```{r}
+prop.sample.size(0.05, 0.99)
+```
+
+d. Compare sample sizes for parts a and b, and b and c, and summarize the effects of decreasing the margin of error and increasing the confidence level.
+
+
+
+
 
 
 
