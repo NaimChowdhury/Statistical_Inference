@@ -50,7 +50,22 @@ $$T= \frac{\bar{X} - \mu}{s/\sqrt{n}} = \frac{Z}{\sqrt{X_{n-1}^2/(n-1)}} \sim t_
 where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
 
   1. Show that
+  
   $$\bar{X} - \mu = \frac{\sigma}{\sqrt{n}} Z, \ \ Z \sim N(0,1)$$
+  
+  Proof: The $\chi^2$ distribution is the square of independent standard normal distribution,
+  
+  $$ \chi^2_{df} = \sum_i^{df} Z^2_i.$$
+  
+  Also note that the sample mean $\bar{X}$ has follows a normal distribution with mean $\mu$ and standard deviation $\sigma$,
+  
+  $$\bar{X} \sim N(\mu, \frac{\sigma^2}{n}).$$
+  
+  Finally, note that $Z$ is given by
+  
+  $$Z = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}.$$
+  
+  Thus by simple algebra we arrive at the desired conclusion.
   
   2. Show that
   $$ \sum_i (x_i - \bar{x})^2 = \sigma^2 \sum_i (z_i - \bar{z})^2,$$ where $z_1,z_2,\dots,z_n \sim_{ind} N(0,1)$.
