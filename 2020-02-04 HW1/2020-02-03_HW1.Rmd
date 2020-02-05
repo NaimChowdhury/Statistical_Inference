@@ -182,6 +182,25 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
   
   6. Matrix $A_{n\times n}$ as  defined in part $3$, has rank of $n-1$. Why not $n$?
   
+### Solution 6.
+
+  We first consider $A_{n\times n}$.
+  
+  $$A_{n\times n}  = \begin{pmatrix} (1- \frac{1}{n}) & - \frac{1}{n} & - \frac{1}{n} & \dots & - \frac{1}{n} & - \frac{1}{n} \\
+                                          - \frac{1}{n} & (1- \frac{1}{n}) & - \frac{1}{n} & \dots & - \frac{1}{n} & - \frac{1}{n} \\
+                                          \dots \\
+                                          - \frac{1}{n} & - \frac{1}{n} & - \frac{1}{n} & \dots & - \frac{1}{n} & (1- \frac{1}{n})\\
+                                          \end{pmatrix}$$
+                                          
+ $$ = \frac{1}{n}\begin{pmatrix} (n-1) & 1 & 1 & \dots & 1 & 1 \\
+                                          1 & (n-1) & 1 & \dots & 1 & 1 \\
+                                          \dots \\
+                                          1 & 1 & 1 & \dots & 1 & (n-1)\\
+                                          \end{pmatrix}.$$
+                                          
+  Choose any row, such as the first row, and subtract all other rows from it. The resulting row is a vector $(0, 0, ..., 0)){1\times n}$. Since this row can be expressed as a linear combination of the other rows, the matrix is not linearly independent. Thus it cannot have a rank $n$.
+  
+
 
   
   7. Combine the parts $2, 5$ and $6$ with **Cochran's theorem** (see page $1$) to show that
