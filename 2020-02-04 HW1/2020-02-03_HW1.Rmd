@@ -111,6 +111,8 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
                                           \end{pmatrix}$$
                                           
 ### Solution 3.
+
+  It follows by the linear algebra operations that,
   
   $$\textbf{z}'A = \textbf{z}'(\textbf{I} - \frac{1}{n} \textbf{1}).$$
   
@@ -130,6 +132,20 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
                                           
   4. Using your result from part $3$, show that $(\textbf{z}'A_{n\times n})(\textbf{z}'A_{n\times n})' = \sum_i (z_i - \bar{z})^2$.
   
+### Solution 4.
+
+  We have already shown that $\textbf{z}'A_{n\times n} = (z_1 - \bar{z}, z_2 - \bar{z}, ..., z_n - \bar{z})_{1\times n}$.
+  
+  It follows that
+  
+  $$(\textbf{z}'A_{n\times n})(\textbf{z}'A_{n\times n})' = (z_1 - \bar{z}, z_2 - \bar{z}, ..., z_n - \bar{z})_{1\times n} \times (z_1 - \bar{z}, z_2 - \bar{z}, ..., z_n - \bar{z})_{n\times 1}$$
+  
+  $$ = (z_1 - \bar{z})^2 + (z_2 - \bar{z})^2 + ... + (z_n - \bar{z})^2$$
+  
+  $$ = \sum_i^n (z_i - \bar{z})^2,$$
+  
+  as we wished to show.
+  
   
   5. For matrix $A_{n \times n}$ as defined in part $3$, show that it is **idempotent**, as in
   
@@ -139,7 +155,34 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
   
   $$\sum_i (z_i - \bar{z})^2 = (\textbf{z}'A_{n\times n})(\textbf{z}'A_{n\times n})' = \textbf{z}'A_{n\times n}A'_{n\times n}\textbf{z} =\textbf{z}'A_{n\times n}\textbf{z}$$
   
+### Solution 5.
+
+  Recall that $A_{n \times n} = \textbf{I}_{n\times n} - \frac{1}{n} \textbf{1}_{n\times n}.$
+  
+  Thus 
+  
+  $$A_{n\times n} \times A_{n \times n} = (\textbf{I} - \frac{1}{n} \textbf{1})(\textbf{I} - \frac{1}{n} \textbf{1})$$
+  
+  $$ = (\textbf{I}^2 - \frac{2}{n} \textbf{1}  + \frac{1}{n^2}\textbf{1}^2).$$
+  
+  Here, we note that $\textbf{1}^2 = \textbf{n}$, where $\textbf{n} \in \mathbb{R}^{n \times n}$ such that every element $\mathbb{n}_{(i,j)} = n$, for all $(i,j)$. 
+  
+  Thus 
+  
+  $$(\textbf{I}^2 - \frac{2}{n} \textbf{1}  + \frac{1}{n^2}\textbf{1}^2)$$
+
+  $$= (\textbf{I}^2 - \frac{2}{n} \textbf{1}  + \frac{1}{n^2}\textbf{n})$$
+  
+  $$= (\textbf{I}^2 - \frac{2}{n} \textbf{1}  + \frac{1}{n}\textbf{1})$$
+  
+  $$ = (\textbf{I}^2 - \frac{1}{n} \textbf{1}),$$
+  
+  as desired.
+  
+  
   6. Matrix $A_{n\times n}$ as  defined in part $3$, has rank of $n-1$. Why not $n$?
+  
+
   
   7. Combine the parts $2, 5$ and $6$ with **Cochran's theorem** (see page $1$) to show that
   $$s/\sqrt{n} = \sqrt{\sum_i (x_i - \bar{x})^2/(n-1)} \times \frac{1}{\sqrt{n}} = \sqrt{\sigma^2 X^2_{n-1}/(n-1)} \times \frac{1}{\sqrt{n}}, \ \ X^2_{n-1} \sim \chi^2_{n-1}$$
