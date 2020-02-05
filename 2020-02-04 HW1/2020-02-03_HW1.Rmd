@@ -53,7 +53,9 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
   
   $$\bar{X} - \mu = \frac{\sigma}{\sqrt{n}} Z, \ \ Z \sim N(0,1)$$
   
-  Proof: The $\chi^2$ distribution is the square of independent standard normal distribution,
+### Solution 1.
+  
+  The $\chi^2$ distribution is the square of independent standard normal distribution,
   
   $$ \chi^2_{df} = \sum_i^{df} Z^2_i.$$
   
@@ -67,10 +69,36 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
   
   Thus by simple algebra we arrive at the desired conclusion.
   
+  $$\bar{X} - \mu = \frac{\sigma}{\sqrt{n}} Z.$$
+  
   2. Show that
-  $$ \sum_i (x_i - \bar{x})^2 = \sigma^2 \sum_i (z_i - \bar{z})^2,$$ where $z_1,z_2,\dots,z_n \sim_{ind} N(0,1)$.
+  
+  $$ \sum_i (x_i - \bar{x})^2 = \sigma^2 \sum_i (z_i - \bar{z})^2,$$ where $z_1,z_2,\dots,z_n \sim_{ind} N(0,1)$$.
+  
+### Solution 2. 
+  
+  We first recall that
+  
+  $$X_i \sim N(\mu, \sigma^2).$$
+  
+  and thus,
+  
+  $$z_i = \frac{x_i -\mu }{\sigma} \sim N(0,1).$$
+  
+  By simple algebra we can deduce that
+  
+  $$x_i = z_i \sigma + \mu.$$
+  
+  Consider $\sum_i (x_i - \bar{x})^2$. By part 1, we know that $\bar{x} = \frac{\sigma z}{\sqrt{n}} + \mu.$
+  
+  Thus,
+  
+  $$\sum_i (x_i - \bar{x})^2 = \sum_i [(z_i \sigma + \mu)-(\frac{\sigma z}{\sqrt{n}} + \mu) ],$$
+  
+  as required.
   
   3. Applying the basic "row-by-column" matrix multiplication, proceed to calculate $\textbf{z}'A_{n\times n} = (z_1,z_2,\dots,z_n) \times A_{n\times n}$, where 
+  
   $$A = \textbf{I}_{n\times n} - \frac{1}{n} \textbf{1}_{n\times n}$$
   $$\textbf{I}_{n\times n} = diag(\underbrace{1,1,\dots,1}_{n}) = \begin{pmatrix} 1 & 0 & 0 & \dots & 0 & 0 \\
                                           0 & 1 & 0 & \dots & 0 & 0 \\
@@ -82,11 +110,33 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
                                           1 & 1 & 1 & \dots & 1 & 1\\
                                           \end{pmatrix}$$
                                           
+### Solution 3.
+  
+  $$\textbf{z}'A = \textbf{z}'(\textbf{I} - \frac{1}{n} \textbf{1}).$$
+  
+  $$ = \textbf{z}'\textbf{I} - \frac{1}{n} \textbf{z}'\textbf{1}$$
+  
+  $$ = \textbf{z}' - (\frac{1}{n}\sum_i^n z_i, \frac{1}{n}\sum_i^n z_i, ..., \frac{1}{n}\sum_i^n z_i)_{1\times n}$$
+  
+  $$ = \textbf{z}' - (\bar{z}, \bar{z}, ..., \bar{z})_{1\times n}$$
+  
+  $$ = \textbf{z}' - \bar { \textbf{ z } }$$
+  
+  Which is the $1 \times n$ vector, 
+  
+  $$ = (z_i - \bar{z})_i^n.$$
+  
+  
+                                          
   4. Using your result from part $3$, show that $(\textbf{z}'A_{n\times n})(\textbf{z}'A_{n\times n})' = \sum_i (z_i - \bar{z})^2$.
   
+  
   5. For matrix $A_{n \times n}$ as defined in part $3$, show that it is **idempotent**, as in
+  
   $$A_{n\times n} \times A_{n \times n} = A_{n \times n},$$
+  
   hence, combined with part $4$, leading to the fact that
+  
   $$\sum_i (z_i - \bar{z})^2 = (\textbf{z}'A_{n\times n})(\textbf{z}'A_{n\times n})' = \textbf{z}'A_{n\times n}A'_{n\times n}\textbf{z} =\textbf{z}'A_{n\times n}\textbf{z}$$
   
   6. Matrix $A_{n\times n}$ as  defined in part $3$, has rank of $n-1$. Why not $n$?
