@@ -204,10 +204,55 @@ where $Z \sim N(0,1)$, $X^2_{n-1} \sim \chi^2_{n-1}$.
 
   
   7. Combine the parts $2, 5$ and $6$ with **Cochran's theorem** (see page $1$) to show that
+  
   $$s/\sqrt{n} = \sqrt{\sum_i (x_i - \bar{x})^2/(n-1)} \times \frac{1}{\sqrt{n}} = \sqrt{\sigma^2 X^2_{n-1}/(n-1)} \times \frac{1}{\sqrt{n}}, \ \ X^2_{n-1} \sim \chi^2_{n-1}$$
+  
+### Solution 7. 
+
+  We have, by definition, that
+  
+  $$s/\sqrt{n} = \sqrt{\sum_i (x_i - \bar{x})^2/(n-1)} \times \frac{1}{\sqrt{n}}.$$
+  
+  Consider the numerator $\sum_i (x_i - \bar{x})^2$. We showed in part 2 that
+  
+  $$\sum_i (x_i - \bar{x})^2 = \sigma^2\sum_i (z_i - \bar{z})^2.$$
+  
+  By part 5 we can rewrite the left-hand side as
+  
+  $$\sum_i (x_i - \bar{x})^2 = \sigma^2\textbf{z}'A\textbf{z}.$$
+  
+  And by Cochran's Theorem we can rewrite it as
+  
+  $$\sum_i (x_i - \bar{x})^2 = \sigma^2 \chi^2_{n-1}.$$
+  
+  Thus, we can conclude that
+  
+  $$s/\sqrt{n} = \sqrt{\sum_i (x_i - \bar{x})^2/(n-1)} \times \frac{1}{\sqrt{n}} = \sqrt{\sigma^2 X^2_{n-1}/(n-1)} \times \frac{1}{\sqrt{n}}, \ \ X^2_{n-1} \sim \chi^2_{n-1},$$
+  
+  as required.
+
+### Solution 8.
+  
   8. Combine parts $2$ and $7$ to prove the **main statement**.
   
-  $$ $$
+  In part 1 we showed that
+  
+  $$\bar{X} - \mu = \frac{\sigma}{\sqrt{n}} Z.$$
+  
+  And in part 7 we showed that,
+  
+  $$\frac{s}{\sqrt{n}} = \sqrt{\sigma^2 X^2_{n-1}/(n-1)} \times \frac{1}{\sqrt{n}}.$$
+  
+  Thus,
+  
+  $$\frac{X - \mu}{s/\sqrt{n}} = \frac{\frac{\sigma}{\sqrt{n}} Z}{\frac{\sigma}{\sqrt{n}}\sqrt{\sigma^2 X^2_{n-1}/(n-1)}}.$$
+  
+  $$ = \frac{ Z}{\sqrt{\sigma^2 X^2_{n-1}/(n-1)}},$$
+  
+  as required.
+  
+  
+  
   
   **Note**: Some extra details could be found here (see p. 1-2 of the main post): \url{https://stats.stackexchange.com/questions/306937/quadratic-form-and-chi-squared-distribution}.
 
