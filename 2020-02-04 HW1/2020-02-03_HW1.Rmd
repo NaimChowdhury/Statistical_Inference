@@ -280,7 +280,8 @@ In particular, we wish to account for the "worst-case scenario", where the stand
 
 ```{r}
 prop.sample.size <- function(m, conf) {
-  n <- (qnorm(conf)^2 * 0.5^2)/(m^2)
+  alpha = 1-conf
+  n <- (qnorm(1-(alpha/2))^2 * 0.5^2)/(m^2)
   response <- c("The sample size for a one-sample proportion test with a desired margin of error", m, " and given confidence level", conf, " is ", n)
   return(response)
 }
@@ -344,7 +345,8 @@ Thus we can construct our function.
 
 ```{r}
 mean.sample.size <- function(m, conf, s) {
-  n <- ((s * qnorm(conf))/m)^2
+  alpha = 1-conf
+  n <- ((s * qnorm(1-(alpha/2)))/m)^2
   response <- c("The sample size for a one-sample mean test with a desired margin of error,", m, " given confidence level", conf, "and standard deviation", s,  " is ", n)
   return(response)
 }
