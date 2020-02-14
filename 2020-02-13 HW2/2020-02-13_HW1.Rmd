@@ -36,5 +36,30 @@ Refer to the web app from Activity 2 at the end of this section, now assuming th
   The power increases when the significance level is 0.10 instead of 0.05. This is because by increasing our significance level, we are decreasing the radius around $p_0$ under which we compute the area under the $H_a$ distribution. This decreases the Type II error probability, increasing the Power.
   
   
+## Problem 2.
 
+  Presume you've developed a skin cancer treatment and you were granted permission to test it out on patients. You would like to test if its accuracy differs from the golden standard method which has 28% cure rate. In particular, you'd want the ability to correctly detect a difference of 10%. 
+
+  a. Formulate the hypotheses for the one-sample proportion test.
+  
+### Solution a.
+
+  Let $p$ be the proportion of patients cured under the skin cancer treatment that I developed.
+
+  Then the hypotheses are...
+
+  $$H_0: p = 0.28.$$
+
+  $$H_a: p \neq -0.28.$$
+
+
+  b. Interpret the statement: "At a 0.05 significance level, the significance test will have 0.77 power when detecting a difference of 10%."
+  
+### Solution b.
+
+  With a confidence level of 95%, the probability of sucessfully rejecting the null hypothesis given that its false is 77%.
+  
+### Solution c.
+
+  Presume we witness your treatmen's results for 100 patients. Obtain the power of one-sample proportion test at $\alpha = 0.05$ significance level when detecting a difference of 10%. 
 
