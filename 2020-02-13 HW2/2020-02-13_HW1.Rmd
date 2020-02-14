@@ -59,7 +59,10 @@ Refer to the web app from Activity 2 at the end of this section, now assuming th
 
   With a confidence level of 95%, the probability of sucessfully rejecting the null hypothesis given that its false is 77%.
   
+
+  c. Presume we witness your treatment's results for 100 patients. Obtain the power of one-sample proportion test at $\alpha = 0.05$ significance level when detecting a difference of 10%. 
+  
 ### Solution c.
 
-  Presume we witness your treatmen's results for 100 patients. Obtain the power of one-sample proportion test at $\alpha = 0.05$ significance level when detecting a difference of 10%. 
+  
 
