@@ -2,7 +2,9 @@
 title: 'Stats. Inference Homework #2'
 author: "Naeem Chowdhury"
 date: "2/13/2020"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ## 9.66 Exploring Type II Errors
@@ -72,7 +74,7 @@ reject <- qnorm(1-alpha/2, mean=p0, sd= sqrt(p0*(1-p0)/n))
 # Calculating the Type II error, the probability that we fail to observe a difference when there actually is one
 type_II <- pnorm(reject, mean = pA, sd = sqrt(p0*(1-p0)/n)) - pnorm(-reject, mean = pA, sd = sqrt(p0*(1-p0)/n))
 # Power = 1 - type_II
-paste("The power of the test is ", 1 - type_II, sep = "")
+powah = 1 - type_II
 ```
 
   
@@ -89,7 +91,9 @@ reject <- qnorm(1-alpha/2, mean=p0, sd= sqrt(p0*(1-p0)/n))
 
 type_II <- pnorm(reject, mean = pA, sd = sqrt(p0*(1-p0)/n)) - pnorm(-reject, mean = pA, sd = sqrt(p0*(1-p0)/n))
 
-paste("The power of the test is ", 1 - type_II, " with alpha level of ", alpha, sep = "")
+powah <- 1 - type_II
+
+powah
 ```
 
   
@@ -99,7 +103,10 @@ paste("The power of the test is ", 1 - type_II, " with alpha level of ", alpha, 
   
   f. In this case, do you think it is more important for your test to have lower significance level or higher power? Explain.
   
+  If we lower our significance level, we might believe that our treatment is better when in fact the golden treatment performs better. Having a higher power lets us know that we are less likely to commit the error that in accepting there is no important difference between the two errors when it actually is effective. Power is more important than significance level because it encourages the development of our drug, where as having a lower significance level might cause us to waste millions of dollars on a drug that is no better than what we already have.
+  
 
   g. Provided that you don't have the resources to recruit more than $n = 100$ patients, what can you do in order to increase the power of your test for detecting 10% difference.
   
-  
+  To increase the power of our test, we can decrease the size of our confidence interval. 
+
