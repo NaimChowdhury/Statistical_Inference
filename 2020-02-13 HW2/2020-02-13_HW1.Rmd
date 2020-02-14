@@ -1,0 +1,40 @@
+---
+title: 'Stats. Inference Homework #2'
+author: "Naeem Chowdhury"
+date: "2/13/2020"
+output: pdf_document
+---
+
+## 9.66 Exploring Type II Errors
+
+Refer to the web app from Activity 2 at the end of this section, now assuming that we are using the two-sided test $H_0: p = 0.33$ against $H_a: p \neq 0.33$.
+
+  a. Explain the effect of increasing the sample size on the probability of a Type II error when the true $p = 0.50$.
+  
+### Solution a.
+  
+  As sample size increases, the probability of a Type II error decreases. This is because as sample size increases, value of the null hypothesis $p_0$ falls increasingly  more standard deviations from the mean.
+  
+  b. Use the app to find the sample size needed to achieve a power of at least 90% when truly $p = 0.5$.
+  
+### Solution b.
+  
+  A sample size of 84 is suffcient to achieve a power of at least 90%.
+  
+  c. For a fixed sample size, do you think the probability of a Type II error will increase or decrease when the true $p$ is 0.40 instead of 0.50? Check your answer with the app. 
+  
+### Solution c. 
+
+  I think that for a fixed sample size, the probability of a Type II error will increase when the true $p$ is 0.40 instead of 0.50. This is because the center of the $H_a$ distribution will be closer to the value $p_0$ of the null hypothesis.
+  
+  Indeed, it is true!
+  
+  d. Does the power increase or decrease when the significance level is 0.10 instead of 0.05? Check your answer with the app.
+  
+### Solution d.
+
+  The power increases when the significance level is 0.10 instead of 0.05. This is because by increasing our significance level, we are decreasing the radius around $p_0$ under which we compute the area under the $H_a$ distribution. This decreases the Type II error probability, increasing the Power.
+  
+  
+
+
