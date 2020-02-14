@@ -64,6 +64,8 @@ Refer to the web app from Activity 2 at the end of this section, now assuming th
 
   c. Presume we witness your treatment's results for 100 patients. Obtain the power of one-sample proportion test at $\alpha = 0.05$ significance level when detecting a difference of 10%. 
   
+ 
+  
 ```{r}
 n <- 100
 p0 <- 0.28
@@ -79,6 +81,11 @@ powah = 1 - type_II
 
   
   d. Presume we witness your treatment's results for 100 patients. Obtain the $\alpha$ significance level needed for your test to have the power of $0.85$ when detecting a difference of 10%.
+  
+   To solve this question, we can utilize a function I wrote for the last assignment.
+
+
+
   
 ```{r}
 n <- 100
@@ -99,7 +106,23 @@ powah
   
   e. What \# of patients is needed for your test to have the power of 0.85 when detecting a difference of 10%?
   
-  Not Sure how to do this one.
+  
+  Based on the previous problem, our confidence level would be $1 - \alpha = 0-.765$ to have the desired power. Utilizing a function from the previous homework...
+  
+```{r}
+prop.sample.size <- function(m, conf) {
+  alpha = 1-conf
+  n <- (qnorm(1-(alpha/2))^2 * 0.5^2)/(m^2)
+  response <- c("The sample size for a one-sample proportion test with a desired margin of error", m, " and given confidence level", conf, " is ", n)
+  return(response)
+}
+
+prop.sample.size(0.1, 0.735)
+
+```
+  
+  So we would only need about 31 participants to reach the desired power.
+  
   
   f. In this case, do you think it is more important for your test to have lower significance level or higher power? Explain.
   

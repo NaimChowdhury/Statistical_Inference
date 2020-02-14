@@ -1708,6 +1708,7 @@ powah = 1 - type_II</code></pre>
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Presume we witness your treatment’s results for 100 patients. Obtain the <span class="math inline">\(\alpha\)</span> significance level needed for your test to have the power of <span class="math inline">\(0.85\)</span> when detecting a difference of 10%.</li>
 </ol>
+<p>To solve this question, we can utilize a function I wrote for the last assignment.</p>
 <pre class="r"><code>n &lt;- 100
 p0 &lt;- 0.28
 pA &lt;- 0.38
@@ -1725,7 +1726,22 @@ powah</code></pre>
 <ol start="5" style="list-style-type: lower-alpha">
 <li>What # of patients is needed for your test to have the power of 0.85 when detecting a difference of 10%?</li>
 </ol>
-<p>Not Sure how to do this one.</p>
+<p>Based on the previous problem, our confidence level would be <span class="math inline">\(1 - \alpha = 0-.765\)</span> to have the desired power. Utilizing a function from the previous homework…</p>
+<pre class="r"><code>prop.sample.size &lt;- function(m, conf) {
+  alpha = 1-conf
+  n &lt;- (qnorm(1-(alpha/2))^2 * 0.5^2)/(m^2)
+  response &lt;- c(&quot;The sample size for a one-sample proportion test with a desired margin of error&quot;, m, &quot; and given confidence level&quot;, conf, &quot; is &quot;, n)
+  return(response)
+}
+
+prop.sample.size(0.1, 0.735)</code></pre>
+<pre><code>## [1] &quot;The sample size for a one-sample proportion test with a desired margin of error&quot;
+## [2] &quot;0.1&quot;                                                                            
+## [3] &quot; and given confidence level&quot;                                                    
+## [4] &quot;0.735&quot;                                                                          
+## [5] &quot; is &quot;                                                                           
+## [6] &quot;31.0611721272602&quot;</code></pre>
+<p>So we would only need about 31 participants to reach the desired power.</p>
 <ol start="6" style="list-style-type: lower-alpha">
 <li>In this case, do you think it is more important for your test to have lower significance level or higher power? Explain.</li>
 </ol>
