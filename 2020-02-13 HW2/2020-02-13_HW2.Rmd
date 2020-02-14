@@ -57,20 +57,49 @@ Refer to the web app from Activity 2 at the end of this section, now assuming th
   
 ### Solution b.
 
-  With a confidence level of 95%, the probability of sucessfully rejecting the null hypothesis given that its false is 77%.
+  With a confidence level of 95%, we can detect a 10% difference between our drug and the leading drug  77% of the time.
   
 
   c. Presume we witness your treatment's results for 100 patients. Obtain the power of one-sample proportion test at $\alpha = 0.05$ significance level when detecting a difference of 10%. 
   
-### Solution c.
+```{r}
+n <- 100
+p0 <- 0.28
+pA <- 0.38
+alpha <- 0.05
+
+reject <- qnorm(1-alpha/2, mean=p0, sd= sqrt(p0*(1-p0)/n))
+# Calculating the Type II error, the probability that we fail to observe a difference when there actually is one
+type_II <- pnorm(reject, mean = pA, sd = sqrt(p0*(1-p0)/n)) - pnorm(-reject, mean = pA, sd = sqrt(p0*(1-p0)/n))
+# Power = 1 - type_II
+paste("The power of the test is ", 1 - type_II, sep = "")
+```
 
   
   d. Presume we witness your treatment's results for 100 patients. Obtain the $\alpha$ significance level needed for your test to have the power of $0.85$ when detecting a difference of 10%.
   
+```{r}
+n <- 100
+p0 <- 0.28
+pA <- 0.38
+alpha <- 0.235
+
+# Quantiles
+reject <- qnorm(1-alpha/2, mean=p0, sd= sqrt(p0*(1-p0)/n))
+
+type_II <- pnorm(reject, mean = pA, sd = sqrt(p0*(1-p0)/n)) - pnorm(-reject, mean = pA, sd = sqrt(p0*(1-p0)/n))
+
+paste("The power of the test is ", 1 - type_II, " with alpha level of ", alpha, sep = "")
+```
+
+  
   e. What \# of patients is needed for your test to have the power of 0.85 when detecting a difference of 10%?
+  
+  Not Sure how to do this one.
   
   f. In this case, do you think it is more important for your test to have lower significance level or higher power? Explain.
   
+
   g. Provided that you don't have the resources to recruit more than $n = 100$ patients, what can you do in order to increase the power of your test for detecting 10% difference.
   
   
