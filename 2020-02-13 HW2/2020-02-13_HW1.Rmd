@@ -65,4 +65,12 @@ Refer to the web app from Activity 2 at the end of this section, now assuming th
 ### Solution c.
 
   
-
+  d. Presume we witness your treatment's results for 100 patients. Obtain the $\alpha$ significance level needed for your test to have the power of $0.85$ when detecting a difference of 10%.
+  
+  e. What \# of patients is needed for your test to have the power of 0.85 when detecting a difference of 10%?
+  
+  f. In this case, do you think it is more important for your test to have lower significance level or higher power? Explain.
+  
+  g. Provided that you don't have the resources to recruit more than $n = 100$ patients, what can you do in order to increase the power of your test for detecting 10% difference.
+  
+  
