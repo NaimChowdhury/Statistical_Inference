@@ -1,0 +1,154 @@
+---
+title: "Lab_2"
+author: "Naeem Chowdhury"
+date: "3/9/2020"
+output: pdf_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Generate 100 values for explanatory variable x, 
+## uniformly distributed from -50 to 50.
+```{r}
+set.seed(7)
+n <- 100
+x <- runif(n, -50, 50)
+hist(x)
+```
+
+## Generate y from the model
+#        y = 2 + 3*x + epsilon, epsilon ~ N(0, sigma^2),
+## where sigma=40.
+```{r}
+sigma <- 40
+epsilon <- rnorm(n,0,sigma)
+y <- 2+3*x+epsilon
+```
+
+```{r}
+plot(y~x)
+abline(2,3, lwd=3)
+```
+
+
+## Fit least squares regression y ~ x, plot the resulting fit.
+```{r}
+lm.obj <- lm(y~x)
+lm.obj
+plot(y~x)
+abline(2,3, col="red", lwd=3)
+abline(lm.obj, col="blue", lwd=3)
+```
+
+
+## Conduct 1,000 simulations of the following:
+##      1. Generate y from the model:
+##            y = 2 + 3*x + eps, eps ~ N(0, sigma^2),
+##        where sigma = 40.
+##      2. Calculate least squares estimates for y ~ x regression,
+##        record the beta.hat estimates (KEEP TRACK of them).
+##      3. Add the fitted line to existing plot.
+
+## Overlay a thick red population regression line over the final plot
+```{r}
+sigma <- 40
+plot(y~x)
+b0 <- lm.obj$coefficients[1]
+b1 <- lm.obj$coefficients[2]
+nsim <- 1000
+
+betas <- matrix(0,nrow=nsim,ncol=2)
+
+for (i in 1:nsim){
+  eps <- rnorm(n,0,sigma)
+  y <- 2+3*x+eps
+  lm.obj <- lm(y~x)
+  lm.obj
+  abline(lm.obj, col="blue", lwd=.1)
+  b0 <- c(b0, lm.obj$coefficients[1])
+  b1 <- c(b1, lm.obj$coefficients[2])
+  betas[i,] <- lm.obj$coefficients
+}
+
+beta0 <- mean(betas[,1])
+beta1 <- mean(betas[,2])
+b0m <- mean(b0)
+b1m <- mean(b1)
+abline(beta0, beta1, col="red", lwd = 3)
+
+```
+
+```{r}
+print(beta0) 
+print(beta1)
+print(b0m)
+print(b1m)
+```
+
+
+
+## Next, proceed to compare:
+##    1. Practical and theoretical expected value of beta^hat's (check unbiasedness).
+##       (In Markdown report, make sure to write down the theoretical 'formula' for E[beta^hat])
+
+# Practical:
+```{r}
+apply(betas, 2, mean)
+```
+
+
+# Theoretical:
+$E[\hat\beta_o]$=2
+$E[\hat\beta_1]$=3
+
+
+##    2. Practical and theoretical sampling variance of beta^hat's.
+##       (In Markdown report, make sure to write down the theoretical formula for V[beta^hat])
+
+# Practical sampling variance for betas:
+```{r}
+apply(betas, 2, var)
+```
+
+
+# Theoretical sampling variance for betas:
+```{r}
+xbar=mean(x)
+mse <- (x-xbar)^2
+varB0 <- sigma^2 * ( 1/n + ((mean(x)^2) / sum(mse) ))
+print(VB0)
+
+varB1 <- (sigma^2/sum(mse))
+print(varB1)
+```
+
+
+
+##    3. Practical and theoretical sampling distribution of beta^hat's.
+##       (In Markdown report, make sure to write down the theoretical formula for V[beta^hat])
+
+## Practical distribution for beta0:
+```{r}
+hist(betas[,1])
+```
+
+
+# Theoretical distribution for beta0:
+```{r}
+hist(betas[,1], freq=F)
+curve(dnorm(x,2,sqrt(varB0)),from=-15, to=20, add=T)
+```
+
+## Practical distribution for beta1:
+```{r}
+hist(betas[,2])
+```
+
+
+# Theoretical distribtuion for beta1:
+```{r}
+hist(betas[,2], freq=F)
+curve(dnorm(x,3,sqrt(varB1)),from=2, to=4, add=T)
+```
+
