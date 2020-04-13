@@ -30,3 +30,11 @@ auto_df <- read_csv('../../Datasets/Auto.csv') %>% select(-name)
 advertising_df <- read_csv('../../Datasets/Advertising.csv')
 ```
 
+## Problem #1
+
+1. For _Auto_ data set from ISLR library. Proceed to conduct variable selection via backward AIC approach. Which _R_ function allows us to do that? Which variable(s) ended up being dropped from the model? Proceed to:
+  a. Explain what is meant by "Df", "Sum of Sq", "RSS" and "AIC" in the tables outputted by _step()_ function.
+  b. Explain why the aglorithm stopped (!) on that particular subset of variables. _Hint_: What does "<none>" represent? Why is it of interest?)
+  c. Provide the formula of the fitted model with remaining variables.
+  
+  
