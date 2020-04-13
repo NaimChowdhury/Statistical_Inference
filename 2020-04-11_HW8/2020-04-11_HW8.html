@@ -375,35 +375,27 @@ summary {
 <div id="libraries" class="section level3">
 <h3>Libraries</h3>
 <p>Load in needed libraries</p>
-<pre class="r"><code>library(tidyverse) # For data processing and </code></pre>
-<pre><code>## -- Attaching packages ---------------- tidyverse 1.3.0 --</code></pre>
+<pre class="r"><code>library(tidyverse) # For data processing</code></pre>
+<pre><code>## -- Attaching packages ------------------------------------------------------------------------------- tidyverse 1.3.0 --</code></pre>
 <pre><code>## v ggplot2 3.2.1     v purrr   0.3.3
 ## v tibble  2.1.3     v dplyr   0.8.3
 ## v tidyr   1.0.2     v stringr 1.4.0
 ## v readr   1.3.1     v forcats 0.4.0</code></pre>
-<pre><code>## -- Conflicts ------------------- tidyverse_conflicts() --
+<pre><code>## -- Conflicts ---------------------------------------------------------------------------------- tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>spot_color = &quot;#9ecae1&quot; 
+<pre class="r"><code>library(ISLR)
+
+
+spot_color = &quot;#9ecae1&quot; 
 text_color = &quot;#525252&quot;</code></pre>
 </div>
 <div id="data" class="section level3">
 <h3>Data</h3>
 <pre class="r"><code># Store full Auto.csv dataset from ISLR, not including &#39;name&#39;, as requested.
-auto_df &lt;- read_csv(&#39;../../Datasets/Auto.csv&#39;) %&gt;% select(-name)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   mpg = col_double(),
-##   cylinders = col_double(),
-##   displacement = col_double(),
-##   horsepower = col_character(),
-##   weight = col_double(),
-##   acceleration = col_double(),
-##   year = col_double(),
-##   origin = col_double(),
-##   name = col_character()
-## )</code></pre>
-<pre class="r"><code># Store full Advertising.csv dataset from ISLR
+auto_df &lt;- Auto %&gt;% select(-name)
+
+# Store full Advertising.csv dataset from ISLR
 advertising_df &lt;- read_csv(&#39;../../Datasets/Advertising.csv&#39;)</code></pre>
 <pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
 <pre><code>## Parsed with column specification:
@@ -421,11 +413,91 @@ advertising_df &lt;- read_csv(&#39;../../Datasets/Advertising.csv&#39;)</code></
 <ol style="list-style-type: decimal">
 <li>For <em>Auto</em> data set from ISLR library. Proceed to conduct variable selection via backward AIC approach. Which <em>R</em> function allows us to do that? Which variable(s) ended up being dropped from the model? Proceed to:</li>
 </ol>
-<ol style="list-style-type: lower-alpha">
-<li>Explain what is meant by “Df”, “Sum of Sq”, “RSS” and “AIC” in the tables outputted by <em>step()</em> function.</li>
-<li>Explain why the aglorithm stopped (!) on that particular subset of variables. <em>Hint</em>: What does “<none>” represent? Why is it of interest?)</li>
-<li>Provide the formula of the fitted model with remaining variables.</li>
-</ol>
+<pre class="r"><code># Produce linear model for auto_df
+lm.obj &lt;- lm(mpg ~ ., data = auto_df)
+summary(lm.obj)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ ., data = auto_df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.5903 -2.1565 -0.1169  1.8690 13.0604 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -17.218435   4.644294  -3.707  0.00024 ***
+## cylinders     -0.493376   0.323282  -1.526  0.12780    
+## displacement   0.019896   0.007515   2.647  0.00844 ** 
+## horsepower    -0.016951   0.013787  -1.230  0.21963    
+## weight        -0.006474   0.000652  -9.929  &lt; 2e-16 ***
+## acceleration   0.080576   0.098845   0.815  0.41548    
+## year           0.750773   0.050973  14.729  &lt; 2e-16 ***
+## origin         1.426141   0.278136   5.127 4.67e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.328 on 384 degrees of freedom
+## Multiple R-squared:  0.8215, Adjusted R-squared:  0.8182 
+## F-statistic: 252.4 on 7 and 384 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code># the step() function allows us to see backwards and forwards selection methods
+step.res &lt;- step(lm.obj)</code></pre>
+<pre><code>## Start:  AIC=950.5
+## mpg ~ cylinders + displacement + horsepower + weight + acceleration + 
+##     year + origin
+## 
+##                Df Sum of Sq    RSS     AIC
+## - acceleration  1      7.36 4259.6  949.18
+## - horsepower    1     16.74 4269.0  950.04
+## &lt;none&gt;                      4252.2  950.50
+## - cylinders     1     25.79 4278.0  950.87
+## - displacement  1     77.61 4329.8  955.59
+## - origin        1    291.13 4543.3  974.46
+## - weight        1   1091.63 5343.8 1038.08
+## - year          1   2402.25 6654.5 1124.06
+## 
+## Step:  AIC=949.18
+## mpg ~ cylinders + displacement + horsepower + weight + year + 
+##     origin
+## 
+##                Df Sum of Sq    RSS     AIC
+## &lt;none&gt;                      4259.6  949.18
+## - cylinders     1     27.27 4286.8  949.68
+## - horsepower    1     53.80 4313.4  952.10
+## - displacement  1     73.57 4333.1  953.89
+## - origin        1    292.02 4551.6  973.17
+## - weight        1   1310.43 5570.0 1052.32
+## - year          1   2396.17 6655.7 1122.13</code></pre>
+<pre class="r"><code>summary(step.res)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ cylinders + displacement + horsepower + weight + 
+##     year + origin, data = auto_df)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -9.7604 -2.1791 -0.1535  1.8524 13.1209 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -1.556e+01  4.175e+00  -3.728 0.000222 ***
+## cylinders    -5.067e-01  3.227e-01  -1.570 0.117236    
+## displacement  1.927e-02  7.472e-03   2.579 0.010287 *  
+## horsepower   -2.389e-02  1.084e-02  -2.205 0.028031 *  
+## weight       -6.218e-03  5.714e-04 -10.883  &lt; 2e-16 ***
+## year          7.475e-01  5.079e-02  14.717  &lt; 2e-16 ***
+## origin        1.428e+00  2.780e-01   5.138 4.43e-07 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 3.326 on 385 degrees of freedom
+## Multiple R-squared:  0.8212, Adjusted R-squared:  0.8184 
+## F-statistic: 294.6 on 6 and 385 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>a. Explain what is meant by &quot;Df&quot;, &quot;Sum of Sq&quot;, &quot;RSS&quot; and &quot;AIC&quot; in the tables outputted by _step()_ function.</code></pre>
+<p>Df refers to the degrees of freedom. “Sum of Sq” is the amount by which the RSS increases from the full model by removing that particular variable.</p>
+<pre><code>b. Explain why the algorithm stopped (!) on that particular subset of variables. _Hint_: What does &quot;&lt;none&gt;&quot; represent? Why is it of interest?)</code></pre>
+<p>The algorithm stopped at ‘<none>’ because by using the criterion of choosing the model with the lowest AIC, it found that removing none of the variables resulted in the lowest AIC.</p>
+<pre><code>c. Provide the formula of the fitted model with remaining variables.</code></pre>
 </div>
 
 

@@ -15,7 +15,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Libraries
 Load in needed libraries 
 ```{r libraries}
-library(tidyverse) # For data processing and 
+library(tidyverse) # For data processing
+library(ISLR)
+
 
 spot_color = "#9ecae1" 
 text_color = "#525252"
@@ -25,16 +27,44 @@ text_color = "#525252"
 ### Data
 ```{r}
 # Store full Auto.csv dataset from ISLR, not including 'name', as requested.
-auto_df <- read_csv('../../Datasets/Auto.csv') %>% select(-name)
+auto_df <- Auto %>% select(-name)
+
 # Store full Advertising.csv dataset from ISLR
 advertising_df <- read_csv('../../Datasets/Advertising.csv')
 ```
 
 ## Problem #1
 
-1. For _Auto_ data set from ISLR library. Proceed to conduct variable selection via backward AIC approach. Which _R_ function allows us to do that? Which variable(s) ended up being dropped from the model? Proceed to:
-  a. Explain what is meant by "Df", "Sum of Sq", "RSS" and "AIC" in the tables outputted by _step()_ function.
-  b. Explain why the aglorithm stopped (!) on that particular subset of variables. _Hint_: What does "<none>" represent? Why is it of interest?)
-  c. Provide the formula of the fitted model with remaining variables.
+  1. For _Auto_ data set from ISLR library. Proceed to conduct variable selection via backward AIC approach. Which _R_ function allows us to do that? Which variable(s) ended up being dropped from the model? Proceed to:
+
+
+```{r}
+# Produce linear model for auto_df
+lm.obj <- lm(mpg ~ ., data = auto_df)
+summary(lm.obj)
+
+# the step() function allows us to see backwards and forwards selection methods
+step.res <- step(lm.obj)
+summary(step.res)
+
+```
+
+
+
+
+    a. Explain what is meant by "Df", "Sum of Sq", "RSS" and "AIC" in the tables outputted by _step()_ function.
+    
+  Df refers to the degrees of freedom. "Sum of Sq" is the amount by which the RSS increases from the full model by removing that particular variable. "RSS" is the typical residual sum of squares, calculated after removing that variable. "AIC" is the sum of the RSS and and the number of leftover variables when removing the variable. 
   
+    b. Explain why the algorithm stopped (!) on that particular subset of variables. _Hint_: What does "<none>" represent? Why is it of interest?)
+    
+  The algorithm stopped after removing the single variable acceleration. After the first step is complete, removing any other variables result in a higher AIC than the full model (after dropping _acceleration_).
+  <none> represents the full model at that particular step.
+  
+    c. Provide the formula of the fitted model with remaining variables.
+  
+  $$\hat{mpg} = -15.6\hat -0.507\hat{(cylinders)} + 0.019\hat{(displacement)} - 0.024\hat{(horsepower)} - 0.006\hat{(weight)} + 0.748\hat{(year)} + 1.43\hat{(origin)}$$
+  
+  
+
   
