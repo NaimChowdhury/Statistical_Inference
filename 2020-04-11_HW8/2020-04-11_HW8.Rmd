@@ -1,0 +1,32 @@
+---
+title: '2020-04-11 HW8'
+author: "Naeem Chowdhury"
+date: "04/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Setup
+
+### Libraries
+Load in needed libraries 
+```{r libraries}
+library(tidyverse) # For data processing and 
+
+spot_color = "#9ecae1" 
+text_color = "#525252"
+```
+
+
+### Data
+```{r}
+# Store full Auto.csv dataset from ISLR, not including 'name', as requested.
+auto_df <- read_csv('../../Datasets/Auto.csv') %>% select(-name)
+# Store full Advertising.csv dataset from ISLR
+advertising_df <- read_csv('../../Datasets/Advertising.csv')
+```
+
