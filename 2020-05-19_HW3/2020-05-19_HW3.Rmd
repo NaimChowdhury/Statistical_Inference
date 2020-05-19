@@ -42,6 +42,18 @@ getwd()
 
 Caclulating the expected cell counts under $H_0$ hypothesis should constitute a critical part of your function definition. Don't use neither _chisq.test()_ nor _prop.test()_, nor any other "fancy cheat" built-in functions inside your function's definition.
 
+```{r}
+data <- matrix(c(18, 20, 15, 15, 10, 55, 65, 70, 30), nrow=3)
+data
+
+my.chisq.test <- function(data) {
+  
+  
+  
+}
+```
+
+
 
 
 
