@@ -1,0 +1,47 @@
+---
+title: "Stats. Inference Assignment 3"
+author: "Naeem Chowdhury"
+date: "5/19/2020"
+output: pdf_document
+---
+
+
+##1. Setup
+### options
+Set up global options
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=70))
+knitr::opts_chunk$set(fig.height=4, fig.width=6)
+```
+
+### libraries
+Load in needed libraries 
+```{r}
+library(tidyverse)
+library(RColorBrewer)
+```
+
+## 2. File management
+### Create variables for directories
+```{r file_management}
+project.dir <- getwd() #naeem
+output.dir <- "/Output"
+data.dir <- "C:/Users/Naeem Cho/Desktop/School Work/Statistical Inference/Datasets"
+setwd(project.dir)
+getwd()
+```
+
+# Problem #1
+
+## 1. Code up your own _my.chisq.test()_ function that will perform a $\chi^2$ test. As a single argument, it should just take a contingency table of arbitrary size. As output, it should provide:
+
+- Calculated $\chi^2$ statistic
+- $p$-value
+
+Caclulating the expected cell counts under $H_0$ hypothesis should constitute a critical part of your function definition. Don't use neither _chisq.test()_ nor _prop.test()_, nor any other "fancy cheat" built-in functions inside your function's definition.
+
+
+
+
