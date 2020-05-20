@@ -21,6 +21,7 @@ Load in needed libraries
 ```{r}
 library(tidyverse)
 library(RColorBrewer)
+library(haven)
 ```
 
 ## 2. File management
@@ -31,6 +32,11 @@ output.dir <- "/Output"
 data.dir <- "C:/Users/Naeem Cho/Desktop/School Work/Statistical Inference/Datasets"
 setwd(project.dir)
 getwd()
+```
+
+## 3. Importing Data
+```{r}
+
 ```
 
 # Problem #1
@@ -46,11 +52,29 @@ Caclulating the expected cell counts under $H_0$ hypothesis should constitute a 
 data <- matrix(c(18, 20, 15, 15, 10, 55, 65, 70, 30), nrow=3)
 data
 
-my.chisq.test <- function(data) {
+my.chisq.test <- function(ctable) {
+  rows <- nrow(ctable)
+  cols <- ncol(ctable)
+  rowsums <- rowSums(ctable)
+  colsums <-colSums(ctable)
+  total <- sum(rowsums) + sum(colsums)
   
+  expected <- matrix(0, nrow = rows, ncol = cols)
   
-  
+  for(i in 1:rows){
+    
+    for(j in 1:cols){
+      
+      expected[i,j] <- (rowsums[i]*colsums[j])/ total
+      
+    }
+  }
+  return(expected)
 }
+
+expecteds <- my.chisq.test(data)
+
+(data - expecteds)^2
 ```
 
 
