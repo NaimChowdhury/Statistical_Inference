@@ -55,9 +55,12 @@ data
 my.chisq.test <- function(ctable) {
   rows <- nrow(ctable)
   cols <- ncol(ctable)
+  
   rowsums <- rowSums(ctable)
   colsums <-colSums(ctable)
+  
   total <- sum(data)
+  df <- (rows-1)*(cols-1)
   
   expected <- matrix(0, nrow = rows, ncol = cols)
   
@@ -71,7 +74,10 @@ my.chisq.test <- function(ctable) {
   }
   chi_sq <- ((data - expected)^2)/expected
   chi_sq <- sum(chi_sq)
-  return(chi_sq)
+  p <- pchisq(chi_sq, df, lower.tail = FALSE)
+  print(c("X-Squared: ",  chi_sq))
+  print(c("Degrees of Freedom: ", df))
+  print(c("p-value: ", p))
 }
 ```
 
@@ -79,10 +85,9 @@ my.chisq.test <- function(ctable) {
 ```{r}
 result <- my.chisq.test(data)
 result
-
 chisq.test(data)
 ```
-Sucessfully gets the right X-squared value!
+
 
 
 
