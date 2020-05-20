@@ -57,7 +57,7 @@ my.chisq.test <- function(ctable) {
   cols <- ncol(ctable)
   rowsums <- rowSums(ctable)
   colsums <-colSums(ctable)
-  total <- sum(rowsums) + sum(colsums)
+  total <- sum(data)
   
   expected <- matrix(0, nrow = rows, ncol = cols)
   
@@ -69,14 +69,20 @@ my.chisq.test <- function(ctable) {
       
     }
   }
-  return(expected)
+  chi_sq <- ((data - expected)^2)/expected
+  chi_sq <- sum(chi_sq)
+  return(chi_sq)
 }
-
-expecteds <- my.chisq.test(data)
-
-(data - expecteds)^2
 ```
 
+## Testing on a dummy dataset
+```{r}
+result <- my.chisq.test(data)
+result
+
+chisq.test(data)
+```
+Sucessfully gets the right X-squared value!
 
 
 
