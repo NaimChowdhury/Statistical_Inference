@@ -50,7 +50,6 @@ Caclulating the expected cell counts under $H_0$ hypothesis should constitute a 
 
 ```{r}
 data <- matrix(c(18, 20, 15, 15, 10, 55, 65, 70, 30), nrow=3)
-data
 
 my.chisq.test <- function(ctable) {
   rows <- nrow(ctable)
@@ -72,9 +71,12 @@ my.chisq.test <- function(ctable) {
       
     }
   }
-  chi_sq <- ((data - expected)^2)/expected
+  chi_sq <- ((ctable - expected)^2)/expected
   chi_sq <- sum(chi_sq)
+  
   p <- pchisq(chi_sq, df, lower.tail = FALSE)
+  
+  
   print(c("X-Squared: ",  chi_sq))
   print(c("Degrees of Freedom: ", df))
   print(c("p-value: ", p))
@@ -134,5 +136,24 @@ expected2 <- (n.r2*n.c2)/n
 expected1
 expected2
 ```
+
+### d. Proceed to apply your _my.chisq.test()_ and interpret the results. As a sanity check, also run _R_'s built-in _chisq.test()_ function on that same data, make sure the outputted $\chi^2$ and $p$-values match with those provided by _my.chisq.test()_. 
+
+```{r}
+my.chisq.test(ctable)
+
+chisq.test(ctable)
+```
+
+My test works everywhere except for computing the p-value, where it seems to fail. However, when I test my function on another dummy table , it seems to work just fine. What could be the issue?
+
+```{r}
+my.chisq.test(data)
+chisq.test(data)
+```
+
+
+
+
 
 
