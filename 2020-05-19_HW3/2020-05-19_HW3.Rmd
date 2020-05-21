@@ -36,7 +36,7 @@ getwd()
 
 ## 3. Importing Data
 ```{r}
-
+cpu.data <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
 ```
 
 # Problem #1
@@ -59,7 +59,7 @@ my.chisq.test <- function(ctable) {
   rowsums <- rowSums(ctable)
   colsums <-colSums(ctable)
   
-  total <- sum(data)
+  total <- sum(ctable)
   df <- (rows-1)*(cols-1)
   
   expected <- matrix(0, nrow = rows, ncol = cols)
@@ -78,17 +78,61 @@ my.chisq.test <- function(ctable) {
   print(c("X-Squared: ",  chi_sq))
   print(c("Degrees of Freedom: ", df))
   print(c("p-value: ", p))
+  # print(c("Matrix of expected counts: ", expected))
 }
 ```
 
-## Testing on a dummy dataset
+## 2. Testing on a CPU/GPU Dataset
+
+
+### a. What variables are we interested in?
+
 ```{r}
-result <- my.chisq.test(data)
-result
-chisq.test(data)
+vert_stat <- cpu.data %>% select(Vertical_Segment, Status) %>% drop_na()
+table(vert_stat)
+```
+I've selected two categorical variables from the Intel_CPUs dataset which each have 4 categories. However, since the 'Announced' category and 'Embedded' category have very few variables, I've decided to drop them in order to simplify the analysis.
+
+```{r}
+vert_stat <- cpu.data %>% select(Vertical_Segment, Status) %>% filter(Vertical_Segment != 'Embedded' & Status != 'Announced') %>%  drop_na()
+ctable <- table(vert_stat)
 ```
 
+### b. What are the hypotheses?
 
+$H_0$ := The launch Status of a CPU is independent of its Vertical_Segment type.
 
+$H_a$ := The launch status of an Intel CPU is dependent on its Vertical Segment type.
+
+### c. Print the contingency table. Under $H_0$ hypothesis, proceed to calculate expected counts for two arbitrary cells of the contingency table.
+
+```{r}
+ctable
+
+# Calculating the expected counts for two arbitrary cells.
+rows <- nrow(ctable)
+cols <- ncol(ctable)
+rowsums <- rowSums(ctable)
+colsums <-colSums(ctable)
+total <- sum(ctable)
+
+# Produce the pairs of row and column location of arbitrary position
+r.indices <- sample(1:rows, 2, replace= T)
+c.indices <- sample(1:cols, 2, replace= T)
+n <- sum(ctable)
+
+n.r1 <- as.numeric(rowsums[r.indices[1]])
+n.c1 <- as.numeric(colsums[c.indices[1]])
+
+n.r2 <- as.numeric(rowsums[r.indices[2]])
+n.c2 <- as.numeric(colsums[c.indices[2]])
+
+expected1 <- (n.r1*n.c1)/n 
+expected2 <- (n.r2*n.c2)/n
+
+#Final expected counts for the two points
+expected1
+expected2
+```
 
 
