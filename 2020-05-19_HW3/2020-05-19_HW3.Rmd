@@ -179,3 +179,12 @@ and that
 
 $$Z^2 \equiv \chi^2_1, Z \sim N(0,1).$$
 
+
+# Problem 3
+
+From **Agresti** book, do exercises:
+
+  1. 11.84
+  2. 11.9 (and calculate all the expected cell counts, for practice)
+  3. 11.16
+
