@@ -208,9 +208,22 @@ femprez.fill
 ### b. Now, suppose instead of the preceding table, you are shown the following table, this time only revealing a $2 \times 1$ block in the lower-right part. Find the counts in the remaining cells.
 
 ```{r}
+femprez2 <- matrix(c(NA, NA, 58, NA, 19, 509, NA, 3, 61, 604, 24, 628), ncol = 3, byrow = TRUE)
+colnames(femprez2) <- c("Yes", "No", "Total")
+rownames(femprez2) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
 
+femprez2
 ```
 
+Solution:
+
+```{r}
+femprez2.fill <- matrix(c(604-((509-19)+(61-3)), 58-(604-((509-19)+(61-3))), 58, (509-19), 19, 509, (61-3), 3, 61, 604, 24, 628), ncol = 3, byrow = TRUE)
+colnames(femprez2.fill) <- c("Yes", "No", "Total")
+rownames(femprez2.fill) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
+
+femprez2.fill
+```
 
   2. 11.9 (and calculate all the expected cell counts, for practice)
   3. 11.16
