@@ -184,7 +184,34 @@ $$Z^2 \equiv \chi^2_1, Z \sim N(0,1).$$
 
 From **Agresti** book, do exercises:
 
-  1. 11.84
+## 11.84 Degrees of freedom explained
+  For testing independence in a contingency table of size $r \times c$, the degrees of freedom ($df$) for the chi-squared distribution equal $df = (r-1) \times (c-1)$. They have the following interpretation: Given the row and column marginal totals in an $r \times c$ contingency table, the cell counts in a rectangular block of size $(r-1) \times (c-1)$ determine all the other cell counts. Consider the following table, which cross-classifies political views by whether the subject would ever vote for a female president, based on the 2010 GSS. For this $3 \times 2$ table, suppose we know the counts in the upper left-hand $(3-1) \times (2-1) = 2 \times 1$ block of the table, as shown.
+  
+```{r}
+femprez <- matrix(c(56, NA, 58, 490, NA, 509, NA, NA, 61, 604, 24, 628), ncol = 3, byrow = TRUE)
+colnames(femprez) <- c("Yes", "No", "Total")
+rownames(femprez) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
+
+femprez
+```
+
+### a. Given the cell counts and the row and column totals, fill in the counts that must appear in the blank cells.
+
+```{r}
+femprez.fill <- matrix(c(56,(58-56), 58, 490, (509-490), 509, (61 -(24 - ((58-56)+(509-490)) )), (24 - ((58-56)+(509-490))), 61, 604, 24, 628), ncol = 3, byrow = TRUE)
+colnames(femprez.fill) <- c("Yes", "No", "Total")
+rownames(femprez.fill) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
+
+femprez.fill
+```
+
+### b. Now, suppose instead of the preceding table, you are shown the following table, this time only revealing a $2 \times 1$ block in the lower-right part. Find the counts in the remaining cells.
+
+```{r}
+
+```
+
+
   2. 11.9 (and calculate all the expected cell counts, for practice)
   3. 11.16
 
