@@ -257,6 +257,27 @@ happy.gender
 
 There is insufficient evidence to reject the null hypothesis.
 
+## 11.16 Primary food choice of alligators
+
+For alligators caught in two Florida lakes, the following table shows their primary food choice. The four food categories refer to fish, invertebrates (such as snails, insects, or crayfish), birds and reptiles (such as egrets or turtles), and others, including mammals or plants. Is there evidence that primary food choice differs between the two lakes?
+
+```{r}
+lake.food <- matrix(c(30, 4, 8, 13, 55, 13, 18, 12, 10, 53), ncol = 5, byrow = TRUE)
+colnames(lake.food) <- c("Fish", "Invertebrates", "Birds & Reptiles", "Others", "n")
+rownames(lake.food) <- c("Hancock", "Trafford")
+
+lake.food <- as.table(lake.food)
+
+lake.food
+```
+
+### a. Find the conditional sample distributions of primary food choice in lakes Hancock and Trafford.
+
+### b. Set up the hypotheses of interest.
+
+### c. The $X^2$ value for this table equals 16.79. Based on the $df$ for the corresponding chi-squared distribution, can this be considered large? Why?
+
+### The $p$-value for the chi-squared is less than 0.001. Write the conclusion of the test in this context.
 
 
 
