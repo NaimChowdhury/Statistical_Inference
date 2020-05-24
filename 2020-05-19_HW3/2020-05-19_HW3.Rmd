@@ -161,7 +161,7 @@ Since we have a low p-value, we can confirm that we have statistically significa
 # Return to later.
 ```
 
-# Problem #2
+# Problem #2 (I will not complete this part, as I never wrote Problem #1 for HW 11. However, I will use the two-sample proportion $z$-test that's built into R.)
 
 Subjects were randomly assigned to regularly take aspirin or placebo, and followed up with over a 5-year period on whether they suffered a cancer death.
 
@@ -192,6 +192,8 @@ femprez <- matrix(c(56, NA, 58, 490, NA, 509, NA, NA, 61, 604, 24, 628), ncol = 
 colnames(femprez) <- c("Yes", "No", "Total")
 rownames(femprez) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
 
+femprez <- as.table(femprez)
+
 femprez
 ```
 
@@ -201,6 +203,8 @@ femprez
 femprez.fill <- matrix(c(56,(58-56), 58, 490, (509-490), 509, (61 -(24 - ((58-56)+(509-490)) )), (24 - ((58-56)+(509-490))), 61, 604, 24, 628), ncol = 3, byrow = TRUE)
 colnames(femprez.fill) <- c("Yes", "No", "Total")
 rownames(femprez.fill) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
+
+femprez.fill <- as.table(femprez.fill)
 
 femprez.fill
 ```
@@ -212,6 +216,8 @@ femprez2 <- matrix(c(NA, NA, 58, NA, 19, 509, NA, 3, 61, 604, 24, 628), ncol = 3
 colnames(femprez2) <- c("Yes", "No", "Total")
 rownames(femprez2) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
 
+femprez2 <- as.table(femprez2)
+
 femprez2
 ```
 
@@ -222,9 +228,36 @@ femprez2.fill <- matrix(c(604-((509-19)+(61-3)), 58-(604-((509-19)+(61-3))), 58,
 colnames(femprez2.fill) <- c("Yes", "No", "Total")
 rownames(femprez2.fill) <- c("Extremely Liberal", "Moderate", "Extremely Conservative", "Total")
 
+femprez2.fill <- as.table(femprez2.fill)
+
 femprez2.fill
 ```
 
-  2. 11.9 (and calculate all the expected cell counts, for practice)
-  3. 11.16
+## 11.9  Happiness and gender (and calculate all the expected cell counts, for practice)
+
+For the $2 \times 3$ table on gender and happiness in Exercise 11.4 (shown below), software tells us that $\chi^2 = 1.04$ and the P-value = 0.59.
+
+```{r}
+happy.gender <-matrix(c(154, 592, 336, 123, 502, 257), ncol = 3, byrow =TRUE)
+colnames(happy.gender) <- c("Not", "Pretty", "Very")
+rownames(happy.gender) <- c("Female", "Male")
+happy.gender <- as.table(happy.gender)
+
+happy.gender
+
+```
+
+### a. State the null and alternative hypothesis, in context, to which these results apply.
+
+- $H_0 :=$ Happiness is independent of gender.
+
+- $H_a :=$ Happiness is dependent on gender.
+  
+### b. Interpret the $p$-value.
+
+There is insufficient evidence to reject the null hypothesis.
+
+
+
+
 
