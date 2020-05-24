@@ -93,6 +93,7 @@ my.chisq.test <- function(ctable) {
 vert_stat <- cpu.data %>% select(Vertical_Segment, Status) %>% drop_na()
 table(vert_stat)
 ```
+
 I've selected two categorical variables from the Intel_CPUs dataset which each have 4 categories. However, since the 'Announced' category and 'Embedded' category have very few variables, I've decided to drop them in order to simplify the analysis.
 
 ```{r}
@@ -273,12 +274,32 @@ lake.food
 
 ### a. Find the conditional sample distributions of primary food choice in lakes Hancock and Trafford.
 
+```{r}
+prop.lake <- prop.table(lake.food)
+
+prop.lake
+```
+
+
 ### b. Set up the hypotheses of interest.
 
+$H_0 := $ primary food choice does not differ between lakes Hancock and Trafford.
+
+$H_a :=$ food choice of the animals is dependent on the lake.
+
 ### c. The $X^2$ value for this table equals 16.79. Based on the $df$ for the corresponding chi-squared distribution, can this be considered large? Why?
+
+```{r}
+df = (2-1)*(4-1)
+df
+
+pchisq(16.79, df = 3, lower.tail = FALSE)
+```
+
+For a chi-squared distribution with $df$ = 3, 16.79 is considered a large value. This is because such a low $df$ corresponds with a highly right-skewed distribution. As $df$ gets large, the chi-squared distribution will approach the normal distribution. 
+
 
 ### The $p$-value for the chi-squared is less than 0.001. Write the conclusion of the test in this context.
 
 
-
-
+There is sufficient evidence to reject the null hypothesis. We conclude that the primary food choice differs between the two lakes. 
