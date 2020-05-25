@@ -177,7 +177,7 @@ cancer.death
 prop.yes <- c(347/(347+11188), 327/(327+13708))
 prop.yes
 
-cbind(cancer.prop, prop.yes)
+cbind(cancer.death, prop.yes)
 ```
 
 
@@ -185,11 +185,36 @@ Main question: Is there a difference in cancer death rates between aspirin & pla
 
 
 
-    a. Use your two-sample proportion $z$-test function from Problem #1 HW 11 (previous semester) to conduct appropriate hypothesis test to address the main question. What are the parameters of interest? What are the hypotheses? What's the conclusion?
+### a. Use your two-sample proportion $z$-test function from Problem #1 HW 11 (previous semester) to conduct appropriate hypothesis test to address the main question. What are the parameters of interest? What are the hypotheses? What's the conclusion?
+
+
+Are the proportion of deaths the same for placebo and aspirin in the population? 
+
+$H_0 :=$ the proportion of deaths when taking a placebo are the same as for when taking aspirin
+
+$H_a :=$ the proportion of deaths for placebo and aspirin differ.
+```{r}
+prop.test(x = c(347, 327), n = c(341+11188, 327+13708), alternative = "two.sided", correct = TRUE)
+```
+
+Since the $p$-value is 0.000847 we can reject the null hypothesis. Thus there is a statistically significant difference in the proportion of patients who died while taking a placebo and the proportion who died while taking aspirin.
     
-    b. Use $\chi^2$-test to address the main question. Formulate the hypotheses. What's the conclusion?
-    
-    c. Are your $p$-values in parts (a) and (b) equal? there should be direct correspondence between $\chi^2$ test of independence for $2 \times 2$ tables, and two-sided proportion test, in big part due to the fact that
+### b. Use $\chi^2$-test to address the main question. Formulate the hypotheses. What's the conclusion?
+
+
+$H_0 :=$ the number of deaths of cancer patients is independent of treatment by placebo or aspirin
+
+$H_a :=$ cancer death is dependent on treatment by placebo or aspirin 
+
+```{r}
+chisq.test(cancer.death)
+```
+
+We conclude by rejecting the null hypothesis. There is sufficient evidence that the death of cancer patients in the population is dependent on treatment by placebo or aspirin.
+
+### c. Are your $p$-values in parts (a) and (b) equal? there should be direct correspondence between $\chi^2$ test of independence for $2 \times 2$ tables, and two-sided proportion test, in big part due to the fact that
+
+The $p$-values are exactly the same.
     
 $$z^2 \equiv X^2$$
 
