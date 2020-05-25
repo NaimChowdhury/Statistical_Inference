@@ -166,7 +166,24 @@ Since we have a low p-value, we can confirm that we have statistically significa
 
 Subjects were randomly assigned to regularly take aspirin or placebo, and followed up with over a 5-year period on whether they suffered a cancer death.
 
+```{r}
+cancer.death <- matrix(c(347, 11188, 327, 13708), ncol = 2, byrow = TRUE)
+colnames(cancer.death) <- c("Yes", "No")
+rownames(cancer.death) <- c("Placebo", "Aspirin")
+cancer.death <- as.table(cancer.death)
+
+cancer.death
+
+prop.yes <- c(347/(347+11188), 327/(327+13708))
+prop.yes
+
+cbind(cancer.prop, prop.yes)
+```
+
+
 Main question: Is there a difference in cancer death rates between aspirin & placebo groups?
+
+
 
     a. Use your two-sample proportion $z$-test function from Problem #1 HW 11 (previous semester) to conduct appropriate hypothesis test to address the main question. What are the parameters of interest? What are the hypotheses? What's the conclusion?
     
