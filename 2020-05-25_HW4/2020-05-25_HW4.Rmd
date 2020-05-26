@@ -71,3 +71,10 @@ cpu.data <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
 ### a. GPU_data, with 10,000 permutations. What's the conclusion? Compare the resulting histogram with the one in the slides (they should be roughly similar).
 
 ### b. Intel_CPU data, with just 1,000 permutations. What's the conclusion? Compare the shape of the resulting histogram with the density of $\chi^2$ distribution with appropriate degrees of freedom. What does it tell us about whether $\chi^2$-test results from HW3 were appropriate for Intel_CPU data?
+
+
+# Problem #3
+
+## 1. Complete the **lab** by wrapping everything we did into a nice, concise, R markdown report (just the code, with necessary comments, contingency table, test results, and interpretations).
+
+## 2. Moreover, finish the **lab** by applying your _my.permutation.test()_ to inferring independence of court surface and match outcomes for Nadal vs. Federer, Serena vs Venus match-ups. Formulate the hypotheses, explain why $\chi^2$-test might be inappropriate, and deliver the conclusion. Compare the conclusion with the one we got from $\chi^2$-test during the lab.
