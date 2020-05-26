@@ -53,3 +53,21 @@ cpu.data <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
 ### c. Based on your answers to parts (a) - (b), as $n$ increases, what do you notice with respoect to statistical significance? Practical significance?
 
 ## 2. Do exercises **11.32** and **11.33** from the **Agresti** book.
+
+# Problem #2
+
+## 1. Code up your own _my.permutation.test()_ function to conduct permutation tests on contingency tables. As inputs, it should take a dataframe with two categorical variables as columns (first one - explanatory, second one - response), and the number of randomly generated permutationts to be executed. As output, it should provide:
+
+    - contingency table for the data frame,
+    
+    - permutation $p$-value,
+    
+    - plot the histogram of permutation distribution for $X^2$ statistic.
+    
+  To obtain $X^2$ values for each permutation, you are allowed to use $R$'s _chisq.test()_ function.
+  
+## 2. Proceed to apply the _my.permutation.test()_ function (and subsequently interpret the results) to:
+
+### a. GPU_data, with 10,000 permutations. What's the conclusion? Compare the resulting histogram with the one in the slides (they should be roughly similar).
+
+### b. Intel_CPU data, with just 1,000 permutations. What's the conclusion? Compare the shape of the resulting histogram with the density of $\chi^2$ distribution with appropriate degrees of freedom. What does it tell us about whether $\chi^2$-test results from HW3 were appropriate for Intel_CPU data?
