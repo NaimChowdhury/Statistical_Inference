@@ -38,3 +38,18 @@ getwd()
 ```{r}
 cpu.data <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
 ```
+
+
+**The goal of this homework is to have you 1) Familiarized with the $\chi^2$ test of independence for contingency tables; 2) measuring practical strength of dependence between categorical variables; 3) familiarized with permutation test for contingency tables; 4) practice your R coding.**
+
+# Problem #1
+
+## 1. For all three examples on slide #24, proceed to
+
+### a. Use the _my.chisq.test()_ function you've defined in the previous HW in order to confirm the $X^2$ and $p$-values. __Hint:__ Make sure to convert the %'s into counts first.
+
+### b. Calculate the difference in proportion between males and females that attend religious services weekly. Calculate the risk ratio between males and females that attend religious services weekly.
+
+### c. Based on your answers to parts (a) - (b), as $n$ increases, what do you notice with respoect to statistical significance? Practical significance?
+
+## 2. Do exercises **11.32** and **11.33** from the **Agresti** book.
