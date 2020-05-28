@@ -52,7 +52,7 @@ colnames(case.A) <- c("Yes", "No")
 rownames(case.A) <- c("Female", "Male")
 case.A <- as.table(case.A)
 
-case.B <- matrix(c(102, 98, 98, 1020), ncol = 2, byrow = TRUE)
+case.B <- matrix(c(102, 98, 98, 102), ncol = 2, byrow = TRUE)
 colnames(case.B) <- c("Yes", "No")
 rownames(case.B) <- c("Female", "Male")
 case.B <- as.table(case.B)
@@ -66,6 +66,54 @@ case.C <- as.table(case.C)
 
 ### a. Use the _my.chisq.test()_ function you've defined in the previous HW in order to confirm the $X^2$ and $p$-values. __Hint:__ Make sure to convert the %'s into counts first.
 
+Establishing _my.chisq.test()_:
+```{r}
+my.chisq.test <- function(ctable) {
+  rows <- nrow(ctable)
+  cols <- ncol(ctable)
+  
+  rowsums <- rowSums(ctable)
+  colsums <-colSums(ctable)
+  
+  total <- sum(ctable)
+  df <- (rows-1)*(cols-1)
+  
+  expected <- matrix(0, nrow = rows, ncol = cols)
+  
+  for(i in 1:rows){
+    
+    for(j in 1:cols){
+      
+      expected[i,j] <- (rowsums[i]*colsums[j])/ total
+      
+    }
+  }
+  chi_sq <- ((ctable - expected)^2)/expected
+  chi_sq <- sum(chi_sq)
+  
+  p <- pchisq(chi_sq, df, lower.tail = FALSE)
+  
+  
+  print(c("X-Squared: ",  chi_sq))
+  print(c("Degrees of Freedom: ", df))
+  print(c("p-value: ", p))
+  # print(c("Matrix of expected counts: ", expected))
+}
+```
+
+```{r}
+#Case A
+my.chisq.test(case.A)
+```
+
+```{r}
+#Case B
+my.chisq.test(case.B)
+```
+```{r}
+#Case C
+my.chisq.test(case.C)
+```
 
 
 ### b. Calculate the difference in proportion between males and females that attend religious services weekly. Calculate the risk ratio between males and females that attend religious services weekly.
