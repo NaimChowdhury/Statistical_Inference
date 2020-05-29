@@ -191,6 +191,22 @@ relativerisk
 print(c("People who are 'Not Too Happy' in their marriage are ", relativerisk, "times more likely to be 'Not Too Happy' in general than those who are 'Very Happy' with their marriage."))
 ```
 
+## 11.33 Party ID and gender
+
+The table shows the 2012 GSS data on gender and political party identification from Exercise 11.1 (The row totals are slightly different from the second table in Exercise 11.24 because selecting Independent is ignored.) The chi-squared test of independence has $X^2 = 10.04$ with a $p$-value of 0.0066, indicating a significant association. Let's describe this association.
+
+```{r}
+gender.party <- matrix(c(421,398,244,278,367,198), ncol = 3, byrow = TRUE)
+colnames(gender.party) <- c("Democrat", "Independent", "Republican")
+rownames(gender.party) <- c("Female", "Male")
+gender.party <- as.table(gender.party)
+
+gender.party
+```
+### a. Estimate the difference between females and males in the proportion who identify themselves as Republicans. Interpret.
+
+### b. Estimate the difference between females and males in the proportion who identify themselves as Democrat. Interpret.
+
 
 # Problem #2
 
