@@ -37,6 +37,7 @@ getwd()
 ## 3. Importing Data
 ```{r}
 cpu.data <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
+listings <- read_csv(file.path(data.dir, "listings.csv"))
 ```
 
 
@@ -205,21 +206,24 @@ print(c("People who are 'Not Too Happy' in their marriage are ", relativerisk, "
 ## 2. Proceed to apply the _my.permutation.test()_ function (and subsequently interpret the results) to:
 
 ```{r}
-my.permutation.test <- function(data, predictor){
+my.permutation.test <- function(data, permutations, colnum){
   # Get the length of the data
   nrows <- nrow(data)
-  seq <- seq(1, nrows)
-  chis <- matrix(NA, nrow = 10000)
-  for(i in 1:10000){
-    perm.sample <- sample.int(nrows, size = nrows, replace = FALSE)
-    perm.data <- data[perm.sample, ]
+  index <- 1:nrows
+  chis <- matrix(NA, nrow = permutations)
+  for(i in 1:permutations){
+    index.perm <- sample(index, replace = FALSE)
+    perm.data <- data
+    perm.data[colnum] <- data[colnum][index.perm, ]
     datatable.perm <- table(perm.data)
-    chis[i] <- chisq.test(datatable.perm)[1]
+    chis[i] <- chisq.test(datatable.perm)$statistic
   }
   return(chis)
 }
 
+test <- my.permutation.test(listings.samp, 1000, 2)
 
+hist(test)
 
 ```
 
