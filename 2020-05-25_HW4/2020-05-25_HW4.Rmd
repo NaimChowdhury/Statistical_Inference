@@ -205,6 +205,24 @@ gender.party
 ```
 ### a. Estimate the difference between females and males in the proportion who identify themselves as Republicans. Interpret.
 
+```{r}
+female.total <- sum(gender.party[1,])
+male.total <- sum(gender.party[2,])
+
+gender.props <- gender.party
+gender.props[1,] <- gender.party[1,]/female.total
+gender.props[2,] <- gender.party[2,]/male.total
+
+
+gender.props
+
+prop.diff <- gender.props[2,3] - gender.props[1,3]
+prop.diff
+
+```
+
+
+
 ### b. Estimate the difference between females and males in the proportion who identify themselves as Democrat. Interpret.
 
 
