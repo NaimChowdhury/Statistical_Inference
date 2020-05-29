@@ -217,14 +217,23 @@ gender.props[2,] <- gender.party[2,]/male.total
 gender.props
 
 prop.diff <- gender.props[2,3] - gender.props[1,3]
-prop.diff
+prop.diff <- prop.diff*100
+
+print(c("The proportion of male respondents who are Republican is", prop.diff, "percentage points higher than the proportion of female respondents who are Republican. We conclude that the strength of the relationship between gender and being Republican is very weak."))
 
 ```
 
 
 
+
 ### b. Estimate the difference between females and males in the proportion who identify themselves as Democrat. Interpret.
 
+```{r}
+prop.diff <- gender.props[1,1] - gender.props[2,1]
+prop.diff <- prop.diff*100
+
+print(c("The proportion of female respondents who are Democrat is", prop.diff, "percentage points higher than the proportion of male respondents who are Democrat. We conclude that the strength of the relationship between gender and being Democrat is weak, although stronger than the relationship between gender and being Republican."))
+```
 
 # Problem #2
 
@@ -288,11 +297,13 @@ The $X^2$ value for the table is so high that it does not appear on the graph.
 
 
 
-### b. Intel_CPU data, with just 1,000 permutations. What's the conclusion? Compare the shape of the resulting histogram with the density of $\chi^2$ distribution with appropriate degrees of freedom. What does it tell us about whether $\chi^2$-test results from HW3 were appropriate for Intel_CPU data?
+### b. GPU data, with just 1,000 permutations. What's the conclusion? Compare the shape of the resulting histogram with the density of $\chi^2$ distribution with appropriate degrees of freedom. What does it tell us about whether $\chi^2$-test results from HW3 were appropriate for GPU data?
 
 
-# Problem #3
+The dataset below is a from the GPU dataset, taking the two binary response variables Dedicated and SLI_Crossfire.
+```{r}
+dedi.SLI <- gpu.data %>% select(Dedicated, SLI_Crossfire) %>% drop_na()
 
-## 1. Complete the **lab** by wrapping everything we did into a nice, concise, R markdown report (just the code, with necessary comments, contingency table, test results, and interpretations).
+table(dedi.SLI)
+```
 
-## 2. Moreover, finish the **lab** by applying your _my.permutation.test()_ to inferring independence of court surface and match outcomes for Nadal vs. Federer, Serena vs Venus match-ups. Formulate the hypotheses, explain why $\chi^2$-test might be inappropriate, and deliver the conclusion. Compare the conclusion with the one we got from $\chi^2$-test during the lab.
