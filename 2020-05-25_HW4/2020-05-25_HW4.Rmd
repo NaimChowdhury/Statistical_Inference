@@ -37,6 +37,7 @@ getwd()
 ## 3. Importing Data
 ```{r}
 cpu.data <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
+gpu.data <- read_csv(file.path(data.dir, "All_GPUs.csv"))
 listings <- read_csv(file.path(data.dir, "listings.csv"))
 ```
 
@@ -206,10 +207,13 @@ print(c("People who are 'Not Too Happy' in their marriage are ", relativerisk, "
 ## 2. Proceed to apply the _my.permutation.test()_ function (and subsequently interpret the results) to:
 
 ```{r}
+ # Arguments: Dataset, number of times to permute, column of desired variable
 my.permutation.test <- function(data, permutations, colnum){
   # Get the length of the data
   nrows <- nrow(data)
+  #indices to be permuted by sample
   index <- 1:nrows
+  #empty matrix to be filled by statistic values
   chis <- matrix(NA, nrow = permutations)
   for(i in 1:permutations){
     index.perm <- sample(index, replace = FALSE)
@@ -220,15 +224,35 @@ my.permutation.test <- function(data, permutations, colnum){
   }
   return(chis)
 }
-
-test <- my.permutation.test(listings.samp, 1000, 2)
-
-hist(test)
-
 ```
 
 
-### a. GPU_data, with 10,000 permutations. What's the conclusion? Compare the resulting histogram with the one in the slides (they should be roughly similar).
+
+### a. CPU_data, with 10,000 permutations. What's the conclusion?
+
+```{r}
+# Computing the chi-squared values under independence using the permutation test
+vert_stat <- cpu.data %>% select(Vertical_Segment, Status) %>% drop_na()
+
+# Convert the subset data into a table
+cpu_table <- table(vert_stat)
+
+#Compute the observed Chi-sq statistic
+Xsq <- chisq.test(cpu_table)$statistic
+
+vert_stat.chi <- my.permutation.test(vert_stat, 10000, 2)
+```
+
+```{r}
+# Plotting the distribution of the values
+chiquant <- quantile(vert_stat.chi, c(0.025, 0.975))
+hist(vert_stat.chi, main='Histogram of Chi-Squared Stat Under Permutations', xlab='X^2 statistic')
+points(x = Xsq, y = 0, pch = 19, cex = 2, col = "red")
+points(x = chiquant, y = c(0,0), pch = 'X', col = 'blue')
+```
+The $X^2$ value for the table is so high that it does not appear on the graph. 
+
+
 
 ### b. Intel_CPU data, with just 1,000 permutations. What's the conclusion? Compare the shape of the resulting histogram with the density of $\chi^2$ distribution with appropriate degrees of freedom. What does it tell us about whether $\chi^2$-test results from HW3 were appropriate for Intel_CPU data?
 
