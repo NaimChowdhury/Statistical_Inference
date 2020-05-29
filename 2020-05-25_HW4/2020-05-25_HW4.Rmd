@@ -35,7 +35,7 @@ getwd()
 ```
 
 ## 3. Importing Data
-```{r}
+```{r, echo = FALSE, include=FALSE}
 cpu.data <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
 gpu.data <- read_csv(file.path(data.dir, "All_GPUs.csv"))
 listings <- read_csv(file.path(data.dir, "listings.csv"))
@@ -273,7 +273,7 @@ my.permutation.test <- function(data, permutations, colnum){
 
 ### a. CPU_data, with 10,000 permutations. What's the conclusion?
 
-```{r}
+```{r, echo=FALSE, warning=FALSE}
 # Computing the chi-squared values under independence using the permutation test
 vert_stat <- cpu.data %>% select(Vertical_Segment, Status) %>% drop_na()
 
@@ -301,12 +301,15 @@ The $X^2$ value for the table is so high that it does not appear on the graph.
 
 
 The dataset below is a from the GPU dataset, taking the two binary response variables Dedicated and SLI_Crossfire.
-```{r}
+```{r, echo = FALSE, warning = FALSE}
 dedi.SLI <- gpu.data %>% select(Dedicated, SLI_Crossfire) %>% drop_na()
 
-Xsq <- chisq.test(dedi.chis)$statistic
+
 
 dedi.table <- table(dedi.SLI)
+
+Xsq <- chisq.test(dedi.table)$statistic
+
 dedi.chis <- my.permutation.test(dedi.SLI, 1000, 2)
 
 ```
@@ -318,4 +321,4 @@ hist(dedi.chis, main='Histogram of Chi-Squared Stat Under Permutations', xlab='X
 points(x = Xsq, y = 0, pch = 19, cex = 2, col = "red")
 points(x = chiquant, y = c(0,0), pch = 'X', col = 'blue')
 ```
-The observed $X^2$ for this particular experiment is particularly high, at $X^2 = 1901$. This is well outside of the 95% confidence interval. We can conclude by rejecting the null hypothesis, that is, we reject the hypothesis that the variables Dedicated and SLI_Crossfire are independent.
+The observed $X^2$ for this particular experiment is particularly high, at $X^2 = 488$. This is well outside of the 95% confidence interval. We can conclude by rejecting the null hypothesis, that is, we reject the hypothesis that the variables Dedicated and SLI_Crossfire are independent.
