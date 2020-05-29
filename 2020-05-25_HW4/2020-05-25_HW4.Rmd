@@ -190,7 +190,6 @@ print(c("People who are 'Not Too Happy' in their marriage are ", relativerisk, "
 ```
 
 
-
 # Problem #2
 
 ## 1. Code up your own _my.permutation.test()_ function to conduct permutation tests on contingency tables. As inputs, it should take a dataframe with two categorical variables as columns (first one - explanatory, second one - response), and the number of randomly generated permutationts to be executed. As output, it should provide:
@@ -204,6 +203,26 @@ print(c("People who are 'Not Too Happy' in their marriage are ", relativerisk, "
   To obtain $X^2$ values for each permutation, you are allowed to use $R$'s _chisq.test()_ function.
   
 ## 2. Proceed to apply the _my.permutation.test()_ function (and subsequently interpret the results) to:
+
+```{r}
+my.permutation.test <- function(data, predictor){
+  # Get the length of the data
+  nrows <- nrow(data)
+  seq <- seq(1, nrows)
+  chis <- matrix(NA, nrow = 10000)
+  for(i in 1:10000){
+    perm.sample <- sample.int(nrows, size = nrows, replace = FALSE)
+    perm.data <- data[perm.sample, ]
+    datatable.perm <- table(perm.data)
+    chis[i] <- chisq.test(datatable.perm)[1]
+  }
+  return(chis)
+}
+
+
+
+```
+
 
 ### a. GPU_data, with 10,000 permutations. What's the conclusion? Compare the resulting histogram with the one in the slides (they should be roughly similar).
 
