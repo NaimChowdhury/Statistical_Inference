@@ -1,0 +1,103 @@
+---
+title: '2020-03-30 HW6'
+author: "Naeem Chowdhury"
+date: "3/30/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Problem #1
+
+Proceed to write your own function _my.simple.lm()_ which, as inputs, will take
+
+    * vector $x$ of explanatory variable values, and
+    * vector $y$ of corresponding response variable values,
+    
+and output the following:
+
+    * least squares estimates for intercept and slope,
+    * standard errors of those estimates,
+    * residual standard error of the least squares fit,
+    * $R^2$ value,
+    * 95% confidence intervals for least squares estimates.
+    
+You will need to calculate those outputs by directly applying the formulas for those quantitites. In your function definition, you are __not allowed to use any of $R$'s "cheat" built-in functions__ like _lm()_, _glm()_, _summary()_ etc.
+
+
+# Problem #2
+
+## Part a
+Show that $\sum_i e_i = 0$, where $e_i = \hat{y}_i - y_i$.
+
+### Proof
+
+  We wish to show that $e_i = \hat{y}_i - y_i = \hat{\beta}_0 + \hat{\beta}_1x_i - y_i= 0$.
+  
+  Recall that since $\hat{\beta}_0$ is the least squares estimate, it must be that $\hat{\beta}_0$ minimizes the RSE, i.e. that,
+  
+  $$\frac{\partial}{\partial \hat{\beta}_0} \sum_i^n ( \hat{\beta}_0 + \hat{\beta}_1x_i - y_i)^2$$
+  
+  $$ = -2\sum_i^n ( \hat{\beta}_0 + \hat{\beta}_1x_i - y_i)$$
+  
+  $$ = 0.$$
+  
+  Finally, it is clear that
+  
+  $$-2 \sum_i^n ( \hat{\beta}_0 + \hat{\beta}_1x_i - y_i)$$
+  
+  $$ = -2 \sum_i^n (e_i) = 0,$$
+  
+  necessarily implies that $e_i = 0$, as required.
+
+## Part 1b
+
+Show that $\sum_i x_i e_i = 0$.
+
+### Proof
+
+  Similarly, we note that in order for $\hat{\beta}_1$ to minimize the residual sum of squares, we must have that,
+  
+  $$\frac{\partial}{\partial \hat{\beta}_1} \sum_i^n ( \hat{\beta}_0 + \hat{\beta}_1x_i - y_i)^2 = 0.$$
+  
+  Taking the partial derivative with respect to $\hat{\beta}_1$, we arrive at 
+  
+  $$-2 \sum_i^n ( \hat{\beta}_0 + \hat{\beta}_1x_i - y_i)x_i$$
+  
+  $$ = -2 \sum_i^n x_ie_i = 0.$$
+  
+  Giving the required result.
+  
+## Problem 2.
+
+Presume we have $n = 3$ observations:
+
+  - vector of predictor values $x = (x_1, x_2, x_3)$ = c(1,5,3),
+  - a vector of residuals $\vec{e} = (e_1, e_2, e_3)$, and you let $e_1 = 3$.
+  
+Proceed to use the results from part 1(a,b) to derive the values of $e_2, e_3$. Given that you were able to do that, what is the meaning of "Vector $\vec e$ has $(n-2) \equiv (3-2) \equiv 1$ degree of freedom"?
+
+### Solution
+
+  We have shown that $\sum_i e_i = 0$ and $\sum x_i e_i = 0$. 
+  
+  Thus,
+  
+  $$3 + e_2 + e_3 = 0,$$
+  
+  and
+  
+  $$3 + 5e_2 + 3e_3 = 0.$$
+  
+  This provides us with a system of 2 equations and 2 unknowns.
+  
+  The linear system
+  
+|---|---|---|  
+| 1  |  1 | -3  |
+| 5  |  3 | -3  | 
+
+
+
