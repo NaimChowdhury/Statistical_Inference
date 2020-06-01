@@ -29,6 +29,16 @@ You will need to calculate those outputs by directly applying the formulas for t
 
 # Problem #2
 
+Presume data $(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)$, we have fitted simple linear regression equation
+
+$$\hat{y_i} = \hat{\beta_0} + \hat{\beta_1}x_i,  \ \ i = 1, ..., n$$
+
+where $\hat{\beta_0}$ and $\hat{\beta_1}$ are least squares estimates. Proceed to derive that
+
+(a) (did it in class) $\sum_i e_i = 0$, where $e_i = \hat{y}_i -y_i$.
+
+(b) (2 bonus points) $\sum_i x_i e_i = 0$
+
 ## Part a
 Show that $\sum_i e_i = 0$, where $e_i = \hat{y}_i - y_i$.
 
