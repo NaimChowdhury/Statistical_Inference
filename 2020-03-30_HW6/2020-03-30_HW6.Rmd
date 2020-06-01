@@ -163,4 +163,9 @@ For each regression
   5. Report and interpret the Residual Standard Error (RSE).
   6. Report and interpret the $R^2$ statistic.
   
+# Problem 6
 
+Presume we're trying to explain a person's weight ($y$) via their height ($x_1$) and exercise hours per day ($x_2$).
+
+  1. Write down the appropriate full modeling equation for multiple linear regression (including the assumptions on error terms.)
+  2. __Derive__ the equations that will eventually lead to formulas for least squares estimates of all $\beta$-coefficients in your modeling equation from part (1) (those formulae can be found on slide #5 of "Multiple Linear Regression"). Proceed to __solve__ only the __first one__ (with respect to $\beta_0$)
