@@ -147,4 +147,20 @@ for (r in 1:n.rep){
 print(mean(conf_int_b0[,1] < 2 & 2 < conf_int_b0[,2]))
 ```
 
+# Problem #5
+
+For _Advertisement.csv_ data set, proceed to fit simple linear regressions of
+
+  * _sales_ onto _radio_
+  * _sales_ onto _newspaper_.
+  
+For each regression
+
+  1. Is there a _statistically_ significant relationship between predictor and response? Why?
+  2. Is there a _practically_ significant relationship between predictor and response? Why?
+  3. Interpret the confidence intervals for both the intercept and the slope.
+  4. Provide prediction for a $20,000 investment into this advertisement media. Provide the confidence and prediction bands for it. Which ones are wider? Why?
+  5. Report and interpret the Residual Standard Error (RSE).
+  6. Report and interpret the $R^2$ statistic.
+  
 
