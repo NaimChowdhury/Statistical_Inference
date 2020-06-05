@@ -26,6 +26,13 @@ and output the following:
     
 You will need to calculate those outputs by directly applying the formulas for those quantitites. In your function definition, you are __not allowed to use any of $R$'s "cheat" built-in functions__ like _lm()_, _glm()_, _summary()_ etc.
 
+```{r}
+my.simple.lm <- function(){
+  
+  
+}
+```
+
 
 # Problem #2
 
