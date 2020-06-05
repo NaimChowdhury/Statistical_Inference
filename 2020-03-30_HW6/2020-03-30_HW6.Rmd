@@ -27,7 +27,17 @@ and output the following:
 You will need to calculate those outputs by directly applying the formulas for those quantitites. In your function definition, you are __not allowed to use any of $R$'s "cheat" built-in functions__ like _lm()_, _glm()_, _summary()_ etc.
 
 ```{r}
-my.simple.lm <- function(){
+my.simple.lm <- function(x,y){
+  # compute beta0
+  # compute beta1
+  
+  # compute standard error of beta0 (SE.beta0)
+  # compute standard error of beta1 (SE.beta1)
+  
+  # compute RSE
+  # compute R^2
+  # compute 95% confidence intervals for least squares estimates.
+  
   
   
 }
