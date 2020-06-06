@@ -163,7 +163,7 @@ Provide the code that will conduct a 1000 replicates of the following:
   * Generate a sample $(x_1,y_1), (x_2, y_2), ..., (x_n, y_n)$ of size $n = 200$ from $Y = 2+3X + \epsilon, \ \ \epsilon \sim N(0,4^2)$
   * Calculate 90% confidence intervals resulting from $\hat{\beta}_0$ and $\hat{\beta}_1$ (just use _confint()_), __keep track of them.__.
 
-and afterwards calculate the % of times (out of 1000 generated confidence intervals) that the true population values $\beta_0 = 2$ and $\beta_1 = 3$ ended upw ithin their respective confidence intervals. Are those %'es equal to what we expected? Why? __Hint__: Recall the practical interpretation of a 90% confidence interval.
+and afterwards calculate the % of times (out of 1000 generated confidence intervals) that the true population values $\beta_0 = 2$ and $\beta_1 = 3$ ended up within their respective confidence intervals. Are those %'es equal to what we expected? Why? __Hint__: Recall the practical interpretation of a 90% confidence interval.
 
 Code to get you started:
 
@@ -179,7 +179,11 @@ for (r in 1:n.rep){
   eps <- rnorm(200, mean = 0, sd = 4)
   Y <- 2 + 3*X + eps
   # .... That's where you fit the linear model,
+  lm.obj <- lm(Y~X)
   # calculate conf intervals for b0, b1, and save them into conf_int objects
+  confints <- confint(lm.obj)
+  conf_int_b0[r,] <- confints[1,]
+  conf_int_b1[r,] <- confints[2,]
 }
 
 # Here is where you calculated the %'es.
