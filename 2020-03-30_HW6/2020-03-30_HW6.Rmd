@@ -38,16 +38,19 @@ my.simple.lm <- function(x,y){
   beta1 <- ( sum( x.dif*y.dif ) )/ sum( x.dif^2 ) # compute beta1
   beta0 <- y.bar - beta1*x.bar # compute beta1
   
-  RSS <- sum( y.dif^2 )
-  RSE <- sqrt(RSS/(n-2))
+  y.hat <- beta0 + beta1*x
+  
+  RSS <- sum( y.hat^2 )
+  TSS <- sum( y.dif^2)
+  RSE <- sqrt(RSS/(n-2)) # compute RSE
   sig2 <- RSS/(n-2)
   
   # compute standard error of beta0 (SE.beta0)
   SE.beta0 <- sqrt(sig2 * (1/n + x.bar^2/sum( x.dif^2) ) )
   # compute standard error of beta1 (SE.beta1)
+  SE.beta1 <- sqrt(sig2 / sum(x.dif^2) )
   
-  # compute RSE
-  # compute R^2
+  R2 <- 1 - RSS/TSS# compute R^2
   # compute 95% confidence intervals for least squares estimates.
   
 }
