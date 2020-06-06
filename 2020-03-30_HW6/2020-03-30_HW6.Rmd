@@ -28,8 +28,11 @@ You will need to calculate those outputs by directly applying the formulas for t
 
 ```{r}
 my.simple.lm <- function(x,y){
-  # compute beta0
-  # compute beta1
+  x.bar <- mean(x) # compute explanatory mean
+  y.bar <- mean(y) # compute response mean
+  
+  beta1 <- ( sum( (x-x.bar)*(y-y.bar) ) )/ sum( (x-x.bar)^2 ) # compute beta1
+  beta0 <- y.bar - beta1*x.bar # compute beta1
   
   # compute standard error of beta0 (SE.beta0)
   # compute standard error of beta1 (SE.beta1)
@@ -37,8 +40,6 @@ my.simple.lm <- function(x,y){
   # compute RSE
   # compute R^2
   # compute 95% confidence intervals for least squares estimates.
-  
-  
   
 }
 ```
