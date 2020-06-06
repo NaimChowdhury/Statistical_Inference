@@ -181,14 +181,26 @@ for (r in 1:n.rep){
   # .... That's where you fit the linear model,
   lm.obj <- lm(Y~X)
   # calculate conf intervals for b0, b1, and save them into conf_int objects
-  confints <- confint(lm.obj)
+  confints <- confint(lm.obj, level = 0.90)
   conf_int_b0[r,] <- confints[1,]
   conf_int_b1[r,] <- confints[2,]
 }
 
 # Here is where you calculated the %'es.
-print(mean(conf_int_b0[,1] < 2 & 2 < conf_int_b0[,2]))
+b0.filter <- conf_int_b0[,1] < 2 & 2 < conf_int_b0[,2]
+filtered.conf_int_b0 <- conf_int_b0[b0.filter, ]
+b0.succeses <- length(filtered.conf_int_b0[,1])
+b0.perc <- b0.succeses/length(conf_int_b0[,1]) *100
+
+b1.filter <- conf_int_b1[,1] < 3 & 3 < conf_int_b1[,2]
+filtered.conft_int_b1 <- conf_int_b0[b1.filter,]
+b1.succeses <- length(filtered.conft_int_b1[,1])
+b1.perc <- b1.succeses/length(conf_int_b1[,1]) *100
+
+print(c("The percentage of beta0 values that fell into the confidence interval is :", b0.perc, ", and the percentage of beta1 values that fell into the confidence interval is: ", b1.perc))
 ```
+
+The practical interpretation of the 90% confidence interval is that 90% of the time, the true mean will be between the two values. We can say that we are 90% confident that the true $\beta_0$ and $\beta_1$ values will lie in the confidence interval. The percentages we arrived at are not equal to what we expected, but that is because we did not perform enough trials. As the number of trials approaches infinity, the percent of confidence intervals which contain the true values will approach 90. This was easily checked by increasing _n.rep_ to 10000 trials.
 
 # Problem #5
 
