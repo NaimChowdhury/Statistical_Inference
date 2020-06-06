@@ -28,11 +28,16 @@ You will need to calculate those outputs by directly applying the formulas for t
 
 ```{r}
 my.simple.lm <- function(x,y){
+  n <- length(x)
   x.bar <- mean(x) # compute explanatory mean
   y.bar <- mean(y) # compute response mean
   
   beta1 <- ( sum( (x-x.bar)*(y-y.bar) ) )/ sum( (x-x.bar)^2 ) # compute beta1
   beta0 <- y.bar - beta1*x.bar # compute beta1
+  
+  RSS <- sum( (y - y.bar)^2 )
+  RSE <- sqrt(RSS/(n-2))
+  sig2 <- RSS/(n-2)
   
   # compute standard error of beta0 (SE.beta0)
   # compute standard error of beta1 (SE.beta1)
