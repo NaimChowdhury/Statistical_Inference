@@ -156,6 +156,14 @@ $$\frac{\hat{\beta}_1 - \beta_1}{SE(\hat{\beta}_1)} \sim t_{n-2}$$
 
 proceed to derive the formula of a general $(1- \alpha)%$ confidence interval for $\hat{\beta}_1$.
 
+## Solution to Problem #3
+
+Since 
+
+$$\frac{\hat{\beta}_1 - \beta_1}{SE(\hat{\beta}_1)} \sim t_{n-2},$$
+
+
+
 # Problem #4
 
 Provide the code that will conduct a 1000 replicates of the following:
@@ -200,6 +208,8 @@ b1.perc <- b1.succeses/length(conf_int_b1[,1]) *100
 print(c("The percentage of beta0 values that fell into the confidence interval is :", b0.perc, ", and the percentage of beta1 values that fell into the confidence interval is: ", b1.perc))
 ```
 
+### Solution to Problem #4
+
 The practical interpretation of the 90% confidence interval is that 90% of the time, the true mean will be between the two values. We can say that we are 90% confident that the true $\beta_0$ and $\beta_1$ values will lie in the confidence interval. The percentages we arrived at are not equal to what we expected, but that is because we did not perform enough trials. As the number of trials approaches infinity, the percent of confidence intervals which contain the true values will approach 90. This was easily checked by increasing _n.rep_ to 10000 trials.
 
 # Problem #5
@@ -223,4 +233,9 @@ For each regression
 Presume we're trying to explain a person's weight ($y$) via their height ($x_1$) and exercise hours per day ($x_2$).
 
   1. Write down the appropriate full modeling equation for multiple linear regression (including the assumptions on error terms.)
+  
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2, \epsilon, \ \ \epsilon \sim N(0,1).$$
+
+
+
   2. __Derive__ the equations that will eventually lead to formulas for least squares estimates of all $\beta$-coefficients in your modeling equation from part (1) (those formulae can be found on slide #5 of "Multiple Linear Regression"). Proceed to __solve__ only the __first one__ (with respect to $\beta_0$)
