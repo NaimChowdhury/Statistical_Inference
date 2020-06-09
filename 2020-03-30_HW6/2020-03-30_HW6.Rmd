@@ -234,7 +234,7 @@ Presume we're trying to explain a person's weight ($y$) via their height ($x_1$)
 
   1. Write down the appropriate full modeling equation for multiple linear regression (including the assumptions on error terms.)
   
-$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2, \epsilon, \ \ \epsilon \sim N(0,1).$$
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon, \ \ \epsilon \sim N(0,1).$$
 
 
 
