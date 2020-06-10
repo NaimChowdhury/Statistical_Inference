@@ -290,4 +290,10 @@ __$\hat{\beta}_{0}$__
 
 $$\frac{\partial RSS}{\partial \hat{\beta}_{0}} = 2\sum_i^n (\hat{\beta}_{0} + \hat{\beta}_{1} x_{1,i} + \hat{\beta}_2 x_{2,i} - y_i)$$
 
-$$ = 2 \bigg(n\hat{\beta}_{0} + \hat{\beta}_{1}(x_{1,1} + ... x_{1,n} ) + \hat{\beta}_{2}(x_{2,1} + ... x_{2,n} )\bigg)$$
+$$ = 2 \bigg(n\hat{\beta}_{0} + \hat{\beta}_{1}(x_{1,1} + ...+ x_{1,n} ) + \hat{\beta}_{2}(x_{2,1} + ...+ x_{2,n} ) - (y_1 + ... + y_n) \bigg)$$
+
+$$ = \frac{2}{n} \bigg(\hat{\beta}_{0} + \hat{\beta}_{1}\bar{x}_1 + \hat{\beta}_{2}\bar{x}_2 - \bar{y} \bigg).$$
+
+Setting equal to 0 and performing the basic algebra, we arrive at
+
+$$\hat{\beta}_{0} = \bar{y} -\hat{\beta}_{1}\bar{x}_1 - \hat{\beta}_{2}\bar{x}_2$$
