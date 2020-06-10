@@ -162,6 +162,37 @@ Since
 
 $$\frac{\hat{\beta}_1 - \beta_1}{SE(\hat{\beta}_1)} \sim t_{n-2},$$
 
+Recall that $\beta_1$ is the slope under the null hypothesis, $H_0:= \beta_1 = 0$. If we suppose the null hypothesis is true, then we have that the t-statistic under our assumption is 
+
+$$t_{\hat{\beta}_1} = \frac{\hat{\beta}_1}{SE(\hat{\beta}_1)}.$$
+
+Since $\hat{\beta}_1)$ is an unbiased estimator of $\beta_1$, we must have that $E(\hat{\beta}_1)) = \beta_1$. But under the null hypothesis, $\beta_1 = 0$, so the mean of our distribution is 0, and under the assumptions of the null hypothesis, the sampling distribution is normal. 
+
+We also have that $$Var[\hat{\beta}_1)] = \frac{\sigma^2}{\sum (x_i - \bar{x})^2},$$
+
+and since $SE(\hat{\beta}_1)) = \frac{\sigma}{\sqrt{}\sum (x_i - \bar{x})^2}$, we conclude that 
+
+$$Var[\hat{\beta}_1)] \approx SE(\hat{\beta}_1))^2.$$
+
+under the null hypothesis.
+
+
+Finally we can say that $\hat{\beta}_1) \sim N(\beta_1, Var[\hat{\beta}_1])$ or that,
+
+$$\hat{\beta}_1) \sim N(0, Var[\hat{\beta}_1])^2)$$,
+
+leading to the confidence interval 
+
+$\frac{\hat{\beta}_1}{SE(\hat{\beta}_1)} \pm t_{(1-\alpha/2, n-2)}$
+
+implying
+$$\hat{\beta}_1 \pm {SE(\hat{\beta}_1)}\cdot t_{(1-\alpha/2, n-2)}$$
+
+as we wished to show.
+
+
+
+
 
 
 # Problem #4
@@ -234,7 +265,7 @@ Presume we're trying to explain a person's weight ($y$) via their height ($x_1$)
 
   1. Write down the appropriate full modeling equation for multiple linear regression (including the assumptions on error terms.)
   
-$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon, \ \ \epsilon \sim N(0,1).$$
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon, \ \ \epsilon \sim N(0,\sigma^2).$$
 
 
 
