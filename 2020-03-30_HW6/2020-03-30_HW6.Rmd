@@ -40,7 +40,7 @@ my.simple.lm <- function(x,y){
   
   y.hat <- beta0 + beta1*x
   
-  RSS <- sum( y.hat^2 )
+  RSS <- sum( (y - y.hat)^2 )
   TSS <- sum( y.dif^2)
   RSE <- sqrt(RSS/(n-2)) # compute RSE
   sig2 <- RSS/(n-2)
@@ -270,3 +270,24 @@ $$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \epsilon, \ \ \epsilon \sim N(0,\sig
 
 
   2. __Derive__ the equations that will eventually lead to formulas for least squares estimates of all $\beta$-coefficients in your modeling equation from part (1) (those formulae can be found on slide #5 of "Multiple Linear Regression"). Proceed to __solve__ only the __first one__ (with respect to $\beta_0$)
+  
+### Derivation
+
+We note that the goal is to find coefficients $\hat{\beta}_i$, $i = 0,1,2$ such that the RSS for the equation
+
+$$\hat{y}_i = \hat{\beta}_{0} + \hat{\beta}_{1} x_{1,i} + \hat{\beta}_2 x_{2,i}$$
+
+is minimized. That is, we must minimize,
+
+
+$$\sum_i^n (\hat{y}_i - y_i)^2$$
+
+$$= \sum_i^n (\hat{\beta}_{0} + \hat{\beta}_{1} x_{1,i} + \hat{\beta}_2 x_{2,i} - y_i)^2$$
+
+We do so by solving for values which cause the vector of partial derivatives to be equal to $\vec 0$
+
+__$\hat{\beta}_{0}$__
+
+$$\frac{\partial RSS}{\partial \hat{\beta}_{0}} = 2\sum_i^n (\hat{\beta}_{0} + \hat{\beta}_{1} x_{1,i} + \hat{\beta}_2 x_{2,i} - y_i)$$
+
+$$ = 2 \bigg(n\hat{\beta}_{0} + \hat{\beta}_{1}(x_{1,1} + ... x_{1,n} ) + \hat{\beta}_{2}(x_{2,1} + ... x_{2,n} )\bigg)$$
