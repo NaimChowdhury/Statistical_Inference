@@ -9,6 +9,24 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+```{r file_management, include=FALSE}
+project.dir <- getwd() #naeem
+output.dir <- "/Output"
+data.dir <- "C:/Users/Naeem Cho/Desktop/School Work/Statistical Inference/Datasets"
+setwd(project.dir)
+getwd()
+```
+
+```{r, include=FALSE}
+library(tidyverse)
+library(RColorBrewer)
+library(haven)
+```
+
+```{r, echo = FALSE, include=FALSE}
+advert.df <- read_csv(file.path(data.dir, "Advertising.csv"))
+```
 # Problem #1
 
 Proceed to write your own function _my.simple.lm()_ which, as inputs, will take
@@ -260,12 +278,27 @@ For each regression
   6. Report and interpret the $R^2$ statistic.
   
 ```{r}
-library(tidyverse)
-
-read_csv()
+sales.radio <- advert.df %>% select(sales, radio)
+sales.newspaper <- advert.df %>% select(sales, newspaper)
 ```
 
+```{r}
+lm.radio <- lm(sales ~ radio, sales.radio)
+
+summary(lm.radio)
+
+```
+1. We can conclude that there is a statistically significant relationship between _radio_ and _sales_, since the $p$-value for the regression coefficient is $< 2e^{-16}$.
+2. However, this is not a practically significant relationship, since the 
   
+```{r}
+lm.newspaper <- lm(sales ~ newspaper, sales.newspaper)
+
+summary(lm.newspaper)
+
+```
+1. We can conclude that since the $p$-value for the regression coefficient for _newspaper_ is not sufficiently low, the relationship between _newspaper_ and _sales_ is not statistically significant.
+2. 
 # Problem 6
 
 Presume we're trying to explain a person's weight ($y$) via their height ($x_1$) and exercise hours per day ($x_2$).
