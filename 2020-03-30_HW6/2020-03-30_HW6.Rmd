@@ -277,6 +277,8 @@ For each regression
   5. Report and interpret the Residual Standard Error (RSE).
   6. Report and interpret the $R^2$ statistic.
   
+  
+## Solution to Problem #5
 ```{r}
 sales.radio <- advert.df %>% select(sales, radio)
 sales.newspaper <- advert.df %>% select(sales, newspaper)
@@ -287,18 +289,50 @@ lm.radio <- lm(sales ~ radio, sales.radio)
 
 summary(lm.radio)
 
+my.simple.lm(sales.radio$radio, sales.radio$sales) # Happy to see that they agree.
+
 ```
-1. We can conclude that there is a statistically significant relationship between _radio_ and _sales_, since the $p$-value for the regression coefficient is $< 2e^{-16}$.
-2. However, this is not a practically significant relationship, since the 
+  1. We can conclude that there is a statistically significant relationship between _radio_ and _sales_, since the $p$-value for the regression coefficient is $< 2e^{-16}$.
+
+  2. For every unit increase in radio, we can expect a 202 dollar increase in sales on average. This is a 
+practically significant relationship, albeit small.
+
+```{r}
+confint(lm.radio, 'radio', level = 0.95)
+confint(lm.radio, '(Intercept)', level = 0.95)
+```
+  3. We are 95% confident that the true regression slope is between 0.16 and 0.24. We are 95% confident that the true regression intercept lies between 8.20 and 10.42.
+  
+  4. (Don't know how to do)
+  
+  5. The RSE is 4.265, which is relatively small. We can conclude that our model is a decent fit for the data.
+  
+  6. The $R^2$ value is 0.332, which is closer to 0 than 1. We can conclude that our model is a decent fit for the data.
+
   
 ```{r}
 lm.newspaper <- lm(sales ~ newspaper, sales.newspaper)
 
 summary(lm.newspaper)
 
+my.simple.lm(sales.newspaper$newspaper, sales.newspaper$sales) # Happy to see that they agree.
+
 ```
-1. We can conclude that since the $p$-value for the regression coefficient for _newspaper_ is not sufficiently low, the relationship between _newspaper_ and _sales_ is not statistically significant.
-2. 
+  1. We can conclude that since the $p$-value for the regression coefficient for _newspaper_ is not sufficiently low, the relationship between _newspaper_ and _sales_ is not statistically significant.
+  
+  2. For every unit increase in newspaper, we can expect a 54 dollar increase in sales on average. This is not a practically significant relationship, given that _sales_ is measured in dollars.
+
+  3. 
+  
+```{r}
+confint(lm.radio, 'radio', level = 0.95)
+confint(lm.radio, '(Intercept)', level = 0.95)
+```
+
+  4. (Don't know how to do)
+  
+  
+  
 # Problem 6
 
 Presume we're trying to explain a person's weight ($y$) via their height ($x_1$) and exercise hours per day ($x_2$).
