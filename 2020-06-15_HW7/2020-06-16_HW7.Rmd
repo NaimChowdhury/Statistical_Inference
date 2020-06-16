@@ -38,3 +38,42 @@ getwd()
 ```{r, echo = FALSE, include=FALSE}
 
 ```
+
+# Problem #1
+
+For the _FL_crime.csv_ data, proceed to fit
+
+  1. For simple linear regression _crime ~ education~,
+    
+    a. Write down the __full modeling equation__, with all __error assumptions__.
+    b. Fit the model, provide the __fitted equation__. Provide a plot of the fitted line. Is there a statistically significant relationship? Interpret the resulting effect of education on crime.
+    
+  2. For multiple linear regression _crime ~ education + urbanization_,
+    a. Write down the __full modeling equation__, with all __error assumptions__.
+    b. Fit the model, provide the __fitted equation__. Provide a plot of the __fitted plane__. Describe the relationship between crime and education now. Why did it change comparied to part 1? What statistical phenomena did we encounter in part 1 that led to such non-sensical interpretation?
+    
+  3. For multiple linear gression _crime ~ education + urbanization + income_, proceed to
+  
+    a. Write down the __full modeling equation__, with all __error assumptions__.
+    b. Show that $y_i \sim N(\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i}, \ \ \sigma^2) $ (where $y = crime$, $x_1 = education$ ...) First, show that $E[y_i]  = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i}$. Second, $V[y_i] = \sigma^2$. Third, $y_i \sim N$. No need to demonstrate the independence of $y_i$'s.
+    c. Having fitted the model from $(a)$, provide the __fitted equation__.
+    d. Write down the hypotheses ( in terms of parameters of the model in part (a)) and make conclusions for $t$-tests on significance of each __individual__ predictor.
+    e. Interpret the effect of the only statistically significant predictor from part (d).
+    f. Formulate the hypotheses (in terms of parameterse of the model in part (a)) for testing the overall model significance. Provide the conclusion of the respective test.
+    
+# Problem #2 (Why need $F$-statistic?)
+    
+  1. Generate a data example where you have a response variable $y$ and a predictor variable $x$ that are _unrelated_ to each other (make sure to use a __random__ generation mechanism). How would you do that? How would you demonstrate that they're unrelated (think of basic visualizations)?
+  
+  2. Having settled on a method of generating such unrelated variables in part 1, proceed to:
+  
+    a. Generate response variable $y$ (e.g. of length 200)
+    b. Generate 50 predictor variables $x$ according to your method from part 1. __Record them__.
+
+  3. Fit a __multiple__ linear regression model, regression response $y$ from part 2(a) on all 50 $x$'s you've generated in part 2(b).
+    a. Report the \# of individual $t$-tests that resulted into a significant $p$-value, hence rejecting $H_0$ at $\alpha = 0.05$ level. Were those rejections correct decisions or not? Why? ( __Hint:__ Remember what's the true relationship between $x$ and $y$, given how you generated the data.) If not, what type of error do they correspond to? Why?
+    b. Given that the individual siginifant $t$-test aren't necessarily indicative of at least one predictor having a true relationship with the response, what would be the appropriate testing procedure to address that question? Conduct that test, report its $p$-value, and interpret its result.
+    
+For reference, use in-class demo (slide #42).
+
+
