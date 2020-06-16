@@ -76,4 +76,24 @@ For the _FL_crime.csv_ data, proceed to fit
     
 For reference, use in-class demo (slide #42).
 
+# Problem #3
 
+This question involves the use of multiple linear regression on the _Auto_ data set of _ISLR_ library.
+
+  1. Produce a scatterplot matrix which includes all of the variables in the data set. Which variables appear to have a strong linear relationship with our intended response variable - miles per gallon ( _mpg_ )?
+  
+  2. Compute the matrix of correlations between the variables using the function _cor()_, to confirm your observation from part 1. Which predictors have strongest linear relationship with _mpg_?
+  
+  3. Pick one predictor variable that you feel to have the strongest __linear__ relationship with _mpg_, and preform a simple linear regression. Use the _summary()_ fnction to print the results.
+  
+    a. Is there a statistically significant relationship between the predictor and the response? Provide the interpretation of that relationship.
+    b. What is the predicted _mpg_ associated with the median value of you predictor's range? Interpret that prediction. What are the associated 95% confidence and prediction bands? Provide interpreation of those intervals.
+    c. Provide and interpet both metrics for the qualify of model fit.
+    
+4. Use the _lm()_ function to perform a multiple linear regression with _mpg_ as the response and all other variables (except _name_) as the predictors. Use the _summary()_ function to print the results.
+
+  a. Formulate the $H_0$ and $H_a$ hypotheses (using parameter notation) for testing whether the overall model is significant. Which part of _summary()_ output corresponds to this test? Is the model significant?
+  b. Which predictors appear to have a statistically significant relationship to the response? Just list them. 
+  c. Interpret effects of the __two__ most statistically significant predictors. Compare the interpretation here, with the one given in part 3(a) - what's the crucial difference?
+  d. Report and interpret the 95% confidence intervals for _weight_ and _year_ effects.
+  e. Report and interpret both quality-of-fit metrics.
