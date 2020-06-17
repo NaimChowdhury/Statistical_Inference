@@ -39,7 +39,10 @@ getwd()
 ```{r, echo = FALSE, include=FALSE}
 fl_crime <- read_csv(file.path(data.dir, "fl_crime.csv"))
 
-fl_crime <- fl_crime %>% rename(crime = `crime rate (per 1000)`) %>% rename(education = `education (%)`)
+fl_crime <- fl_crime %>% 
+  rename(crime = `crime rate (per 1000)`) %>%
+  rename(education = `education (%)`) %>% 
+  rename(urbanization = `urbanization (%)`)
 
 ```
 
@@ -65,23 +68,17 @@ summary(lm.obj)
 
 The fitted equation is thus,
 
-$$\hat{y_i} = \hat{\beta_0} + \hat{\beta_1} x_1,$$
+$$\hat{y_i} = \hat{\beta_0} + \hat{\beta_1} x_{1,i},$$
 
 where $\hat{y_i}$ _crime_, $x_1$ is _education_, $\hat{\beta_0}$ is -50.86, and $\hat{\beta_1}$ is 1.49.
 
 $$crime =  -50.86 + 1.49 \cdot education$$
    
 ```{r}
-p <- fl_crime %>% 
-  select(crime, education)
-  
 ggplot(fl_crime, aes(x = education, y = crime)) + 
   geom_point() +
   stat_smooth(method = "lm", col = "red")
-
 ```
-
-Is there a statistically significant relationship? Interpret the resulting effect of education on crime.
 
 There is indeed a statistically significant relationship, since we have $p \approx 0.000068 < 0.025$ for the slope of the linear regression. For every 2\% increase in education, we can conclude that the number of crimes per 1000 will increase by about 3, on average.
 
@@ -97,9 +94,39 @@ $$crime = \beta_0 + \beta_1 \cdot education + \beta_2 \cdot urbanization + \epsi
 
 ### 2b. 
 ```{r}
+lm.obj <- lm(crime ~ education + urbanization, fl_crime)
 
+summary(lm.obj)
 ```
 
+The fitted equation is thus,
+
+$$\hat{y_i} = \hat{\beta_0} + \hat{\beta_1} x_{1,i} + \hat{\beta_2} x_{2,i},$$
+
+where $\hat{y_i}$ _crime_, $x_1$ is _education_, $x_2$ is _urbanization_, $\hat{\beta_0}$ is 59.12, $\hat{\beta_1}$ is -0.58, and $\hat{\beta_2}$ is 0.68.
+
+$$crime =  59.12 -0.58 \cdot education + 0.68 \cdot urbanization$$
+
+The resulting $p$-value from hypothesis testing is sufficiently low to conclude that $\beta_2$ coefficient for _urbanization_ is statistically significant. However, the _education_ coefficient $\beta_1$ now has $p \approx 0.22 > 0.025$, meaning we fail to reject the null hypothesis $H_0:= \beta_1 = 0$. 
+
+The change in relationship between _crime_ and _education_ seems to have occured because _education_ may be confounding with another variable, such as _urbanization_.
+
+We can choose _education_ to be some arbitrary constant, suppose we choose $education = 65$. Then our equation becomes:
+
+$$crime =  59.12 -0.58 \cdot 65 + 0.68 \cdot urbanization$$
+
+$$=  59.12 -37.7 + 0.68 \cdot urbanization$$
+
+$$=  21.42 + 0.68 \cdot urbanization,$$
+
+which we can plot as a plane accordingly.
+
+```{r}
+ggplot(fl_crime, aes(x = urbanization, y = crime + 21.42)) + 
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+
+```
 
   3. For multiple linear gression _crime ~ education + urbanization + income_, proceed to
   
