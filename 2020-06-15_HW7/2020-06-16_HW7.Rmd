@@ -141,6 +141,14 @@ ggplot(fl_crime, aes(x = urbanization, y = crime + 21.42)) +
     
   1. Generate a data example where you have a response variable $y$ and a predictor variable $x$ that are _unrelated_ to each other (make sure to use a __random__ generation mechanism). How would you do that? How would you demonstrate that they're unrelated (think of basic visualizations)?
   
+```{r}
+y <- runif(1000, min = 0, max = 1000) 
+x <- runif(1000, min = 0, max = 3000) 
+
+rand.df <- data.frame(x,y)
+```
+
+  
   2. Having settled on a method of generating such unrelated variables in part 1, proceed to:
   
     a. Generate response variable $y$ (e.g. of length 200)
