@@ -140,7 +140,9 @@ ggplot(fl_crime, aes(x = urbanization, y = crime + 21.42)) +
 # Problem #2 (Why need $F$-statistic?)
     
   1. Generate a data example where you have a response variable $y$ and a predictor variable $x$ that are _unrelated_ to each other (make sure to use a __random__ generation mechanism). How would you do that? How would you demonstrate that they're unrelated (think of basic visualizations)?
-  
+
+
+### Solution 1.
 ```{r}
 y <- runif(1000, min = 0, max = 1000) 
 x <- runif(1000, min = 0, max = 3000) 
@@ -158,6 +160,20 @@ In order to make sure the response and predictors were _unrelated_, I genderated
   
     a. Generate response variable $y$ (e.g. of length 200)
     b. Generate 50 predictor variables $x$ according to your method from part 1. __Record them__.
+
+### 2a.
+
+```{r}
+y <- y <- runif(200, min = 0, max = 1000) 
+
+df <- data.frame(y)
+
+for(i in 0:50){
+  x <- runif(200, min = -1000, max = 1000)
+  df <- cbind(df, x)
+}
+```
+
 
   3. Fit a __multiple__ linear regression model, regression response $y$ from part 2(a) on all 50 $x$'s you've generated in part 2(b).
     a. Report the \# of individual $t$-tests that resulted into a significant $p$-value, hence rejecting $H_0$ at $\alpha = 0.05$ level. Were those rejections correct decisions or not? Why? ( __Hint:__ Remember what's the true relationship between $x$ and $y$, given how you generated the data.) If not, what type of error do they correspond to? Why?
