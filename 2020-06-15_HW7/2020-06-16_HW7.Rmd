@@ -21,6 +21,7 @@ Load in needed libraries
 ```{r, include=FALSE}
 library(tidyverse)
 library(RColorBrewer)
+library(ggplot2)
 library(haven)
 ```
 
@@ -72,9 +73,17 @@ $$crime =  -50.86 + 1.49 \cdot education$$
    
 ```{r}
 p <- fl_crime %>% 
-  select(crime, education) %>% 
+  select(crime, education)
+  
+ggplot(fl_crime, aes(x = education, y = crime)) + 
+  geom_point() +
+  stat_smooth(method = "lm", col = "red")
+
 ```
 
+Is there a statistically significant relationship? Interpret the resulting effect of education on crime.
+
+There is indeed a statistically significant relationship, since we have $p \approx 0.000068 < 0.025$ for the slope of the linear regression. For every 2\% increase in education, we can conclude that the number of crimes per 1000 will increase by about 3, on average.
 
   2. For multiple linear regression _crime ~ education + urbanization_,
     a. Write down the __full modeling equation__, with all __error assumptions__.
