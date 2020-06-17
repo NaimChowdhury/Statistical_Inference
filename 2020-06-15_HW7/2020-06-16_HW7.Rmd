@@ -146,8 +146,13 @@ y <- runif(1000, min = 0, max = 1000)
 x <- runif(1000, min = 0, max = 3000) 
 
 rand.df <- data.frame(x,y)
+
+ggplot(rand.df, aes(x=x, y=y))+
+  geom_point()+
+  stat_smooth(method = 'lm')
 ```
 
+In order to make sure the response and predictors were _unrelated_, I genderated them both by sampling from a random uniform distribution. To demonstrate they are unrelated, we can simply create a simple linear regression model and show that the slope of the model is practically 0, as shown.
   
   2. Having settled on a method of generating such unrelated variables in part 1, proceed to:
   
