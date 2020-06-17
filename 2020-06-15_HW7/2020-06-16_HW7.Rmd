@@ -79,7 +79,19 @@ p <- fl_crime %>%
   2. For multiple linear regression _crime ~ education + urbanization_,
     a. Write down the __full modeling equation__, with all __error assumptions__.
     b. Fit the model, provide the __fitted equation__. Provide a plot of the __fitted plane__. Describe the relationship between crime and education now. Why did it change comparied to part 1? What statistical phenomena did we encounter in part 1 that led to such non-sensical interpretation?
-    
+
+
+### 2a.  
+
+$$crime = \beta_0 + \beta_1 \cdot education + \beta_2 \cdot urbanization + \epsilon, \ \ \epsilon \sim (N, \sigma^2). $$
+
+
+### 2b. 
+```{r}
+
+```
+
+
   3. For multiple linear gression _crime ~ education + urbanization + income_, proceed to
   
     a. Write down the __full modeling equation__, with all __error assumptions__.
