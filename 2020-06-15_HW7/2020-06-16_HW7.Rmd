@@ -43,11 +43,19 @@ getwd()
 
 For the _FL_crime.csv_ data, proceed to fit
 
-  1. For simple linear regression _crime ~ education~,
+  1. For simple linear regression _crime ~ education_,
     
     a. Write down the __full modeling equation__, with all __error assumptions__.
     b. Fit the model, provide the __fitted equation__. Provide a plot of the fitted line. Is there a statistically significant relationship? Interpret the resulting effect of education on crime.
-    
+
+### 1a.
+
+$$crime = \beta_0 + \beta_1 \cdot education + \epsilon, \ \ \epsilon \sim (N, \sigma^2). $$
+
+### 1b.
+
+
+   
   2. For multiple linear regression _crime ~ education + urbanization_,
     a. Write down the __full modeling equation__, with all __error assumptions__.
     b. Fit the model, provide the __fitted equation__. Provide a plot of the __fitted plane__. Describe the relationship between crime and education now. Why did it change comparied to part 1? What statistical phenomena did we encounter in part 1 that led to such non-sensical interpretation?
