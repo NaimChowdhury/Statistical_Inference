@@ -36,7 +36,10 @@ getwd()
 
 ## 3. Importing Data
 ```{r, echo = FALSE, include=FALSE}
-read_csv(file.path(data.dir, "fl_crime.csv"))
+fl_crime <- read_csv(file.path(data.dir, "fl_crime.csv"))
+
+fl_crime <- fl_crime %>% rename(crime = `crime rate (per 1000)`)
+
 ```
 
 # Problem #1
