@@ -38,7 +38,7 @@ getwd()
 ```{r, echo = FALSE, include=FALSE}
 fl_crime <- read_csv(file.path(data.dir, "fl_crime.csv"))
 
-fl_crime <- fl_crime %>% rename(crime = `crime rate (per 1000)`)
+fl_crime <- fl_crime %>% rename(crime = `crime rate (per 1000)`) %>% rename(education = `education (%)`)
 
 ```
 
@@ -58,10 +58,24 @@ $$crime = \beta_0 + \beta_1 \cdot education + \epsilon, \ \ \epsilon \sim (N, \s
 ### 1b.
 
 ```{r}
-
+lm.obj <- lm(crime ~ education, fl_crime)
+summary(lm.obj)
 ```
 
+The fitted equation is thus,
+
+$$\hat{y_i} = \hat{\beta_0} + \hat{\beta_1} x_1,$$
+
+where $\hat{y_i}$ _crime_, $x_1$ is _education_, $\hat{\beta_0}$ is -50.86, and $\hat{\beta_1}$ is 1.49.
+
+$$crime =  -50.86 + 1.49 \cdot education$$
    
+```{r}
+p <- fl_crime %>% 
+  select(crime, education) %>% 
+```
+
+
   2. For multiple linear regression _crime ~ education + urbanization_,
     a. Write down the __full modeling equation__, with all __error assumptions__.
     b. Fit the model, provide the __fitted equation__. Provide a plot of the __fitted plane__. Describe the relationship between crime and education now. Why did it change comparied to part 1? What statistical phenomena did we encounter in part 1 that led to such non-sensical interpretation?
