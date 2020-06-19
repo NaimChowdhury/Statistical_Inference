@@ -178,10 +178,10 @@ for(i in 1:50){
 # Give the columns of the dataframe unique names.
 var_names <- sprintf("X%s", 0:50)
 var_names[1] <- "Y"
-var_names
+# var_names
 
 colnames(df) <- var_names
-df
+# df
 ```
 
 
@@ -197,7 +197,7 @@ For reference, use in-class demo (slide #42).
 ```{r}
 lm.obj <- lm(Y~., df)
 # Take only the p value portion of the summary
-p_values <- summary(lm.obj)[4]
+p_values <- summary(lm.obj)$coefficients
 # Find which column has the p values
 # p_values[,4]
 
@@ -220,7 +220,7 @@ The appropriate testing procedure would be the $F$-test. With the $F$-test, we c
 summary(lm.obj)
 ```
 
-With such an incredibly small value for the $F$
+With such an incredibly small value for the $F$-statistic, we should be able to say that none of the predictors have a strong relationship with the response variable. Unfortunately, we cannot, since with such a high p-value, we fail to reject the null hypothesis. This seems to indicate that the way in which the data was generated was not truly random.
 
 # Problem #3
 
