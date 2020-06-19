@@ -168,7 +168,7 @@ y <- y <- runif(200, min = 0, max = 1000)
 
 df <- data.frame(y)
 
-set.seed(2)
+
 # Make 50 columns of random uniformly distributed values
 for(i in 1:50){
   x <- runif(200, min = -1000, max = 1000)
@@ -213,12 +213,14 @@ This corresponds to a Type II error, or a false-positive.
 
 ### 3b.
 
-The appropriate testing procedure would be the $F$-test. With the $F$-test, we can asses whether or not the expected value between several groups are different from each other. A low $F$-statistic would imply that the ratio of explained variance to unexplained variance is close to 0, thus the perceived relationship we found in the previous $t$-test is due to unexplained variance.
+The appropriate testing procedure would be the $F$-test. With the $F$-test, we can asses whether at least one predictor has a strong relationship with the response variable. A low $F$-statistic would imply that the ratio of variance esxplained by our model to unexplained variance is close to 0, thus the perceived relationship we found in the previous $t$-test is due to unexplained variance.
 
 ```{r}
 # F-test
+summary(lm.obj)
 ```
 
+With such an incredibly small value for the $F$
 
 # Problem #3
 
