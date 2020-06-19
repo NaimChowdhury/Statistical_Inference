@@ -204,7 +204,21 @@ p_values <- summary(lm.obj)[4]
 # List of variables which have a value that implies statistical significance
 significant_variables <- p_values[,4][p_values[,4] < 0.025]
 ```
-There are two $p$-values and associated terms which lead to the rejection of the null hypothesis under the $t$-test. Those variables are $y$-intercept $\beta_0$, and the coefficient $\beta_17$.
+
+There are two $p$-values and associated terms which lead to the rejection of the null hypothesis under the $t$-test with 95% confidence level. Those variables are $y$-intercept $\beta_0$, and the coefficient $\beta_17$.
+
+This doesn't really make sense, since I generated all variables independent of one another, with uniform random distributions. 
+
+This corresponds to a Type II error, or a false-positive. 
+
+### 3b.
+
+The appropriate testing procedure would be the $F$-test. With the $F$-test, we can asses whether or not the expected value between several groups are different from each other. A low $F$-statistic would imply that the ratio of explained variance to unexplained variance is close to 0, thus the perceived relationship we found in the previous $t$-test is due to unexplained variance.
+
+```{r}
+# F-test
+```
+
 
 # Problem #3
 
