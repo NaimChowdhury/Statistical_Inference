@@ -168,8 +168,9 @@ y <- y <- runif(200, min = 0, max = 1000)
 
 df <- data.frame(y)
 
+set.seed(2)
 # Make 50 columns of random uniformly distributed values
-for(i in 0:50){
+for(i in 1:50){
   x <- runif(200, min = -1000, max = 1000)
   df <- cbind(df, x)
 }
@@ -194,10 +195,16 @@ For reference, use in-class demo (slide #42).
 ### 3a.
 
 ```{r}
-lm.obj <- lm(y~., df)
+lm.obj <- lm(Y~., df)
+# Take only the p value portion of the summary
+p_values <- summary(lm.obj)[4]
+# Find which column has the p values
+# p_values[,4]
 
+# List of variables which have a value that implies statistical significance
+significant_variables <- p_values[,4][p_values[,4] < 0.025]
 ```
-
+There are two $p$-values and associated terms which lead to the rejection of the null hypothesis under the $t$-test. Those variables are $y$-intercept $\beta_0$, and the coefficient $\beta_17$.
 
 # Problem #3
 
