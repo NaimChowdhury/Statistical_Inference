@@ -161,25 +161,43 @@ In order to make sure the response and predictors were _unrelated_, I genderated
     a. Generate response variable $y$ (e.g. of length 200)
     b. Generate 50 predictor variables $x$ according to your method from part 1. __Record them__.
 
-### 2a.
+### 2a. and 2b.
 
 ```{r}
 y <- y <- runif(200, min = 0, max = 1000) 
 
 df <- data.frame(y)
 
+# Make 50 columns of random uniformly distributed values
 for(i in 0:50){
   x <- runif(200, min = -1000, max = 1000)
   df <- cbind(df, x)
 }
+
+# Give the columns of the dataframe unique names.
+var_names <- sprintf("X%s", 0:50)
+var_names[1] <- "Y"
+var_names
+
+colnames(df) <- var_names
+df
 ```
 
 
   3. Fit a __multiple__ linear regression model, regression response $y$ from part 2(a) on all 50 $x$'s you've generated in part 2(b).
+
     a. Report the \# of individual $t$-tests that resulted into a significant $p$-value, hence rejecting $H_0$ at $\alpha = 0.05$ level. Were those rejections correct decisions or not? Why? ( __Hint:__ Remember what's the true relationship between $x$ and $y$, given how you generated the data.) If not, what type of error do they correspond to? Why?
     b. Given that the individual siginifant $t$-test aren't necessarily indicative of at least one predictor having a true relationship with the response, what would be the appropriate testing procedure to address that question? Conduct that test, report its $p$-value, and interpret its result.
     
 For reference, use in-class demo (slide #42).
+
+### 3a.
+
+```{r}
+lm.obj <- lm(y~., df)
+
+```
+
 
 # Problem #3
 
