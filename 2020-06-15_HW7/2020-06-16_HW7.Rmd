@@ -23,6 +23,9 @@ library(tidyverse)
 library(RColorBrewer)
 library(ggplot2)
 library(haven)
+library(plotly)
+#install.packages('rgl')
+library(rgl)
 ```
 
 ## 2. File management
@@ -57,7 +60,7 @@ For the _FL_crime.csv_ data, proceed to fit
 
 ### 1a.
 
-$$crime = \beta_0 + \beta_1 \cdot education + \epsilon, \ \ \epsilon \sim (N, \sigma^2). $$
+$$crime = \beta_0 + \beta_1 \cdot education + \epsilon, \ \ \epsilon \sim_{iid} N(0, \sigma^2). $$
 
 ### 1b.
 
@@ -72,7 +75,7 @@ $$\hat{y_i} = \hat{\beta_0} + \hat{\beta_1} x_{1,i},$$
 
 where $\hat{y_i}$ _crime_, $x_1$ is _education_, $\hat{\beta_0}$ is -50.86, and $\hat{\beta_1}$ is 1.49.
 
-$$crime =  -50.86 + 1.49 \cdot education$$
+$$crime_i =  -50.86 + 1.49 \cdot education_i$$
    
 ```{r}
 ggplot(fl_crime, aes(x = education, y = crime)) + 
@@ -80,16 +83,16 @@ ggplot(fl_crime, aes(x = education, y = crime)) +
   stat_smooth(method = "lm", col = "red")
 ```
 
-There is indeed a statistically significant relationship, since we have $p \approx 0.000068 < 0.025$ for the slope of the linear regression. For every 2\% increase in education, we can conclude that the number of crimes per 1000 will increase by about 3, on average.
+There is indeed a statistically significant relationship, since for confidence level 90% we have $p \approx 0.000068 < 0.05$ for the slope of the linear regression. For every 2% increase in education, we can expect that the number of crimes per 1000 will increase by about 3, on average.
 
   2. For multiple linear regression _crime ~ education + urbanization_,
     a. Write down the __full modeling equation__, with all __error assumptions__.
-    b. Fit the model, provide the __fitted equation__. Provide a plot of the __fitted plane__. Describe the relationship between crime and education now. Why did it change comparied to part 1? What statistical phenomena did we encounter in part 1 that led to such non-sensical interpretation?
+    b. Fit the model, provide the __fitted equation__. Provide a plot of the __fitted plane__. Describe the relationship between crime and education now. Why did it change compared to part 1? What statistical phenomena did we encounter in part 1 that led to such non-sensical interpretation?
 
 
 ### 2a.  
 
-$$crime = \beta_0 + \beta_1 \cdot education + \beta_2 \cdot urbanization + \epsilon, \ \ \epsilon \sim (N, \sigma^2). $$
+$$crime = \beta_0 + \beta_1 \cdot education + \beta_2 \cdot urbanization + \epsilon, \ \ \epsilon \sim_{iid} N(0, \sigma^2). $$
 
 
 ### 2b. 
@@ -105,27 +108,27 @@ $$\hat{y_i} = \hat{\beta_0} + \hat{\beta_1} x_{1,i} + \hat{\beta_2} x_{2,i},$$
 
 where $\hat{y_i}$ _crime_, $x_1$ is _education_, $x_2$ is _urbanization_, $\hat{\beta_0}$ is 59.12, $\hat{\beta_1}$ is -0.58, and $\hat{\beta_2}$ is 0.68.
 
-$$crime =  59.12 -0.58 \cdot education + 0.68 \cdot urbanization$$
+$$crime_i =  59.12 -0.58 \cdot education_i + 0.68 \cdot urbanization_i$$
 
-The resulting $p$-value from hypothesis testing is sufficiently low to conclude that $\beta_2$ coefficient for _urbanization_ is statistically significant. However, the _education_ coefficient $\beta_1$ now has $p \approx 0.22 > 0.025$, meaning we fail to reject the null hypothesis $H_0:= \beta_1 = 0$. 
+The resulting $p$-value from hypothesis testing is sufficiently low to conclude that $\beta_2$ coefficient for _urbanization_ is statistically significant. However, the _education_ coefficient $\beta_1$ now has $p \approx 0.22 > 0.05$, meaning we fail to reject the null hypothesis $H_0:= \beta_1 = 0$. 
 
-The change in relationship between _crime_ and _education_ seems to have occured because _education_ may be confounding with another variable, such as _urbanization_.
+The change in relationship between _crime_ and _education_ seems to have occured increase _education_ may be correlated with increase in another variable, such as _urbanization_. 
 
-We can choose _education_ to be some arbitrary constant, suppose we choose $education = 65$. Then our equation becomes:
-
-$$crime =  59.12 -0.58 \cdot 65 + 0.68 \cdot urbanization$$
-
-$$=  59.12 -37.7 + 0.68 \cdot urbanization$$
-
-$$=  21.42 + 0.68 \cdot urbanization,$$
-
-which we can plot as a plane accordingly.
+We can plot as a plane accordingly.
 
 ```{r}
 ggplot(fl_crime, aes(x = urbanization, y = crime + 21.42)) + 
   geom_point() +
   stat_smooth(method = "lm", col = "red")
 
+plot3d(lm.obj, size = 5)
+
+# segments3d(rep(TV, each=2),
+#           rep(radio, each=2),
+#           z=matrix(t(cbind(sales,predict(lm.obj))), nc=1),
+#           add=T,
+#           lwd=2,
+#           col=2)
 ```
 
   3. For multiple linear gression _crime ~ education + urbanization + income_, proceed to
@@ -135,7 +138,10 @@ ggplot(fl_crime, aes(x = urbanization, y = crime + 21.42)) +
     c. Having fitted the model from $(a)$, provide the __fitted equation__.
     d. Write down the hypotheses ( in terms of parameters of the model in part (a)) and make conclusions for $t$-tests on significance of each __individual__ predictor.
     e. Interpret the effect of the only statistically significant predictor from part (d).
-    f. Formulate the hypotheses (in terms of parameterse of the model in part (a)) for testing the overall model significance. Provide the conclusion of the respective test.
+    f. Formulate the hypotheses (in terms of parameters of the model in part (a)) for testing the overall model significance. Provide the conclusion of the respective test.
+    
+### 3a.
+x's are fixed, betas are constants, errors follow normal distribution with mean 0 and var sig^2
     
 # Problem #2 (Why need $F$-statistic?)
     
@@ -202,25 +208,31 @@ p_values <- summary(lm.obj)$coefficients
 # p_values[,4]
 
 # List of variables which have a value that implies statistical significance
-significant_variables <- p_values[,4][p_values[,4] < 0.025]
+significant_variables <- p_values[,4][p_values[,4] < 0.05]
 ```
-
+### FIX FIX FIX FIX
 There are two $p$-values and associated terms which lead to the rejection of the null hypothesis under the $t$-test with 95% confidence level. Those variables are $y$-intercept $\beta_0$, and the coefficient $\beta_17$.
 
 This doesn't really make sense, since I generated all variables independent of one another, with uniform random distributions. 
 
-This corresponds to a Type II error, or a false-positive. 
+This corresponds to a Type I error. We rejected $H_0$, even though $H_0$ is true. When you conduct $t$-tests a certain number of times, we are bound to get Type I errors. Approximately for $\alpha = 0.05$, we get 5% Type I errors.
 
 ### 3b.
 
-The appropriate testing procedure would be the $F$-test. With the $F$-test, we can asses whether at least one predictor has a strong relationship with the response variable. A low $F$-statistic would imply that the ratio of variance esxplained by our model to unexplained variance is close to 0, thus the perceived relationship we found in the previous $t$-test is due to unexplained variance.
+The appropriate testing procedure would be the $F$-test. With the $F$-test, we can assess whether at least one predictor has a strong relationship with the response variable. A low $F$-statistic would imply that the ratio of variance esxplained by our model to unexplained variance is close to 0, thus the perceived relationship we found in the previous $t$-test is due to unexplained variance.
 
 ```{r}
 # F-test
 summary(lm.obj)
 ```
 
-With such an incredibly small value for the $F$-statistic, we should be able to say that none of the predictors have a strong relationship with the response variable. Unfortunately, we cannot, since with such a high p-value, we fail to reject the null hypothesis. This seems to indicate that the way in which the data was generated was not truly random.
+With such an incredibly small value for the $F$-statistic, we should be able to say that none of the predictors have a strong relationship with the response variable. We fail to reject the null hypothesis for confidence level 90%,
+
+$$H_0:= (\beta_0, \beta_1, ..., \beta_50) = 0$$
+
+Since $p = 0.73 > 0.05$.
+
+This seems to indicate that the way in which the data was generated was not truly random.
 
 # Problem #3
 
