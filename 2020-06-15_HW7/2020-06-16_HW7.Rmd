@@ -26,6 +26,7 @@ library(haven)
 library(plotly)
 #install.packages('rgl')
 library(rgl)
+library(ISLR)
 ```
 
 ## 2. File management
@@ -262,7 +263,6 @@ p_values <- summary(lm.obj)$coefficients
 # List of variables which have a value that implies statistical significance
 significant_variables <- p_values[,4][p_values[,4] < 0.05]
 ```
-### FIX FIX FIX FIX
 There are 3 $p$-values and associated terms which lead to the rejection of the null hypothesis under the $t$-test with 95% confidence level. Those variables are $y$-intercept $\beta_0$, and two coefficients $\beta_i$ and $\beta_j$.
 
 This doesn't really make sense, since I generated all variables independent of one another, with uniform random distributions. 
@@ -288,13 +288,20 @@ $$H_0:= (\beta_0, \beta_1, ..., \beta_50) = 0$$
 
 Since $p = 0.73 > 0.05$.
 
-This seems to indicate that the way in which the data was generated was not truly random.
+Thus we cannot be sure that all of the $\beta_i$'s are not 0.
 
 # Problem #3
 
 This question involves the use of multiple linear regression on the _Auto_ data set of _ISLR_ library.
 
   1. Produce a scatterplot matrix which includes all of the variables in the data set. Which variables appear to have a strong linear relationship with our intended response variable - miles per gallon ( _mpg_ )?
+  
+### 1.
+
+```{r}
+pairs(Auto, pch = 19, lower.panel = NULL)
+```
+
   
   2. Compute the matrix of correlations between the variables using the function _cor()_, to confirm your observation from part 1. Which predictors have strongest linear relationship with _mpg_?
   
