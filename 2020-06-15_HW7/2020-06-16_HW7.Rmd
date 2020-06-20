@@ -141,7 +141,59 @@ plot3d(lm.obj, size = 5)
     f. Formulate the hypotheses (in terms of parameters of the model in part (a)) for testing the overall model significance. Provide the conclusion of the respective test.
     
 ### 3a.
-x's are fixed, betas are constants, errors follow normal distribution with mean 0 and var sig^2
+
+We first show that $E[y_i]  = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i}$.
+
+Consider,
+
+$$y_i =  \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i} + \epsilon.$$
+
+Then,
+
+$$E[y_i] =  E[\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i} + \epsilon.].$$
+
+By the linearity of expectation,
+
+$$E[y_i] =  E[\beta_0] + E[\beta_1 x_{1,i}] + E[\beta_2 x_{2,i}] + E[\beta_3 x_{3,i}] + E[\epsilon].$$
+
+Since $\beta_i$ are constants,
+
+$$E[y_i] =  \beta_0 + \beta_1E[ x_{1,i}] + \beta_2 E[x_{2,i}] + \beta_3 E[x_{3,i}] + E[\epsilon].$$
+
+And since $x_[i,j]$ are all fixed values,
+
+$$E[y_i] =  \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i}+ E[\epsilon].$$
+
+Finally, since $\epsilon \sim N(0, \sigma^2)$, $E[\epsilon] = 0$.
+
+Thus,
+
+$$E[y_i]  = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i},$$
+
+as we wished to show.
+
+Next, we show that 
+
+$$V[y_i] = \sigma^2.$$
+
+$$V[y_i] = V[\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i} + \epsilon].$$
+
+We know by the linearity of variance that,
+
+$$= V[\beta_0] + V[\beta_1 x_{1,i}] + V[\beta_2 x_{2,i}] + V[\beta_3 x_{3,i}] + V[\epsilon].$$
+
+But $x_[i,j]$ and $\beta_i$ do not vary. So,
+
+$$V[y_i] = V[\epsilon]$$.
+
+Finally, since $\epsilon \sim N(0, \sigma^2)$, $V[\epsilon] = \sigma^2$.
+
+Thus,
+
+$$V[y_i] = \sigma^2,$$
+
+as required.
+
     
 # Problem #2 (Why need $F$-statistic?)
     
