@@ -263,11 +263,15 @@ p_values <- summary(lm.obj)$coefficients
 significant_variables <- p_values[,4][p_values[,4] < 0.05]
 ```
 ### FIX FIX FIX FIX
-There are two $p$-values and associated terms which lead to the rejection of the null hypothesis under the $t$-test with 95% confidence level. Those variables are $y$-intercept $\beta_0$, and the coefficient $\beta_17$.
+There are 3 $p$-values and associated terms which lead to the rejection of the null hypothesis under the $t$-test with 95% confidence level. Those variables are $y$-intercept $\beta_0$, and two coefficients $\beta_i$ and $\beta_j$.
 
 This doesn't really make sense, since I generated all variables independent of one another, with uniform random distributions. 
 
-This corresponds to a Type I error. We rejected $H_0$, even though $H_0$ is true. When you conduct $t$-tests a certain number of times, we are bound to get Type I errors. Approximately for $\alpha = 0.05$, we get 5% Type I errors.
+However, upon closer inspection, we remember that this corresponds to a Type I error. We rejected 
+
+$$H_0:= (\beta_i = 0, \ \forall i\in \mathbb{N}),$$ 
+
+even though by construction $H_0$ is true. This gives concrete evidence to the interpretation of the $\alpha = 0.05$ value, which gives a 5% rate of Type I errors.
 
 ### 3b.
 
