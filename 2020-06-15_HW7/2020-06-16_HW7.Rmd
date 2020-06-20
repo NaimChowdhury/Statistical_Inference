@@ -319,6 +319,7 @@ cor(auto.continuous)
 
 
 As claimed, _displacement_, _horsepower_, and _weight_ are all have the strongest linear relationship with _mpg_.
+
 ### Solution 2 end.
 
   3. Pick one predictor variable that you feel to have the strongest __linear__ relationship with _mpg_, and preform a simple linear regression. Use the _summary()_ fnction to print the results.
@@ -327,6 +328,15 @@ As claimed, _displacement_, _horsepower_, and _weight_ are all have the stronges
     b. What is the predicted _mpg_ associated with the median value of you predictor's range? Interpret that prediction. What are the associated 95% confidence and prediction bands? Provide interpreation of those intervals.
     c. Provide and interpet both metrics for the qualify of model fit.
     
+### 3a.
+
+```{r}
+lm.obj <- lm(mpg ~ weight, Auto)
+summary(lm.obj)
+```
+
+Since $p < 0.5$ for the coefficient of _weight_, we reject the null hypothesis and conclude that the relationship between _weight_ and _mpg_ is statistically significant.
+
 4. Use the _lm()_ function to perform a multiple linear regression with _mpg_ as the response and all other variables (except _name_) as the predictors. Use the _summary()_ function to print the results.
 
   a. Formulate the $H_0$ and $H_a$ hypotheses (using parameter notation) for testing whether the overall model is significant. Which part of _summary()_ output corresponds to this test? Is the model significant?
