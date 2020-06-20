@@ -302,9 +302,25 @@ This question involves the use of multiple linear regression on the _Auto_ data 
 pairs(Auto, pch = 19, lower.panel = NULL)
 ```
 Displacement, horsepower, and weight all seem to have strong linear relationships with _mpg_.
+
+### Solution 1 end.
   
   2. Compute the matrix of correlations between the variables using the function _cor()_, to confirm your observation from part 1. Which predictors have strongest linear relationship with _mpg_?
   
+### 2.
+
+```{r}
+auto.continuous <- Auto %>% 
+  select(-year, -origin, -name)
+
+
+cor(auto.continuous)
+```
+
+
+As claimed, _displacement_, _horsepower_, and _weight_ are all have the strongest linear relationship with _mpg_.
+### Solution 2 end.
+
   3. Pick one predictor variable that you feel to have the strongest __linear__ relationship with _mpg_, and preform a simple linear regression. Use the _summary()_ fnction to print the results.
   
     a. Is there a statistically significant relationship between the predictor and the response? Provide the interpretation of that relationship.
