@@ -409,6 +409,16 @@ The predictors _displacement_, _weight_, _year_, and _origin_ all seem to have a
 
 ### 4c.
 
+Under the multiple linear regression model containing all coefficients, $\beta_{year} = 0.7507$ and $\beta_{weight} = -0.0065$.
+
+
+
+That is, when all other variables are fixed, for every 4 unit increase in _year_, we can expect about a 3 unit increase in _mpg_, on average. And when all other variables are fixed, for every 1000 unit increase in _weight_, we can expect a 6.5 unit decrease in _mpg_.
+
+This result is relatively similar to the result we had in problem 3a, but earlier we concluded that _year_ did not have a very strong relationship with _mpg_ when initially looking at the correlation matrix.
+
+Crucially, the intercept of the fitted line is incredibly dependent on the other values in the model.
+
 
 
 ### 4d.
