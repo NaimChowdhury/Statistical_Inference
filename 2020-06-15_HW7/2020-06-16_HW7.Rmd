@@ -326,7 +326,7 @@ As claimed, _displacement_, _horsepower_, and _weight_ are all have the stronges
   
     a. Is there a statistically significant relationship between the predictor and the response? Provide the interpretation of that relationship.
     b. What is the predicted _mpg_ associated with the median value of you predictor's range? Interpret that prediction. What are the associated 95% confidence and prediction bands? Provide interpreation of those intervals.
-    c. Provide and interpet both metrics for the qualify of model fit.
+    c. Provide and interpret both metrics for the qualify of model fit.
     
 ### 3a.
 
@@ -356,6 +356,23 @@ and finally plug it into our fitted equation.
 
 Thus, for the median value of _weight_, the predicted _mpg_ of a car is 24.78 MPG.
 
+### 3c.
+
+For our model, we have,
+
+$$R^2 = 0.69,$$
+
+so that we can say $69%$ of the variance is explained by the model. 
+
+We also have that,
+
+$$RSE = 4.33$$
+
+and given that our predictor variable is _mpg_, this is actually fairly significant. 
+
+The model is decent, but there is much that is left unexplained by the model, and it is can be seen in the RSE.
+
+c. Provide and interpret both metrics for the qualify of model fit.
 
 4. Use the _lm()_ function to perform a multiple linear regression with _mpg_ as the response and all other variables (except _name_) as the predictors. Use the _summary()_ function to print the results.
 
