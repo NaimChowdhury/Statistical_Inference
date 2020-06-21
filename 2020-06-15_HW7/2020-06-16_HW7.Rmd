@@ -382,7 +382,21 @@ The model is decent, but there is much that is left unexplained by the model, an
   d. Report and interpret the 95% confidence intervals for _weight_ and _year_ effects.
   e. Report and interpret both quality-of-fit metrics.
 
+### Solution 4.
+
+```{r}
+auto.continuous <- Auto %>% select(-name)
+
+lm.obj <- lm(mpg~., auto.continuous)
+summary(lm.obj)
+```
+
 ### 4a. 
+
+```{r}
+
+```
+
 
 ### 4b.
 
