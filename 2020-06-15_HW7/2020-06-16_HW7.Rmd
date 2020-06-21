@@ -419,9 +419,14 @@ This result is relatively similar to the result we had in problem 3a, but earlie
 
 Crucially, the intercept of the fitted line is incredibly dependent on the other values in the model.
 
-
-
 ### 4d.
+  e. Report and interpret both quality-of-fit metrics.
+  
+```{r}
+confint(lm.obj,c('weight', 'year'), level = 0.95)
+```
+
+We are 95% confident that the true model values for the coefficients lie between the intervals shown above.
 
 
 ### 4e.
