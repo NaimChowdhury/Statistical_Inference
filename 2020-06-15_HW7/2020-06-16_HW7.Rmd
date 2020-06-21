@@ -405,9 +405,11 @@ The last line of the summary output, the $F$-statistic and its corresponding $p$
 
 ### 4b.
 
-
+The predictors _displacement_, _weight_, _year_, and _origin_ all seem to have a statistically significant relationship with the response. 
 
 ### 4c.
+
+
 
 ### 4d.
 
