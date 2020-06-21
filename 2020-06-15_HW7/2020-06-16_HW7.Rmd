@@ -372,7 +372,7 @@ and given that our predictor variable is _mpg_, this is actually fairly signific
 
 The model is decent, but there is much that is left unexplained by the model, and it is can be seen in the RSE.
 
-c. Provide and interpret both metrics for the qualify of model fit.
+### Solution 3 end.
 
 4. Use the _lm()_ function to perform a multiple linear regression with _mpg_ as the response and all other variables (except _name_) as the predictors. Use the _summary()_ function to print the results.
 
@@ -381,3 +381,14 @@ c. Provide and interpret both metrics for the qualify of model fit.
   c. Interpret effects of the __two__ most statistically significant predictors. Compare the interpretation here, with the one given in part 3(a) - what's the crucial difference?
   d. Report and interpret the 95% confidence intervals for _weight_ and _year_ effects.
   e. Report and interpret both quality-of-fit metrics.
+
+### 4a. 
+
+### 4b.
+
+### 4c.
+
+### 4d.
+
+
+### 4e.
