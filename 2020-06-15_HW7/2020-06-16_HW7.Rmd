@@ -393,12 +393,19 @@ summary(lm.obj)
 
 ### 4a. 
 
-```{r}
+For this problem, we use the $F$-test to test whether the overall model is significant. Our hypotheses are:
 
-```
+
+$$H_0:= (\beta_i = 0, \ \ \forall i \in \mathbb{N}$$
+
+$$H_a:= (\exists i \in \mathbb{N} \ \ st. \ \ \beta_i \neq 0)$$
+
+The last line of the summary output, the $F$-statistic and its corresponding $p$ value, refers to the results of this test. Since $p < 0.05$ we can conclude that for a 90% confidence level, we reject the null hypothesis. That is, our model is significant, there is at least one coefficient which is non-zero.
 
 
 ### 4b.
+
+
 
 ### 4c.
 
