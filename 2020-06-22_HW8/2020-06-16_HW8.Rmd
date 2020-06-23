@@ -43,3 +43,17 @@ getwd()
 ```{r, echo = FALSE, include=FALSE}
 
 ```
+
+# Problem #1
+
+  1. See slides #54-55. __Hint:__ At one point in your derivation, make sure to utilize the fact that $D_{fem} = 1$ for females, 0 for males. It will allow you to "break the sum": $\sum_{i = 1}^n = \sum_{i \in Females} + \sum_{i \in Males}$.
+  
+  2. On slide #60, attempt to interpret the effect of what happens "per 1-unit increase in $D_{Asia}$, while holding other variables constant". Why is it not possible ot evaluate that effec there? Hence, to avoid that, how many dummy variables should we use in order to model a categorical predictor in this case? Show that now, having dropped $D_{Afr-Am}$, we can actually evaluate the aforementioned effect of $D_{Asia}$.
+  
+  3. When dealing with a categorical predictor $X$ containing > 2 categories (say, 3), why do we have to use dummy variables approach? Why not just model it as
+  
+  $$Piecewise function here$$.
+
+# Problem #2
+
+# Problem #3
