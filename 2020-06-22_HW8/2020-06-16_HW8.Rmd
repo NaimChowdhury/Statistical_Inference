@@ -56,4 +56,17 @@ getwd()
 
 # Problem #2
 
+For the _Wage_ data set from _ISLR_ package, we will use _age_ and _race_ to predict person's _wage_ (in $1000, I believe).
+
+  1.
+    a. Proceed to write down the full modeling equation for $wage \sim age + race$ regression.
+    b.Fit the model from 1(a), and write down the fitted equation.
+    c. Interpret the most statistically significant __dummy variable__ (NOT the "per 1-unit" version though, the group comparison version).
+    d. Conduct the test for significance of _race_ when predicting person's wage. In particular, make sure to 1) formulate the $H_0$, $H_a$ hypotheses; 2) Write down the modeling equation of the "null" model; 3) write the formula for test statistic; 4) use _R_'s _anova()_ to carry out the test, and match the output to the terms in the test statistic formula; 5) Provide the conclusion of the test.
+
+  2. 
+    a. Provide data visualization (use your fancy _ggplot2_) that will help determining if there's a strong interaction between _race_ and _age_ when predicting _wage_. Comment on whether you observe an interaction. Explain. __NOTE(!)__: You shouldn't start fitting any models with interactions yet.
+    b. Proceed to confirm your hunch from part 2(a) by actually conducting an appropriate statistical test for significance of interaction. In particular, make sure to 1) write the full modeling equation __with interaction__; 2) forumlate the $H_0$, $H_a$ hypotheses; 3) write down the modeling equation of the "null" model; 4) use _R_'s _anova()_ to carry out the test (no need to explain details here); 5) Provide the conclusion of the test.
+    
+    
 # Problem #3
