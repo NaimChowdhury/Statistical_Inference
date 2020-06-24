@@ -200,6 +200,8 @@ $$V[y_i] = \sigma^2,$$
 
 as required.
 
+To see that $y_i \sim N(0,\sigma^2)$, we note that $y_i$ is just $\epsilon$ shifted by $\beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i}$.
+
 ### 3c. 
 
 ```{r}
