@@ -1,0 +1,86 @@
+---
+title: 'Statistics Assignment #9'
+author: "Naeem Chowdhury"
+date: "6/16/2020"
+output: pdf_document
+---
+
+
+##1. Setup
+### options
+Set up global options
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(tidy=TRUE)
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=70))
+knitr::opts_chunk$set(fig.height=4, fig.width=6)
+```
+
+### libraries
+Load in needed libraries 
+```{r, include=FALSE}
+library(tidyverse)
+library(RColorBrewer)
+library(ggplot2)
+#library(haven)
+#library(plotly)
+#install.packages('rgl')
+#library(rgl)
+#library(ISLR)
+```
+
+## 2. File management
+### Create variables for directories
+```{r file_management, include=FALSE}
+project.dir <- getwd() #naeem
+output.dir <- "/Output"
+data.dir <- "C:/Users/Naeem Cho/Desktop/School Work/Statistical Inference/Datasets"
+setwd(project.dir)
+getwd()
+```
+
+## 3. Importing Data
+```{r, echo = FALSE, include=FALSE}
+
+```
+
+# Problem #1
+
+  1. See slides #54-55. __Hint:__ At one point in your derivation, make sure to utilize the fact that $D_{fem} = 1$ for females, 0 for males. It will allow you to "break the sum": $\sum_{i = 1}^n = \sum_{i \in Females} + \sum_{i \in Males}$.
+  
+  2. On slide #60, attempt to interpret the effect of what happens "per 1-unit increase in $D_{Asia}$, while holding other variables constant". Why is it not possible ot evaluate that effec there? Hence, to avoid that, how many dummy variables should we use in order to model a categorical predictor in this case? Show that now, having dropped $D_{Afr-Am}$, we can actually evaluate the aforementioned effect of $D_{Asia}$.
+  
+  3. When dealing with a categorical predictor $X$ containing > 2 categories (say, 3), why do we have to use dummy variables approach? Why not just model it as
+  
+  $$Piecewise function here$$.
+
+# Problem #2
+
+For the _Wage_ data set from _ISLR_ package, we will use _age_ and _race_ to predict person's _wage_ (in $1000, I believe).
+
+  1.
+    a. Proceed to write down the full modeling equation for $wage \sim age + race$ regression.
+    b.Fit the model from 1(a), and write down the fitted equation.
+    c. Interpret the most statistically significant __dummy variable__ (NOT the "per 1-unit" version though, the group comparison version).
+    d. Conduct the test for significance of _race_ when predicting person's wage. In particular, make sure to 1) formulate the $H_0$, $H_a$ hypotheses; 2) Write down the modeling equation of the "null" model; 3) write the formula for test statistic; 4) use _R_'s _anova()_ to carry out the test, and match the output to the terms in the test statistic formula; 5) Provide the conclusion of the test.
+
+  2. 
+    a. Provide data visualization (use your fancy _ggplot2_) that will help determining if there's a strong interaction between _race_ and _age_ when predicting _wage_. Comment on whether you observe an interaction. Explain. __NOTE(!)__: You shouldn't start fitting any models with interactions yet.
+    b. Proceed to confirm your hunch from part 2(a) by actually conducting an appropriate statistical test for significance of interaction. In particular, make sure to 1) write the full modeling equation __with interaction__; 2) forumlate the $H_0$, $H_a$ hypotheses; 3) write down the modeling equation of the "null" model; 4) use _R_'s _anova()_ to carry out the test (no need to explain details here); 5) Provide the conclusion of the test.
+    
+    
+# Problem #3
+
+Find a data example on your own (not among the ones already used in class) where you have a categorical predictor $D$, quantitative predictor $x$, and a quantitative response $y$, such that there's actually a __significant interaction between__ $x$ __and__ $D$ __in explaining__ $y$. Then,
+
+  1. Make sure to demonstrate that interaction graphically (prior to fitting the interaction model).
+  2. Write down 1) the full modeling equation with interaction terms, and 2) separate modeling equations for different categories of $D$. Comment on differences between separate modeling equation. Fill the blank in the sentence: "Interaction terms allow for difference in ... across the categories."
+  3. Confirm statistical significance of interaction by conducting an appropriate test (just conduct it in $R$ and provide the conclusion, no need to as much detail as problem \#2).
+  4. Interpret the interaction, as well, by both
+  
+    a. Writing out a separate fitted equation for each category of $D$,
+    b. Providing effect displays,
+    
+  and commenting on those.
+  
+  5. Try interpreting the __main effects__ of $D_1$ (for juse one of the dummy variables) and $x$. Does the interpretation sound "all-encompassing"? Hence, should we ever rely on interpretations/significance tests of main effects in models with strong interactions?
