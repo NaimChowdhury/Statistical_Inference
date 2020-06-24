@@ -52,6 +52,8 @@ fl_crime <- fl_crime %>%
 
 # Problem #1
 
+## Part 1
+
 For the _FL_crime.csv_ data, proceed to fit
 
   1. For simple linear regression _crime ~ education_,
@@ -85,6 +87,8 @@ ggplot(fl_crime, aes(x = education, y = crime)) +
 ```
 
 There is indeed a statistically significant relationship, since for confidence level 90% we have $p \approx 0.000068 < 0.05$ for the slope of the linear regression. For every 2% increase in education, we can expect that the number of crimes per 1000 will increase by about 3, on average.
+
+## Part 2
 
   2. For multiple linear regression _crime ~ education + urbanization_,
     a. Write down the __full modeling equation__, with all __error assumptions__.
@@ -131,7 +135,7 @@ plot3d(lm.obj, size = 5)
 #           lwd=2,
 #           col=2)
 ```
-
+## Part 3
   3. For multiple linear gression _crime ~ education + urbanization + income_, proceed to
   
     a. Write down the __full modeling equation__, with all __error assumptions__.
@@ -141,7 +145,7 @@ plot3d(lm.obj, size = 5)
     e. Interpret the effect of the only statistically significant predictor from part (d).
     f. Formulate the hypotheses (in terms of parameters of the model in part (a)) for testing the overall model significance. Provide the conclusion of the respective test.
     
-### 3a.
+### 3a, 3b.
 
 We first show that $E[y_i]  = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \beta_3 x_{3,i}$.
 
@@ -195,8 +199,16 @@ $$V[y_i] = \sigma^2,$$
 
 as required.
 
+### 3c. 
+
+The fitted equation is thus,
+
+$$ $$
+
     
 # Problem #2 (Why need $F$-statistic?)
+
+## Part 1
     
   1. Generate a data example where you have a response variable $y$ and a predictor variable $x$ that are _unrelated_ to each other (make sure to use a __random__ generation mechanism). How would you do that? How would you demonstrate that they're unrelated (think of basic visualizations)?
 
@@ -214,6 +226,8 @@ ggplot(rand.df, aes(x=x, y=y))+
 ```
 
 In order to make sure the response and predictors were _unrelated_, I genderated them both by sampling from a random uniform distribution. To demonstrate they are unrelated, we can simply create a simple linear regression model and show that the slope of the model is practically 0, as shown.
+ 
+## Part 2
   
   2. Having settled on a method of generating such unrelated variables in part 1, proceed to:
   
@@ -243,6 +257,8 @@ colnames(df) <- var_names
 # df
 ```
 
+
+## Part 3
 
   3. Fit a __multiple__ linear regression model, regression response $y$ from part 2(a) on all 50 $x$'s you've generated in part 2(b).
 
@@ -292,6 +308,8 @@ Thus we cannot be sure that all of the $\beta_i$'s are not 0.
 
 # Problem #3
 
+## Part 1
+
 This question involves the use of multiple linear regression on the _Auto_ data set of _ISLR_ library.
 
   1. Produce a scatterplot matrix which includes all of the variables in the data set. Which variables appear to have a strong linear relationship with our intended response variable - miles per gallon ( _mpg_ )?
@@ -304,6 +322,8 @@ pairs(Auto, pch = 19, lower.panel = NULL)
 Displacement, horsepower, and weight all seem to have strong linear relationships with _mpg_.
 
 ### Solution 1 end.
+
+## Part 2
   
   2. Compute the matrix of correlations between the variables using the function _cor()_, to confirm your observation from part 1. Which predictors have strongest linear relationship with _mpg_?
   
@@ -321,6 +341,8 @@ cor(auto.continuous)
 As claimed, _displacement_, _horsepower_, and _weight_ are all have the strongest linear relationship with _mpg_.
 
 ### Solution 2 end.
+
+## Part 3
 
   3. Pick one predictor variable that you feel to have the strongest __linear__ relationship with _mpg_, and preform a simple linear regression. Use the _summary()_ fnction to print the results.
   
@@ -374,6 +396,8 @@ The model is decent, but there is much that is left unexplained by the model, an
 
 ### Solution 3 end.
 
+## Part 4
+
 4. Use the _lm()_ function to perform a multiple linear regression with _mpg_ as the response and all other variables (except _name_) as the predictors. Use the _summary()_ function to print the results.
 
   a. Formulate the $H_0$ and $H_a$ hypotheses (using parameter notation) for testing whether the overall model is significant. Which part of _summary()_ output corresponds to this test? Is the model significant?
@@ -420,8 +444,6 @@ This result is relatively similar to the result we had in problem 3a, but earlie
 Crucially, the intercept of the fitted line is incredibly dependent on the other values in the model.
 
 ### 4d.
-  e. Report and interpret both quality-of-fit metrics.
-  
 ```{r}
 confint(lm.obj,c('weight', 'year'), level = 0.95)
 ```
@@ -430,3 +452,7 @@ We are 95% confident that the true model values for the coefficients lie between
 
 
 ### 4e.
+
+Lastly, we interpret the quality of fit metrics.
+
+
