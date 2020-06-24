@@ -46,7 +46,8 @@ fl_crime <- read_csv(file.path(data.dir, "fl_crime.csv"))
 fl_crime <- fl_crime %>% 
   rename(crime = `crime rate (per 1000)`) %>%
   rename(education = `education (%)`) %>% 
-  rename(urbanization = `urbanization (%)`)
+  rename(urbanization = `urbanization (%)`) %>% 
+  rename(income = `income (median, in 1000)`)
 
 ```
 
@@ -201,11 +202,23 @@ as required.
 
 ### 3c. 
 
+```{r}
+lm.obj <- lm(crime ~ education + urbanization + income, fl_crime)
+
+summary(lm.obj)
+
+```
+
+
 The fitted equation is thus,
 
-$$ $$
+$$\hat{y}_i = 59.71 -0.47\cdot education + 0.70 \cdot urbanization - 0.38 \cdot income$$
 
     
+### 3d.
+
+$H_0:= (\beta_i = 0)$, independent of the other values.
+
 # Problem #2 (Why need $F$-statistic?)
 
 ## Part 1
