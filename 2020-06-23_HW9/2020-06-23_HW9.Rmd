@@ -48,6 +48,47 @@ advertising <- read_csv(file.path(data.dir, "Advertising.csv"))
 
   1. See slides #54-55. __Hint:__ At one point in your derivation, make sure to utilize the fact that $D_{fem} = 1$ for females, 0 for males. It will allow you to "break the sum": $\sum_{i = 1}^n = \sum_{i \in Females} + \sum_{i \in Males}$.
   
+## Solution 1.1
+
+  We first note that the full regression equation is:
+  
+  $$y_i = \beta_0 + \beta_1 D_{Fem,i} + \epsilon_i$$
+  
+Then the RSS is
+
+$$\sum_i^n (y_i - \hat{y}_i)$$
+
+$$ = \sum_i^n \bigg(y_i - (\hat{\beta_0} + \hat{\beta_1} D_{Fem}) \bigg)$$
+
+Solving for $\hat{\beta_k}$ that minimizes the equation, we have to solve for where the vector of partial derivatives is equal to 0.
+
+$$\frac{\partial RSS}{\partial \hat{\beta_0}} = 2\sum_i^n (y_i - \hat{\beta_0} - \hat{\beta_1} D_{Fem})(-1)$$
+
+
+
+$$= -2\sum_i^n (y_i - \hat{\beta_0} - \hat{\beta_1} D_{Fem})$$
+
+$$= -2\sum_i^n y_i - \sum_i^n\hat{\beta_0} - \sum_{i \in Females} \hat{\beta_1} D_{Fem} + \sum_{i \in Males} \hat{\beta_1} D_{Fem}$$
+
+
+Since $D_{Fem}) = 0$ when $i \in Males$, this reduces to
+
+$$= -2(n\cdot \bar{y} - n\cdot \hat{\beta_0} - k \cdot \hat{\beta_1})$$
+
+where $k$ is the number of females in the sample. 
+
+In order to minimize RSS, we must have 
+
+$$0 = n\cdot \bar{y} - n\cdot \hat{\beta_0} - k \cdot \hat{\beta_1}$$
+
+Implying that
+
+$$\hat{\beta_0} = \bar{y} -\hat{\beta_1}(k/n).$$
+
+
+
+This will be minimized where, 
+
   2. On slide #60, attempt to interpret the effect of what happens "per 1-unit increase in $D_{Asia}$, while holding other variables constant". Why is it not possible ot evaluate that effec there? Hence, to avoid that, how many dummy variables should we use in order to model a categorical predictor in this case? Show that now, having dropped $D_{Afr-Am}$, we can actually evaluate the aforementioned effect of $D_{Asia}$.
   
   3. When dealing with a categorical predictor $X$ containing > 2 categories (say, 3), why do we have to use dummy variables approach? Why not just model it as
