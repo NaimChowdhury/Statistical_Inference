@@ -219,7 +219,21 @@ $$\hat{y}_i = 59.71 -0.47\cdot education + 0.70 \cdot urbanization - 0.38 \cdot 
     
 ### 3d.
 
-$H_0:= (\beta_i = 0)$, independent of the other values.
+The hypotheses differ depending on the variable in question. For example,
+
+For __urbanization__, 
+
+$$H_0:= (\beta_3 = 0)$$
+
+and
+
+$$H_1:= (\beta_3 \neq 0).$$
+
+The others follow similarly.
+
+### 3e.
+
+For $\hat{\beta_3} = 0.70$, we interpret that when holding _education_ and _income_ constant, we expect a 0.70 unit increase in _crime_ per unit increase in _urbanization_, on average.
 
 # Problem #2 (Why need $F$-statistic?)
 
