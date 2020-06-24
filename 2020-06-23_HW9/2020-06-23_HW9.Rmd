@@ -41,7 +41,7 @@ getwd()
 
 ## 3. Importing Data
 ```{r, echo = FALSE, include=FALSE}
-
+advertising <- read_csv(file.path(data.dir, "Advertising.csv"))
 ```
 
 # Problem #1
