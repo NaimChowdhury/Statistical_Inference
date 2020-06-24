@@ -235,6 +235,16 @@ The others follow similarly.
 
 For $\hat{\beta_3} = 0.70$, we interpret that when holding _education_ and _income_ constant, we expect a 0.70 unit increase in _crime_ per unit increase in _urbanization_, on average.
 
+### 3f.
+
+  To test the overall significance of the model, we would instead use the hypotheses:
+  
+  $$H_0:= (\beta_i = 0, \ \ \forall i)$$
+  
+  $$H_a:= (\exists i \ st. \ \beta_i \neq 0).$$
+  
+Since for the $F$-test, $p = 7.89 \times 10^{-9} < 0.05$, we reject $H_0$, and thus the model is significant.
+
 # Problem #2 (Why need $F$-statistic?)
 
 ## Part 1
