@@ -85,9 +85,37 @@ Implying that
 
 $$\hat{\beta_0} = \bar{y} -\hat{\beta_1}(k/n).$$
 
+For $\hat{\beta_1}$, similarly:
+
+$$\frac{\partial RSS}{\partial \hat{\beta_1}} = 2\sum_i^n (y_i - \hat{\beta_0} - \hat{\beta_1} D_{Fem})(-D_{Fem})$$
+
+$$= -2\sum_i^n (y_i D_{Fem} - \hat{\beta_0} D_{Fem} - \hat{\beta_1} D^2_{Fem})$$
+
+$$= -2\sum_i^n (y_i D_{Fem} - \hat{\beta_0} D_{Fem} - \hat{\beta_1} D^2_{Fem}).$$
+
+Since $\sum_{i \in Males} D_{Fem} = 0$, this reduces to
+
+$$= -2 \bigg(\sum_{i \in Females}y_i - \sum_{i \in Females} \hat{\beta_0} - \sum_{i \in Females} \hat{\beta_1} \bigg).$$
+
+Let $k$ be the number of females in the data set, and $\bar{y}_k$ be the average of balances for females. Then
 
 
-This will be minimized where, 
+$$ = -2(k \cdot \bar{y}_k - k \cdot \hat{\beta_0} - k \cdot \hat{\beta_1})$$
+
+Which, by our previous computation
+
+$$ = -2(k \cdot \bar{y}_k - k \cdot (\bar{y} -\hat{\beta_1}(k/n)) - k \cdot \hat{\beta_1})$$ 
+
+$$ = -2(k \cdot \bar{y}_k - k \cdot \bar{y} -k\cdot \hat{\beta_1}( (k/n) -1)$$ 
+
+Let $m = n - k$ be the number of males in the data set. Then
+
+$$ = -2k((\bar{y}_m) + \hat{\beta_1}(m/n))$$ 
+
+Implying,
+
+$$\hat{\beta_1} = \bar{y}_m$$
+
 
   2. On slide #60, attempt to interpret the effect of what happens "per 1-unit increase in $D_{Asia}$, while holding other variables constant". Why is it not possible ot evaluate that effec there? Hence, to avoid that, how many dummy variables should we use in order to model a categorical predictor in this case? Show that now, having dropped $D_{Afr-Am}$, we can actually evaluate the aforementioned effect of $D_{Asia}$.
   
