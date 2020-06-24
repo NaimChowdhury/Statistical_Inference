@@ -164,6 +164,8 @@ $$\hat{wage}_i = 82.42 + 0.71 \cdot age_i - 11.79 \cdot D_{Black, i} + 8.13 \cdo
 
 The most statistically significant dummy variable is $D_{Black}$ with $p < 2 \times 10^{-6}$. 
 
+When _age_ is fixed, black employees make about \$11,800 dollars less than white employees, on average.
+
 
   2. 
     a. Provide data visualization (use your fancy _ggplot2_) that will help determining if there's a strong interaction between _race_ and _age_ when predicting _wage_. Comment on whether you observe an interaction. Explain. __NOTE(!)__: You shouldn't start fitting any models with interactions yet.
