@@ -26,7 +26,7 @@ library(ggplot2)
 #library(plotly)
 #install.packages('rgl')
 #library(rgl)
-#library(ISLR)
+library(ISLR)
 ```
 
 ## 2. File management
@@ -117,7 +117,11 @@ Implying,
 $$\hat{\beta_1} = \bar{y}_m$$
 
 
-  2. On slide #60, attempt to interpret the effect of what happens "per 1-unit increase in $D_{Asia}$, while holding other variables constant". Why is it not possible ot evaluate that effec there? Hence, to avoid that, how many dummy variables should we use in order to model a categorical predictor in this case? Show that now, having dropped $D_{Afr-Am}$, we can actually evaluate the aforementioned effect of $D_{Asia}$.
+  2. On slide #60, attempt to interpret the effect of what happens "per 1-unit increase in $D_{Asia}$, while holding other variables constant". Why is it not possible to evaluate that effect here? Hence, to avoid that, how many dummy variables should we use in order to model a categorical predictor in this case? Show that now, having dropped $D_{Afr-Am}$, we can actually evaluate the aforementioned effect of $D_{Asia}$.
+  
+## Solution 1.2
+
+  $D_{Asia}$ is a binary variable that cannot increase by one unit, but instead be "on" or "off". When $D_{Asia}$ is "on", the other variables $D_{Cauc}$ and $D_{Afr-Am}$ must be "off". However, the coefficients $\hat{\beta}_j$ are not uniquely defined for the problem, 
   
   3. When dealing with a categorical predictor $X$ containing > 2 categories (say, 3), why do we have to use dummy variables approach? Why not just model it as
   
@@ -129,9 +133,37 @@ For the _Wage_ data set from _ISLR_ package, we will use _age_ and _race_ to pre
 
   1.
     a. Proceed to write down the full modeling equation for $wage \sim age + race$ regression.
-    b.Fit the model from 1(a), and write down the fitted equation.
+    b. Fit the model from 1(a), and write down the fitted equation.
     c. Interpret the most statistically significant __dummy variable__ (NOT the "per 1-unit" version though, the group comparison version).
     d. Conduct the test for significance of _race_ when predicting person's wage. In particular, make sure to 1) formulate the $H_0$, $H_a$ hypotheses; 2) Write down the modeling equation of the "null" model; 3) write the formula for test statistic; 4) use _R_'s _anova()_ to carry out the test, and match the output to the terms in the test statistic formula; 5) Provide the conclusion of the test.
+
+## Part 1.
+
+### 1a.
+
+```{r}
+levels(Wage$race) 
+```
+
+Since race has 4 levels,
+
+$$wage_i = \beta_0 + \beta_1 \cdot age_i + \beta_2 \cdot D_{Black, i} + \beta_3 \cdot D_{Asian, i} + \beta_4 \cdot D_{Other,i} + \epsilon_i, \ \ \epsilon \sim N(0, \sigma^2),$$
+
+### 1b.
+
+```{r}
+lm.obj <- lm(wage ~ age + race , Wage)
+summary(lm.obj)
+```
+
+Thus the fitted equation is,
+
+$$\hat{wage}_i = 82.42 + 0.71 \cdot age_i - 11.79 \cdot D_{Black, i} + 8.13 \cdot D_{Asian, i} -19.25 \cdot D_{Other,i}$$ 
+
+### 1c.
+
+The most statistically significant dummy variable is $D_{Black}$ with $p < 2 \times 10^{-6}$. 
+
 
   2. 
     a. Provide data visualization (use your fancy _ggplot2_) that will help determining if there's a strong interaction between _race_ and _age_ when predicting _wage_. Comment on whether you observe an interaction. Explain. __NOTE(!)__: You shouldn't start fitting any models with interactions yet.
