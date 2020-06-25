@@ -336,11 +336,15 @@ Since $p < 2.2 \times 10^{-16}$ for the interaction between $sales_{JP}$ and $ge
 
 When the genre is _Racing_, 
 
-$$\widehat{sales}_{NA,i} = 0.19277, + (2.09296,) sales_{JP,i} + \epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2$$
+$$\widehat{sales}_{NA,i} = 0.19277, + (2.09296,) sales_{JP,}i$$
 
 and when the genre is _Role Playing_
   
-$$\widehat{sales}_{NA,i} = \beta_0 + \beta_3 + (\beta_1 + \beta_5) sales_{JP,i} + \epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2.$$
+$$\widehat{sales}_{NA,i} = 0.06391 + (0.65904,) sales_{JP,i$$
+
+
+### 4b.
+
 
 
   5. Try interpreting the __main effects__ of $D_1$ (for juse one of the dummy variables) and $x$. Does the interpretation sound "all-encompassing"? Hence, should we ever rely on interpretations/significance tests of main effects in models with strong interactions?
