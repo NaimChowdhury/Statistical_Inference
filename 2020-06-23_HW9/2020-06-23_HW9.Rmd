@@ -302,7 +302,13 @@ $$sales_{NA,i} = \beta_0 + \beta_2 + (\beta_1 + \beta_4) sales_{JP,i} + \epsilon
 
 and when the genre is _Role Playing_
   
-$$sales_{NA,i} = \beta_0 + \beta_2 + (\beta_1 + \beta_5) sales_{JP,i} + \epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2.$$
+$$sales_{NA,i} = \beta_0 + \beta_3 + (\beta_1 + \beta_5) sales_{JP,i} + \epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2.$$
+
+The intercepts of _Racing_ and _Role Playing_ differ by $\beta_2$ and $\beta_3$ from the intercept of the model describing _Platform_ game sales.
+
+The slopes of differ by $\beta_4$ and $\beta_5$ from the intercept of the model describing _Platform_ game sales.
+
+"Interaction terms allow for difference in slopes across the categories."
   
   3. Confirm statistical significance of interaction by conducting an appropriate test (just conduct it in $R$ and provide the conclusion, no need to as much detail as problem \#2).
   
