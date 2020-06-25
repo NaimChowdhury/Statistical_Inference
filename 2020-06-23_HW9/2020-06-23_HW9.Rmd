@@ -172,7 +172,7 @@ To conduct the test for significance of the model, we use the $F$-test, with hyp
 
 $$H_0:= (\beta_i = 0, \ \ \forall i \in \{2,3,4\})$$
 
-$$H_a:= (\exists i \ \ st. \ \ \beta_i \neq 0)$$.
+$$H_a:= (\exists i \in \{2,3,4\} \ \ st. \ \ \beta_i \neq 0)$$.
 
 
 Under the null hypothesis, the equation for the model becomes
@@ -203,8 +203,36 @@ $$ = \frac{(5022216 - 4957481)/3}{4957481/2995}$$
 
   2. 
     a. Provide data visualization (use your fancy _ggplot2_) that will help determining if there's a strong interaction between _race_ and _age_ when predicting _wage_. Comment on whether you observe an interaction. Explain. __NOTE(!)__: You shouldn't start fitting any models with interactions yet.
-    b. Proceed to confirm your hunch from part 2(a) by actually conducting an appropriate statistical test for significance of interaction. In particular, make sure to 1) write the full modeling equation __with interaction__; 2) forumlate the $H_0$, $H_a$ hypotheses; 3) write down the modeling equation of the "null" model; 4) use _R_'s _anova()_ to carry out the test (no need to explain details here); 5) Provide the conclusion of the test.
+    b. Proceed to confirm your hunch from part 2(a) by actually conducting an appropriate statistical test for significance of interaction. In particular, make sure to 1) write the full modeling equation __with interaction__; 2) formulate the $H_0$, $H_a$ hypotheses; 3) write down the modeling equation of the "null" model; 4) use _R_'s _anova()_ to carry out the test (no need to explain details here); 5) Provide the conclusion of the test.
     
+## Part 2.
+
+### 2a.
+
+We can start by first graphing the relationship between age and wage, controlling for race.
+
+```{r}
+ggplot(Wage, aes(x = age, y = wage, col = race)) +
+  geom_smooth(method = 'lm') +
+  xlab("Age")+
+  ylab("Wage (in thousands)")+
+  labs(title = "Wage as predicted by age, controlling for race")
+```
+
+Since two of the lines intersect, there is some evidence of potential interaction between predictors, but it is not clear.
+
+### 2b.
+
+To test for the possibility of interaction, we consider the full modeling equation
+
+$$wage_i = \beta_0 + \beta_1 \cdot age_i + \beta_2 \cdot D_{Black, i} + \beta_3 \cdot D_{Asian, i} + \beta_4 \cdot D_{Other,i} + + \beta_5 (age \cdot D_{Black,i}) + \beta_6 (age \cdot D_{Asian,i}) + \beta_7 (age \cdot D_{Other,i}) \epsilon_i, \ \ \epsilon \sim N(0, \sigma^2).$$
+
+To test for interaction we work under the following hypotheses:
+
+$$H_0:= (\beta_i = 0, \ \ \forall i \in \{5,6,7\})$$
+
+$$H_a:= (\exists i \in \{2,3,4\}\ \ st. \ \ \beta_i \neq 0)$$.
+
     
 # Problem #3
 
