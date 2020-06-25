@@ -223,15 +223,30 @@ Since two of the lines intersect, there is some evidence of potential interactio
 
 ### 2b.
 
-To test for the possibility of interaction, we consider the full modeling equation
+  1. To test for the possibility of interaction, we consider the full modeling equation
 
-$$wage_i = \beta_0 + \beta_1 \cdot age_i + \beta_2 \cdot D_{Black, i} + \beta_3 \cdot D_{Asian, i} + \beta_4 \cdot D_{Other,i} + + \beta_5 (age \cdot D_{Black,i}) + \beta_6 (age \cdot D_{Asian,i}) + \beta_7 (age \cdot D_{Other,i}) \epsilon_i, \ \ \epsilon \sim N(0, \sigma^2).$$
+$$wage_i = \beta_0 + \beta_1 \cdot age_i + \beta_2 \cdot D_{Black, i} + \beta_3 \cdot D_{Asian, i} + \beta_4 \cdot D_{Other,i} + \beta_5 (age \cdot D_{Black,i}) + \beta_6 (age \cdot D_{Asian,i}) + \beta_7 (age \cdot D_{Other,i}) + \epsilon_i, \ \ \epsilon \sim N(0, \sigma^2).$$
 
-To test for interaction we work under the following hypotheses:
+  2. To test for interaction we work under the following hypotheses:
 
 $$H_0:= (\beta_i = 0, \ \ \forall i \in \{5,6,7\})$$
 
 $$H_a:= (\exists i \in \{2,3,4\}\ \ st. \ \ \beta_i \neq 0)$$.
+
+  3. The "null" model would be 
+
+$$wage_i = \beta_0 + \beta_1 \cdot age_i + \beta_2 \cdot D_{Black, i} + \beta_3 \cdot D_{Asian, i} + \beta_4 \cdot D_{Other,i} + \epsilon_i, \ \ \epsilon \sim N(0, \sigma^2).$$
+
+  4. 
+  
+```{r}
+lm.full.obj <- lm(wage ~ age + race + age:race, data = Wage)
+lm.null.obj <- lm(wage ~ age + race, daga = Wage)
+
+anova(lm.null.obj, lm.full.obj)
+```
+
+Since $p = 0.1998 > 0.05$, under a confidence level of 90% we fail to reject the $H_0$ hypothesis. We can conclude that there is no statistically significant interaction between _age_ and _race_.
 
     
 # Problem #3
