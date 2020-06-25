@@ -166,6 +166,33 @@ The most statistically significant dummy variable is $D_{Black}$ with $p < 2 \ti
 
 When _age_ is fixed, black employees make about \$11,800 dollars less than white employees, on average.
 
+### 1d. 
+
+To conduct the test for significance of the model, we use the $F$-test, with hypotheses:
+
+$$H_0:= (\beta_i = 0, \ \ \forall i \in \{2,3,4\})$$
+
+$$H_a:= (\exists i \ \ st. \ \ \beta_i \neq 0)$$.
+
+
+Under the null hypothesis, the equation for the model becomes
+
+$$wage_i = \beta_0 + \beta_1 \cdot age_i + \epsilon_i, \ \ \epsilon_i \sim_{i.i.d} N(0, \sigma^2)$$
+
+Finally, we conduct the test
+
+```{r}
+lm.full.obj <- lm(wage ~ age + race, data = Wage)
+lm.null.obj <- lm(wage ~ age, data = Wage)
+
+anova(lm.null.obj, lm.full.obj)
+
+```
+
+Recalling that the $F$-statistic is defined as
+
+$$FS = \frac{(Reg_{full} - Reg_{null})/q}{RSS_{full}/(n - (p+1))}$$
+
 
   2. 
     a. Provide data visualization (use your fancy _ggplot2_) that will help determining if there's a strong interaction between _race_ and _age_ when predicting _wage_. Comment on whether you observe an interaction. Explain. __NOTE(!)__: You shouldn't start fitting any models with interactions yet.
