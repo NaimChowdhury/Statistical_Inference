@@ -256,8 +256,17 @@ Since $p = 0.1998 > 0.05$, under a confidence level of 90% we fail to reject the
 Find a data example on your own (not among the ones already used in class) where you have a categorical predictor $D$, quantitative predictor $x$, and a quantitative response $y$, such that there's actually a __significant interaction between__ $x$ __and__ $D$ __in explaining__ $y$. Then,
 
   1. Make sure to demonstrate that interaction graphically (prior to fitting the interaction model).
+  
+## Part 1.
+
   2. Write down 1) the full modeling equation with interaction terms, and 2) separate modeling equations for different categories of $D$. Comment on differences between separate modeling equation. Fill the blank in the sentence: "Interaction terms allow for difference in ... across the categories."
+  
+## Part 2.
+
   3. Confirm statistical significance of interaction by conducting an appropriate test (just conduct it in $R$ and provide the conclusion, no need to as much detail as problem \#2).
+  
+## Part 3.
+  
   4. Interpret the interaction, as well, by both
   
     a. Writing out a separate fitted equation for each category of $D$,
@@ -265,4 +274,8 @@ Find a data example on your own (not among the ones already used in class) where
     
   and commenting on those.
   
+## Part 4.
+
   5. Try interpreting the __main effects__ of $D_1$ (for juse one of the dummy variables) and $x$. Does the interpretation sound "all-encompassing"? Hence, should we ever rely on interpretations/significance tests of main effects in models with strong interactions?
+  
+## Part 5.
