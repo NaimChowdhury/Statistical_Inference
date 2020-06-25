@@ -193,6 +193,13 @@ Recalling that the $F$-statistic is defined as
 
 $$FS = \frac{(Reg_{full} - Reg_{null})/q}{RSS_{full}/(n - (p+1))}$$
 
+$$ = \frac{(5022216 - 4957481)/3}{4957481/2995}$$
+
+```{r}
+((5022216 - 4957481)/3)/(4957481/2995) 
+```
+
+, which agrees precisely with the $F$ statistic presented in the _anova()_. We conclude by rejecting the null hypothesis $H_0$, since $p \approx 1.86 \times 10^{-8} < 0.05$, concluding $race$ is significant in the model.
 
   2. 
     a. Provide data visualization (use your fancy _ggplot2_) that will help determining if there's a strong interaction between _race_ and _age_ when predicting _wage_. Comment on whether you observe an interaction. Explain. __NOTE(!)__: You shouldn't start fitting any models with interactions yet.
