@@ -42,6 +42,8 @@ getwd()
 ## 3. Importing Data
 ```{r, echo = FALSE, include=FALSE}
 advertising <- read_csv(file.path(data.dir, "Advertising.csv"))
+
+CPU.df <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
 ```
 
 # Problem #1
@@ -114,7 +116,7 @@ $$ = -2k((\bar{y}_m) + \hat{\beta_1}(m/n))$$
 
 Implying,
 
-$$\hat{\beta_1} = \bar{y}_m$$
+$$\hat{\beta_1} = -\bar{y}_m \cdot \frac{n}{m}$$
 
 
   2. On slide #60, attempt to interpret the effect of what happens "per 1-unit increase in $D_{Asia}$, while holding other variables constant". Why is it not possible to evaluate that effect here? Hence, to avoid that, how many dummy variables should we use in order to model a categorical predictor in this case? Show that now, having dropped $D_{Afr-Am}$, we can actually evaluate the aforementioned effect of $D_{Asia}$.
