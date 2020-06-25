@@ -286,11 +286,14 @@ ggplot(vgsales.df, aes(x = JP_Sales, y = NA_Sales, col = Genre)) +
 ## Part 2.
 
 
-  1) The full modeling equation is:
+### 1)
+
+The full modeling equation is:
   
   $$sales_{NA,i} = \beta_0 + \beta_1 \cdot  sales_{JP,i} + \beta_2 \cdot D_{Racing,i}  + \beta_3 \cdot D_{RP,i}  + \beta_4(sales_{JP,i} \cdot D_{Racing,i} + \beta_5(sales_{JP,i} \cdot D_{Racing,i} + \epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2$$
   
-  2) I am way too lazy for this. 
+###  2)
+I am way too lazy for this. 
   
 When the genre is _Platform_,
 
@@ -314,6 +317,12 @@ The slopes of differ by $\beta_4$ and $\beta_5$ from the intercept of the model 
   
 ## Part 3.
   
+```{r}
+anova(lm.obj)
+```
+  
+Since $p < 2.2 \times 10^{-16}$ for the interaction between $sales_{JP}$ and $genre$, we reject the null hypothesis, and conclude that the interaction is statistically signification.
+
   4. Interpret the interaction, as well, by both
   
     a. Writing out a separate fitted equation for each category of $D$,
@@ -322,6 +331,17 @@ The slopes of differ by $\beta_4$ and $\beta_5$ from the intercept of the model 
   and commenting on those.
   
 ## Part 4.
+
+### 4a.
+
+When the genre is _Racing_, 
+
+$$\widehat{sales}_{NA,i} = 0.19277, + (2.09296,) sales_{JP,i} + \epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2$$
+
+and when the genre is _Role Playing_
+  
+$$\widehat{sales}_{NA,i} = \beta_0 + \beta_3 + (\beta_1 + \beta_5) sales_{JP,i} + \epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2.$$
+
 
   5. Try interpreting the __main effects__ of $D_1$ (for juse one of the dummy variables) and $x$. Does the interpretation sound "all-encompassing"? Hence, should we ever rely on interpretations/significance tests of main effects in models with strong interactions?
   
