@@ -43,7 +43,7 @@ getwd()
 ```{r, echo = FALSE, include=FALSE}
 advertising <- read_csv(file.path(data.dir, "Advertising.csv"))
 
-CPU.df <- read_csv(file.path(data.dir, "Intel_CPUs.csv"))
+hostel <- read_csv(file.path(data.dir, "hostel.csv"))
 ```
 
 # Problem #1
@@ -258,6 +258,27 @@ Find a data example on your own (not among the ones already used in class) where
   1. Make sure to demonstrate that interaction graphically (prior to fitting the interaction model).
   
 ## Part 1.
+
+```{r}
+## Taking only the variables of interest from a dataset of hostel ratings from a Japanese hostel website.
+hostel.df <- hostel %>% 
+  select(price.from, summary.score, rating.band, City, cleanliness, valueformoney) %>% 
+  filter(City == 'Tokyo' | City == 'Osaka') %>% 
+  drop_na()
+```
+
+
+```{r}
+lm.obj <- lm(valueformoney ~ price.from + City + price.from:City, hostel.df)
+
+summary(lm.obj)
+```
+
+```{r}
+ggplot(hostel.df, aes(x = price.from, y = summary.score, col = City)) +
+  geom_smooth(method = 'lm')
+```
+
 
   2. Write down 1) the full modeling equation with interaction terms, and 2) separate modeling equations for different categories of $D$. Comment on differences between separate modeling equation. Fill the blank in the sentence: "Interaction terms allow for difference in ... across the categories."
   
