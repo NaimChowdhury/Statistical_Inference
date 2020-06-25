@@ -351,6 +351,12 @@ ggplot(vgsales.df, aes(x = JP_Sales, y = NA_Sales, col = Genre)) +
 The slope of the relationship of North American sales and Role Playing is about 1.7 lower than the other 2 relationships. For every 1 million dollar increase in Japanese sales, we expect the decrease in North American sales to be 1.5 million dollars smaller for Role Playing games than for the other two genres.
 
 
-  5. Try interpreting the __main effects__ of $D_1$ (for juse one of the dummy variables) and $x$. Does the interpretation sound "all-encompassing"? Hence, should we ever rely on interpretations/significance tests of main effects in models with strong interactions?
+  5. Try interpreting the __main effects__ of $D_1$ (for just one of the dummy variables) and $x$. Does the interpretation sound "all-encompassing"? Hence, should we ever rely on interpretations/significance tests of main effects in models with strong interactions?
   
 ## Part 5.
+
+For $\hat{\beta}_2 = 0.03678$, we can say that when the Japanese sales are 0, the sales in North America should be 30,000 dollars more for racing games than for the other two genre types, on average.
+
+For $\hat{\beta}_1 \approx 2.36$, for __platform__ games, for every 1 million dollar increase in Japanese sales, we expect the North American sales to go up by 2.36 million on average.
+
+Unfortunately, both of these interpretations are lacking in some way. The first is nonsensical, since we would almost never expect sales in Japan to be zero dollars. For the latter, we are limited in our interpretation since we are only looking at platforming games.
