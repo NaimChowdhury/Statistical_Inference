@@ -264,7 +264,7 @@ Find a data example on your own (not among the ones already used in class) where
 ## Taking only the variables of interest from a dataset of hostel ratings from a Japanese hostel website.
 vgsales.df <- vgsales %>% 
   select(NA_Sales, JP_Sales, Genre) %>% 
-  filter(Genre == 'Platform' | Genre == 'Role-Playing' | Genre == 'Shooter') %>% 
+  filter(Genre == 'Platform' | Genre == 'Role-Playing' | Genre == 'Racing') %>% 
   drop_na()
 ```
 
@@ -285,6 +285,12 @@ ggplot(vgsales.df, aes(x = JP_Sales, y = NA_Sales, col = Genre)) +
   
 ## Part 2.
 
+
+  1) The full modeling equation is:
+  
+  $$sales_{NA,i} = \beta_0 + \beta_1 \cdot  sales_{JP,i} + \beta_2 \cdot D_{Racing,i}  + \beta_3 \cdot D_{RP,i}  + \beta_4(sales_{JP,i} \cdot D_{Racing,i} + \beta_5(sales_{JP,i} \cdot D_{Racing,i} + epsilon_i, \ \ \epsilon \sim_{i.i.d} N(0, \sigma^2$$
+  
+  
   3. Confirm statistical significance of interaction by conducting an appropriate test (just conduct it in $R$ and provide the conclusion, no need to as much detail as problem \#2).
   
 ## Part 3.
