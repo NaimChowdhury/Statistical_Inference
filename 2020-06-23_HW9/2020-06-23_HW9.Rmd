@@ -275,11 +275,6 @@ lm.obj <- lm(NA_Sales ~ JP_Sales + Genre + JP_Sales:Genre, data = vgsales.df)
 summary(lm.obj)
 ```
 
-```{r}
-ggplot(vgsales.df, aes(x = JP_Sales, y = NA_Sales, col = Genre)) +
-  geom_smooth(method = 'lm')
-```
-
 
   2. Write down 1) the full modeling equation with interaction terms, and 2) separate modeling equations for different categories of $D$. Comment on differences between separate modeling equation. Fill the blank in the sentence: "Interaction terms allow for difference in ... across the categories."
   
@@ -345,6 +340,15 @@ $$\widehat{sales}_{NA,i} = 0.06391 + (0.65904,) sales_{JP,i$$
 
 ### 4b.
 
+```{r}
+ggplot(vgsales.df, aes(x = JP_Sales, y = NA_Sales, col = Genre)) +
+  geom_smooth(method = 'lm') +
+  xlab("Sales in Japan (millions)") +
+  ylab("Sales in North America (millions)") +
+  labs(title = "Predicted sales in North America based on those in Japan, controlling for genre")
+```
+
+The slope of the relationship of North American sales and Role Playing is about 1.7 lower than the other 2 relationships. For every 1 million dollar increase in Japanese sales, we expect the decrease in North American sales to be 1.5 million dollars smaller for Role Playing games than for the other two genres.
 
 
   5. Try interpreting the __main effects__ of $D_1$ (for juse one of the dummy variables) and $x$. Does the interpretation sound "all-encompassing"? Hence, should we ever rely on interpretations/significance tests of main effects in models with strong interactions?
