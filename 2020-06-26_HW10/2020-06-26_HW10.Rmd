@@ -81,3 +81,9 @@ We will work on the familiar _Advertising_ data set.
     c. For the terms you've added in part 2(b) to the initial model from part 2(a), proceed to test the hypotheses for their statistical significance.
     
 # Problem #3 (+3 Bonus Points)
+
+For _thuesen_ data set of _ISwR_ library, proceed to use bootstrap in order to calculate standard errors and 95% confidence interval for $\hat{\beta}_1$ in the following regression:
+
+$$short.velocity_i = \beta_0 + \beta_1 \cdot blood.glucose_i + \epsilon_i, \ \ \epsilon_i \sim_{i.i.d} N(0, \sigma^2)$$
+
+Compare your results with the classic inference (obtained via fitting the model for full data set, no boostrapping). Did your conclusion about significance of blood glucose predictor differ at $\alpha = 0.05$ for bootstrap vs. classical approach? If  yes, why do you think that is?
