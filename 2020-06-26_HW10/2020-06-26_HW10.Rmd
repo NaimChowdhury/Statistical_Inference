@@ -43,3 +43,16 @@ getwd()
 ```{r, echo = FALSE, include=FALSE}
 advertising <- read_csv(file.path(data.dir, "Advertising.csv"))
 ```
+
+
+# Problem #1
+
+We will work on the familiar _Advertising_ data set.
+
+  1. First, let's try using just the _TV_ budget to predict the _Sales_.
+    a. Fit the $Sales \sim TV$ regression model, provde the residuals-vs-fitted plot. Is there an issue? If yes, how do we fix it? Proceed to modify the model in order to fix it.
+    b. Having fixed the issue from part 1(a), check the residuals-vs-fitted plot for modified model. Are there any other issues with the plot now? If yes, proceed to modify the model in order to fix it (__Hint__: polynomial regression).
+    c. For your finalized model from part 1(b), provide the QQ-norm plot. Does the fit look normal? If not quite, is it that big of a deal for inference purposes? Why?
+    d. For your finalized model from part 1(b), provide the plot of the data along with fitted line/curve (make sure to __enumerate__ the points using _text()_ function, like I did with _us_statewide_crime_ in Slides 5.R) Indicate observations that appear to be: 1) regression outliers; 2) high-leverage; 3) influential outliers.
+    e. From part 1(d), pick the observation you believe to be the most influential outlier. Proceed to fit the regression 1) __with__ and 2) __without__ that observation included. Report the __fitted equations, RSE, and__ $R^2$ values, __comment on differences observed. DON'T INCLUDE THE OUTPUT OF $R$ COMMANDS__ (eval = F).
+    f. What do you think we should do with that observation? Why?
