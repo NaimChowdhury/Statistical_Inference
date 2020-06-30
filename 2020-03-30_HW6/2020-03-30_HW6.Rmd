@@ -85,6 +85,27 @@ my.simple.lm <- function(x,y){
 }
 ```
 
+  2. Proceed to apply your _my.simple.lm()_ function in order to conduct simple linear regression of _sales_ onto _TV_ (for _Advertisement.csv_ data). Compare the outputs of _my.simple.lm()_ to those for _lm()_, _summary()_ and _confint()_ as a sanity check, making sure all the relevant parts match.
+  
+## Part 2
+
+Here we apply to the advertising dataset.
+```{r}
+my.simple.lm(advert.df$TV, advert.df$sales)
+```
+
+And now we compare with $R$'s native linear model function.
+
+```{r}
+lm.obj <- lm(sales ~ TV, data = advert.df)
+summary(lm.obj)
+```
+The $R$ native _lm()_ matches perfectly, as does _confint()_.
+
+```{r}
+confint(lm.obj)
+```
+
 
 # Problem #2
 
