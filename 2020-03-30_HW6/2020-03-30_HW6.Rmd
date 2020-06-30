@@ -187,22 +187,50 @@ Proceed to use the results from part 1(a,b) to derive the values of $e_2, e_3$. 
 
 $$
 \left(\begin{array}{ccc} 
-3 & 1 & 1\\
-3 & 5 & 3
+1 & 1 & 1\\
+1 & 5 & 3
 \end{array}\right)
 \left(\begin{array}{c} 
-0\\ 
+3\\ 
 e_2\\
 e_3
 \end{array}\right)
 =
 \left(\begin{array}{c} 
 0\\ 
-0\\
 0
 \end{array}\right)
 $$ 
 
+$$
+\left(\begin{array}{ccc| c} 
+1 & 1 & 1 & 0\\
+1 & 5 & 3 & 0
+\end{array}\right)
+$$ 
+
+$$
+\left(\begin{array}{ccc| c} 
+1 & 1 & 1 & 0\\
+0 & 4 & 2 & 0
+\end{array}\right)
+$$ 
+
+$$
+\left(\begin{array}{ccc| c} 
+1 & 1 & 1 & 0\\
+0 & 1 & 0.5 & 0
+\end{array}\right)
+$$ 
+
+$$
+\left(\begin{array}{ccc| c} 
+1 & 0 & 0.5 & 0\\
+0 & 1 & 0.5 & 0
+\end{array}\right)
+$$ 
+
+Since $3 + 0.5e_3 = 0$ and $e_2 + 0.5e_3 = 0$, we arrive at the conclusion that $e_3 = -6$ and $e_2 = 3$.
 
 Here, degrees of freedom refers to the the number of terms needed to completely determine the others. That is, one of the variables is free to take on any value, and once it does, the other two must be dependent on that.
 
