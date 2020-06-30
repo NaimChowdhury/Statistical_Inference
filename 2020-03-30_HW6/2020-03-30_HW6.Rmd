@@ -239,9 +239,15 @@ Here, degrees of freedom refers to the the number of terms needed to completely 
 ## Part 3.
   
 ```{r}
-resid(lm.obj)
+## Computing the sum of the residuals
+sum(resid(lm.obj))
 ```
 
+```{r}
+sum(advert.df$TV*resid(lm.obj))
+```
+
+These computations confirm the theory that we just proved, since they are both basically 0 (as far as a computer is concerned.)
 
 # Problem #3
 
