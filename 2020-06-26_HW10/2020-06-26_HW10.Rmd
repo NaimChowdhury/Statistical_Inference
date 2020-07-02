@@ -106,6 +106,14 @@ plot(lm.obj, which = 1)
 
 ### c.
 
+We can check for normality of fit by plotting the QQ-Norm. If the fit is roughly normal, we should expect the graph to have a roughly linear shape. It seems that our model deviates substantially from the line.
+
+```{r}
+## Produces QQ Norm Plot
+plot(lm.obj, which = 2)
+```
+
+
 ### d.
 
 ### e.
