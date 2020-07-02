@@ -116,6 +116,19 @@ plot(lm.obj, which = 2)
 
 ### d.
 
+```{r}
+plot2 <- advertising %>% 
+  ggplot(aes(x = TV, y = log(sales), label = X1)) +
+  geom_point()+
+  geom_text(aes(label = as.character(X1)))
+
+  labs(title = "Nonlinearity of Sales vs TV")
+
+plot2
+```
+
+  From the plot we can see that points 131 and 156 are outliers. Since both are also in a "high-leverage range",  they are influential outliers.
+
 ### e.
 
 ### f.
