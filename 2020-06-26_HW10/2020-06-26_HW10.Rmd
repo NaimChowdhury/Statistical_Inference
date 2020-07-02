@@ -63,7 +63,33 @@ We will work on the familiar _Advertising_ data set.
     c. For your finalized model from part 2(b), while still possible, but visualization of the fitted hyper-plane gets tougher. If we can't visualize the fit, what should we utilize in order to identify 1) regression outliers; 2) high-leverage observations; 3) influential outliers? Proceed to do it.
     d. From part 2(c), pick the observation that shows up as the most  influential outlier. Proceed to fit the rgression 1) __with__ and 2) __without__ that observation included. Report the __fitted equations, RSE, and__ $R^2$ values, __comment on differences observed. DON'T INCLUDE THE OUTPUT OF $R$ COMMANDS.
     e. What do you think we should do with that observation? Why?
-    
+
+## Solution 1.
+
+### a.
+
+### b.
+
+### c.
+
+### d.
+
+### e.
+
+### f.
+
+## Solution 2.
+
+### a.
+
+### b.
+
+### c.
+
+### d.
+
+### e.
+
 # Problem #2
 
   1. For _Carseats_ data set of _ISLR_ package, proceed to work on the following model:
@@ -73,12 +99,28 @@ We will work on the familiar _Advertising_ data set.
     b. Proceed to check if hte model assumptions hold via diagnosing appropriate plots.
     c. Given your answer in part 1(b), can we rely on $p$-values provided by classic inference here? Proceed to interpret two most statistically significant effects.
     
+## Solution 1.
+
+### a.
+
+### b.
+
+### c.
+  
   2. For _Boston_ data set of _ISLR_ package, proceed to work on the following model:
   
   $$medv \sim crim + rm + lstat$$
     a. Provide the full modeling equation (with assumptions on error terms).
     b. Proceed to check if the model assmptions hold via diagnosing appropriate plots. If they don't, proceed to adjust the model in some ways in order to improve the fit. _Hint:_ Plot $medv$ against each predictor and diagnose if there's potentially a non-linear relationship.
     c. For the terms you've added in part 2(b) to the initial model from part 2(a), proceed to test the hypotheses for their statistical significance.
+    
+## Solution 2.
+
+### a.
+
+### b.
+
+### c.
     
 # Problem #3 (+3 Bonus Points)
 
