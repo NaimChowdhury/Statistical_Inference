@@ -50,23 +50,34 @@ advertising <- read_csv(file.path(data.dir, "Advertising.csv"))
 We will work on the familiar _Advertising_ data set.
 
   1. First, let's try using just the _TV_ budget to predict the _Sales_.
-    a. Fit the $Sales \sim TV$ regression model, provde the residuals-vs-fitted plot. Is there an issue? If yes, how do we fix it? Proceed to modify the model in order to fix it.
+    a. Fit the $Sales \sim TV$ regression model, provide the residuals-vs-fitted plot. Is there an issue? If yes, how do we fix it? Proceed to modify the model in order to fix it.
     b. Having fixed the issue from part 1(a), check the residuals-vs-fitted plot for modified model. Are there any other issues with the plot now? If yes, proceed to modify the model in order to fix it (__Hint__: polynomial regression).
     c. For your finalized model from part 1(b), provide the QQ-norm plot. Does the fit look normal? If not quite, is it that big of a deal for inference purposes? Why?
     d. For your finalized model from part 1(b), provide the plot of the data along with fitted line/curve (make sure to __enumerate__ the points using _text()_ function, like I did with _us_statewide_crime_ in Slides 5.R) Indicate observations that appear to be: 1) regression outliers; 2) high-leverage; 3) influential outliers.
     e. From part 1(d), pick the observation you believe to be the most influential outlier. Proceed to fit the regression 1) __with__ and 2) __without__ that observation included. Report the __fitted equations, RSE, and__ $R^2$ values, __comment on differences observed. DON'T INCLUDE THE OUTPUT OF $R$ COMMANDS__ (eval = F).
     f. What do you think we should do with that observation? Why?
     
-  2. Now, let's try using all advertisement media to predict the $Sales$.
-    a. Fit the $Sales \sim TV + radio + newspaper$ regression model. Prior to any residual diagnostics, first conduct __variable selection__. Which predictor(s) was dropped (if any)?
-    b. For the model resulting from part 2(a), provide the residuals-vs-fitted plot. Is there an issue? If yes, how do we fix it? Proceed to modify the model in order to fix it. Rinse and repeat until you get a model that appears appropriate.
-    c. For your finalized model from part 2(b), while still possible, but visualization of the fitted hyper-plane gets tougher. If we can't visualize the fit, what should we utilize in order to identify 1) regression outliers; 2) high-leverage observations; 3) influential outliers? Proceed to do it.
-    d. From part 2(c), pick the observation that shows up as the most  influential outlier. Proceed to fit the rgression 1) __with__ and 2) __without__ that observation included. Report the __fitted equations, RSE, and__ $R^2$ values, __comment on differences observed. DON'T INCLUDE THE OUTPUT OF $R$ COMMANDS.
-    e. What do you think we should do with that observation? Why?
-
 ## Solution 1.
 
 ### a.
+
+  We first fit the model and plot the residuals and fitted plot.
+
+```{r}
+## Fitting model
+lm.obj <- lm(sales ~ TV, data = advertising)
+
+## Residuals vs. Fitted Plot
+plot(lm.obj, which = 1)
+```
+
+  It is clear that the variance is increasing as the number of fitted values increases. We can attempt to solve this issue by modeling using the log of the response variable. This reduces the change in variance substantially.
+  
+```{r}
+lm.obj <- lm(log(sales) ~ TV, data = advertising)
+plot(lm.obj, which = 1)
+```
+
 
 ### b.
 
@@ -77,6 +88,13 @@ We will work on the familiar _Advertising_ data set.
 ### e.
 
 ### f.
+    
+  2. Now, let's try using all advertisement media to predict the $Sales$.
+    a. Fit the $Sales \sim TV + radio + newspaper$ regression model. Prior to any residual diagnostics, first conduct __variable selection__. Which predictor(s) was dropped (if any)?
+    b. For the model resulting from part 2(a), provide the residuals-vs-fitted plot. Is there an issue? If yes, how do we fix it? Proceed to modify the model in order to fix it. Rinse and repeat until you get a model that appears appropriate.
+    c. For your finalized model from part 2(b), while still possible, but visualization of the fitted hyper-plane gets tougher. If we can't visualize the fit, what should we utilize in order to identify 1) regression outliers; 2) high-leverage observations; 3) influential outliers? Proceed to do it.
+    d. From part 2(c), pick the observation that shows up as the most  influential outlier. Proceed to fit the rgression 1) __with__ and 2) __without__ that observation included. Report the __fitted equations, RSE, and__ $R^2$ values, __comment on differences observed. DON'T INCLUDE THE OUTPUT OF $R$ COMMANDS.
+    e. What do you think we should do with that observation? Why?
 
 ## Solution 2.
 
