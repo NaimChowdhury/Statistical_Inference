@@ -81,6 +81,29 @@ plot(lm.obj, which = 1)
 
 ### b.
 
+Since the residual curve is not a line, but curved, there is evidence of non-linearity in the relationship. 
+
+```{r}
+plot1 <- advertising %>% 
+  ggplot(aes(x = TV, y = log(sales))) +
+  geom_point()+
+  labs(title = "Nonlinearity of Sales vs TV")
+
+plot1
+```
+
+The curvature seems to imply a polynomial relationship between the predictor and response, which we can capture by adding a polynomial term to the model.
+
+Since the residuals vs fitted plot is pretty much linear, seem to have captured the non-linearity of the relationship with our model.
+```{r}
+## Fitting polynomial regression
+lm.obj <- lm(log(sales) ~ TV + I(TV^2), data = advertising)
+
+## Residuals vs Fitted of polynomial regression
+plot(lm.obj, which = 1)
+```
+
+
 ### c.
 
 ### d.
