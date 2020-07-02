@@ -179,7 +179,35 @@ no.outlier$sigma
 
 ### a.
 
+```{r}
+## Fitting the linear model
+lm.obj <- lm(sales ~ TV + radio + newspaper, data = advertising)
+
+## Variable selection
+lm.obj <- step(lm.obj)
+```
+
+Newspaper is dropped by the variable selection process, based off of its AIC value.
+
 ### b.
+
+```{r}
+# Residuals vs fitted for variable selection model
+plot(lm.obj, which = 1)
+```
+
+For the same reasons as the previous problem (curvature in the mean residual curve), we infer non-linearity in the relationship. The simplest way to introduce non-linearity is with an interaction term.
+
+```{r}
+## Fitting model with interaction
+lm.obj <- lm(sales~ TV + radio + TV:radio, data = advertising)
+
+# Residuals vs fitted
+plot(lm.obj, which = 1)
+```
+
+Unfortunately this plot also has significant curvature. 
+
 
 ### c.
 
