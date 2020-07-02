@@ -206,8 +206,35 @@ lm.obj <- lm(sales~ TV + radio + TV:radio, data = advertising)
 plot(lm.obj, which = 1)
 ```
 
-Unfortunately this plot also has significant curvature. 
+Unfortunately this plot also has significant curvature. It may be that one of the predictors has a quadratic relationship with the response, so we can check for that relationship with plots.
 
+```{r}
+plot1 <- advertising %>% 
+  ggplot(aes(x = TV, y =sales)) +
+  geom_point() + 
+  labs(title = "Sales vs TV")
+
+plot1
+
+plot2 <- advertising %>% 
+  ggplot(aes(x = radio, y = sales)) +
+  geom_point() + 
+  labs(title = "Sales vs Radio")
+
+plot2
+```
+
+  Curvature in the $sales \sim TV$ plot indicates a quadratic relationship. We can test this idea by using the residuals vs fitted plot to check the quadratic model with interaction.
+  
+```{r}
+# Fitting model with interaction and quadratic terms
+lm.obj <- lm(sales ~ TV + radio + TV:radio + I(TV^2), data = advertising)
+
+# Residual vs Fitted
+plot(lm.obj, which = 1)
+```
+  
+The line has a (qualitatively) consistent variance and a straight average error line.
 
 ### c.
 
