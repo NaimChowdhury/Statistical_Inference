@@ -274,7 +274,14 @@ Of this small set of points, 6 has the highest hat value,
     
 ## Solution 1.
 
+```{r}
+# Fitting a model as described by the problem.
+lm.obj <- lm(Sales ~ Income + Advertising + ShelveLoc + Urban, data = Carseats)
+```
+
 ### a.
+
+
 
 ### b.
 
