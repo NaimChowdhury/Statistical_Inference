@@ -330,7 +330,7 @@ summary(lm.obj)
 
 ### a.
 
-$$medv_i = \beta_0 + \beta_1 \cdot crim_i + \beta_2 \cdot rm_i + \beta_3 \cdot lstat_i + + \epsilon_i,$$
+$$medv_i = \beta_0 + \beta_1 \cdot crim_i + \beta_2 \cdot rm_i + \beta_3 \cdot lstat_i + \epsilon_i,$$
 
 where $\epsilon_i \sim_{iid} N(0 \sigma^2)$.
 
@@ -370,7 +370,10 @@ plot3 <- Boston %>%
 plot3
 ```
 
-Both $crim$ and $lstat$ seem to have a non-linear relationship with $medv$. We can try to capture those using a polynomial regression.
+Both $crim$ and $lstat$ seem to have a non-linear relationship with $medv$. We can try to capture those using a polynomial regression, producing the model:
+
+$$medv_i = \beta_0 + \beta_1 \cdot crim_i + \beta_2 \cdot rm_i + \beta_3 \cdot lstat_i + \beta_4 \cdot crim_i^2 + \beta_5 \cdot lstat_i^2 + \epsilon_i$$
+
 
 ```{r}
 # Polynomial regression fit
@@ -388,6 +391,24 @@ It seems like the polynomial terms didn't really account for the issue of nonlin
 However, in the interest of interpretability, we maintain the current model.
 
 ### c.
+    
+Are any of the new terms significant? We can do so by performing the $F$-test under the hypotheses:
+
+$$H_0:= (\beta_k = 0, \ \ \forall i \in \{4,5\})$$
+
+$$H_1:= (\exists k \in \{4,5\} \ st. \beta_k \neq 0)$$
+    
+```{r}
+# old model
+lm.obj <- lm(medv ~ crim + rm + lstat, data = Boston)
+# New model
+lm.poly.obj <- lm(medv ~ crim + rm + lstat + I(crim^2) + I(lstat^2), data = Boston)
+
+# F-test for new variables
+anova(lm.obj, lm.poly.obj)
+```
+    
+  With $p$ practically 0, we reject the null hypothesis, thus at least one of the new variables is significant.    
     
 # Problem #3 (+3 Bonus Points)
 
