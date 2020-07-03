@@ -370,6 +370,22 @@ plot3 <- Boston %>%
 plot3
 ```
 
+Both $crim$ and $lstat$ seem to have a non-linear relationship with $medv$. We can try to capture those using a polynomial regression.
+
+```{r}
+# Polynomial regression fit
+lm.obj <- lm(medv ~ crim + rm + lstat + I(crim^2) + I(lstat^2), data = Boston)
+
+# Residuals vs Fitted
+plot(lm.obj, which = 1)
+
+# QQ-norm
+plot(lm.obj, which = 2)
+```
+
+It seems like the polynomial terms didn't really account for the issue of nonlinearity completely, since there is still significant curvature in both graphs. 
+
+However, in the interest of interpretability, we maintain the current model.
 
 ### c.
     
