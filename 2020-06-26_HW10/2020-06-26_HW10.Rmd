@@ -27,6 +27,8 @@ library(ggplot2)
 #install.packages('rgl')
 #library(rgl)
 library(ISLR)
+#install.packages('MASS')
+library(MASS)
 ```
 
 ## 2. File management
@@ -318,6 +320,12 @@ plot(lm.obj, which = 2)
     c. For the terms you've added in part 2(b) to the initial model from part 2(a), proceed to test the hypotheses for their statistical significance.
     
 ## Solution 2.
+
+```{r}
+## Fitting linear model for medv ~ crim + rm + lstat
+lm.obj <- lm(medv ~ crim + rm + lstat, data = Boston) 
+```
+
 
 ### a.
 
