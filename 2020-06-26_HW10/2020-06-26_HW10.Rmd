@@ -301,12 +301,13 @@ plot(lm.obj, which = 1)
 plot(lm.obj, which = 2)
 ```
 
-The variance is pretty much constant, with a few outliers, and the QQ-norm plot does not deviate from normality in any significant way.
-
-
-
+  The variance is pretty much constant, with a few outliers, and the QQ-norm plot does not deviate from normality in any significant way.
 
 ### c.
+
+  Because of the results of the diagnostics, we can rely on $R$'s hypothesis testing. Every $p$ value shows significance, except for $Urban_{Yes}$. The two most significant effects are those of $Shelve_{Good}$ and $Shelve_{Medium}$.
+  
+  
   
   2. For _Boston_ data set of _ISLR_ package, proceed to work on the following model:
   
