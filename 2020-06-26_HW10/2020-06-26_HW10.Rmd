@@ -281,7 +281,13 @@ lm.obj <- lm(Sales ~ Income + Advertising + ShelveLoc + Urban, data = Carseats)
 
 ### a.
 
+The full modeling equation is as follows:
 
+$$ Sales_i = \beta_0 + \beta_1 \cdot Income_i + \beta_2 \cdot Advertising_i + \beta_3 \cdot Shelve_{Good,i} + \beta_4 \cdot Shelf_{Medium_i} + \beta_5 Urban_{Yes,i} + \epsilon_i$$
+
+where $Shelve$ and $Urban$ are categorical and $\epsilon_i$ follows
+
+$$\epsilon_i \sim_{iid} N(0, \sigma^2).$$
 
 ### b.
 
