@@ -139,7 +139,7 @@ plot2
   1) Already fit with the point included.
   2) Fitting without point 131:
   
-```{r, eval = F}
+```{r}
 lm.obj.sub <- lm(log(sales) ~ TV + I(TV^2), data = advertising, subset = -131)
 
 outlier <- summary(lm.obj)
@@ -324,12 +324,52 @@ plot(lm.obj, which = 2)
 ```{r}
 ## Fitting linear model for medv ~ crim + rm + lstat
 lm.obj <- lm(medv ~ crim + rm + lstat, data = Boston) 
-```
 
+summary(lm.obj)
+```
 
 ### a.
 
+$$medv_i = \beta_0 + \beta_1 \cdot crim_i + \beta_2 \cdot rm_i + \beta_3 \cdot lstat_i + + \epsilon_i,$$
+
+where $\epsilon_i \sim_{iid} N(0 \sigma^2)$.
+
 ### b.
+
+```{r}
+# Residuals vs. Fitted Plot
+plot(lm.obj, which = 1)
+# QQ Norm
+plot(lm.obj, which = 2)
+```
+
+Both plots indicate that the model isn't a good fit. The Residuals vs. Fitted curve has very strong curvature, and the $QQ$-norm plot does not fit theoretical normality.
+
+We can check for possible non-linearity by plotting the response against each of the predictors.
+
+```{r}
+plot1 <- Boston %>% 
+  ggplot(aes(x = crim, y = medv)) +
+  geom_point()+
+  labs(title = "Medium Value of Homes vs Per Capita Crime Rate")
+
+plot1
+
+plot2 <- Boston %>% 
+  ggplot(aes(x = rm, y = medv)) +
+  geom_point()+
+  labs(title = "Medium Value of Homes vs Average Rooms per Home")
+
+plot2
+
+plot3 <- Boston %>% 
+  ggplot(aes(x = lstat, y = medv)) +
+  geom_point()+
+  labs(title = "Medium Value of Homes vs Percentage Lower Status of Population")
+
+plot3
+```
+
 
 ### c.
     
