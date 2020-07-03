@@ -307,7 +307,8 @@ plot(lm.obj, which = 2)
 
   Because of the results of the diagnostics, we can rely on $R$'s hypothesis testing. Every $p$ value shows significance, except for $Urban_{Yes}$. The two most significant effects are those of $Shelve_{Good}$ and $Shelve_{Medium}$.
   
-  
+  Interpretation of $\hat{\beta}_3$: When fixing all other predictors, we expect to sell 4.65 more car seats with good shelf locations as opposed to those with bad shelf locations (on average).
+  Interpretation of $\hat{\beta}_4$: When fixing all other predictors, we expect to sell 1.83 more car seats with medium shelf locations as opposed to those with bad shelf locations (on average).
   
   2. For _Boston_ data set of _ISLR_ package, proceed to work on the following model:
   
