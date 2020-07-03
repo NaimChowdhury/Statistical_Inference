@@ -269,7 +269,7 @@ Of this small set of points, 6 has the highest hat value,
   
   $$Sales \sim Income + Advertising + ShelveLoc + Urban$$
     a. Provide the full modeling equation (with assumptions on error terms).
-    b. Proceed to check if hte model assumptions hold via diagnosing appropriate plots.
+    b. Proceed to check if the model assumptions hold via diagnosing appropriate plots.
     c. Given your answer in part 1(b), can we rely on $p$-values provided by classic inference here? Proceed to interpret two most statistically significant effects.
     
 ## Solution 1.
@@ -277,6 +277,8 @@ Of this small set of points, 6 has the highest hat value,
 ```{r}
 # Fitting a model as described by the problem.
 lm.obj <- lm(Sales ~ Income + Advertising + ShelveLoc + Urban, data = Carseats)
+
+summary(lm.obj)
 ```
 
 ### a.
@@ -290,6 +292,19 @@ where $Shelve$ and $Urban$ are categorical and $\epsilon_i$ follows
 $$\epsilon_i \sim_{iid} N(0, \sigma^2).$$
 
 ### b.
+
+```{r}
+# Residuals vs Fitted
+plot(lm.obj, which = 1)
+
+# QQ-Norm
+plot(lm.obj, which = 2)
+```
+
+The variance is pretty much constant, with a few outliers, and the QQ-norm plot does not deviate from normality in any significant way.
+
+
+
 
 ### c.
   
