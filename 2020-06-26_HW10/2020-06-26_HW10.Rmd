@@ -142,8 +142,11 @@ plot2
 ```{r}
 lm.obj.sub <- lm(log(sales) ~ TV + I(TV^2), data = advertising, subset = -131)
 
+# Outlier and no Outlier test results
 outlier <- summary(lm.obj)
 no.outlier <- summary(lm.obj.sub)
+
+
 ```
 
 Fitted equation with outlier:
@@ -254,16 +257,42 @@ text( x = 1:nrow(advertising),
 
 Once again, point 131 appears as a regression outlier. 
 
-```{r}
-## hat-values:
-head(hatvalues(lm.obj))
-```
-
-Of this small set of points, 6 has the highest hat value,
-
 ### d.
 
+We can remove point 131 in the same we did for the previous problem.
+
+```{r}
+lm.obj.sub <- lm(sales ~ TV + radio + TV:radio + I(TV^2), data = advertising, subset = -131)
+
+outlier <- summary(lm.obj)
+no.outlier <- summary(lm.obj.sub)
+```
+
+Fitted equation with outlier:
+
+$$ \widehat{sales} = 5.14 + 0.051\cdot TV + 0.035 \cdot radio - 0.00011 \cdot TV^2 + 0.0011(TV \cdot radio)$$
+
+Fitted equation __without__ outlier:
+
+$$ \widehat{sales} = 5.18 + 0.049\cdot TV + 0.042 \cdot radio - 0.00010 \cdot TV^2 + 0.0010(TV \cdot radio)$$
+
+Comparing $R^2$:
+```{r}
+outlier$r.squared
+no.outlier$r.squared
+```
+
+Comparing RSE:
+```{r}
+outlier$sigma
+no.outlier$sigma
+```
+
+The models don't differ very much, even after removing the outlier point 131. Coefficients and $R^2$ value are practically the same. The $RSE$ decreased, but in relation to the values of $sales$, its not a substantial decrease.
+
 ### e.
+
+  I would leave the point in, because the decrease in the $RSE$ is not substantial relative to the units of the predictor $sales$.
 
 # Problem #2
 
@@ -410,7 +439,7 @@ anova(lm.obj, lm.poly.obj)
     
   With $p$ practically 0, we reject the null hypothesis, thus at least one of the new variables is significant.    
     
-# Problem #3 (+3 Bonus Points)
+# (No Attempt) Problem #3 (+3 Bonus Points)
 
 For _thuesen_ data set of _ISwR_ library, proceed to use bootstrap in order to calculate standard errors and 95% confidence interval for $\hat{\beta}_1$ in the following regression:
 
